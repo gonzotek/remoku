@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html manifest="cache.manifest">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<link rel="apple-touch-startup-image" href="remoku-splash.png" />
+<!-- link rel="apple-touch-icon-precomposed" href="" / -->
+<title>Remoku</title>
+<link rel="icon" type="image/png" href="favicon.png" />
+<link rel="stylesheet" type="text/css" href="remoku-gui.css" media="screen" /> 
+<script src="remoku-gui.js"></script>
+</head>
+<body>
+<table id="navtable">
+  <tr>
+	<td>
+	<a class="active nav" id="navremote">
+	<div>Remote</div>
+	<img class="remoteicons" id="navremoteimg" src="images/DPad.png" >
+	</a>
+	</td>
+	<td>
+	<a class="nav" id="navgoodies">
+	<div>Goodies</div>
+	<img class="remoteicons" src="images/goodies.png">
+	</a>
+	</td>
+	<td class="hidden">
+	<a class="nav" id="navapps"> 
+	<div>Channels</div> 
+	<img class="remoteicons" src="images/application_view_tile.png">
+	</a>
+	</td>
+	<td>
+	<a  class="nav" id="navconfig"> 
+	<div>Settings</div> 
+	<img class="remoteicons" src="images/setting_tools.png">
+	</a>
+	</td>
+	<td>
+	<a  class="nav" id="navabout"> 
+	<div>About</div> 
+	<img class="remoteicons" src="images/about.png">
+	</a>
+	</td>
+  <tr>
+</table>
+<div id="screens">
+<div id="remote" class="visible">
+<table id="remotetable">
+	<tr>
+		<td colspan="3">
+			<div id="text">
+				<span id="searchline"><input id="textentry" type="text" tabindex="1"><button id="sendtext">Send</button></span>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td rowspan="6"><img src="images/left_edge.png"></td>
+		<td>
+			<table >
+				<tr>
+					<td><img src="images/back.png" class="link" id="Back"></td>
+					<td><img src="images/home.png" class="link" id="Home"></td>
+				</tr>
+			</table>
+		</td>
+		<td rowspan="6"><img src="images/right_edge.png"></td>
+	</tr>
+	<tr>
+		<td>
+			<table >
+				<tr>
+					<td><img src="images/top_left_corner.png"></td>
+					<td><img src="images/up.png" class="link" id="Up"></td>
+					<td><img src="images/top_right_corner.png"></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table >
+				<tr>
+					<td><img src="images/left.png" class="link" id="Left"></td>
+					<td><img src="images/ok.png" class="link" id="Select" tabindex="2"></td>
+					<td><img src="images/right.png" class="link" id="Right"></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table >
+				<tr>
+					<td><img src="images/bottom_left_corner.png"></td>
+					<td><img src="images/down.png" class="link" id="Down"></td>
+					<td><img src="images/bottom_right_corner.png"></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table >
+				<tr>
+					<td><img src="images/replay.png" class="link" id="InstantReplay"></td>
+					<td><img src="images/info.png" class="link" id="Info"></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table >
+				<tr>
+					<td><img src="images/previous.png" class="link" id="Rev"></td>
+					<td><img src="images/play.png" class="link" id="Play"></td>
+					<td><img src="images/next.png" class="link" id="Fwd"></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="3"><img src="images/bottom_edge.png"></td>
+	</tr>
+</table>
+</div>
+
+<div id="goodies" class="hidden">
+	<div class="box" id="shoutcast">
+	<h2>Launch Shoutcast Channel</h2>
+	<label>Station Name:</label><input id="sc_name" value="My Station"><br>
+	<label>Station URL:</label><input id="sc_url" value="http://my.shoutcast.url/station.pls" />
+	<button id="sc_launch">Launch Shoutcast</button>
+	</div>
+	<div class="box" id="macros">
+	<h2>Macros</h2>
+	<button id="dev_macro">Developer Screen</button><br>
+	<button id="ver_macro">Channel Version Info</button><br>
+	<button id="bro_macro">Bit Rate Override Screen</button><br>
+	<button id="cor_macro">Dump Core</button><br>
+	</div>
+	<div class="box" id="playtimer">
+	<h2>Play Timer<h2>
+	<input id="playtime"><button id="startstoptimer">Start Play Timer</button>
+	<button id="addminute"><button id="resettimer">Reset Timer</button>
+	</div>
+	<div class="box hidden" id="goodieLaunch">
+	<h2>Launch Remoku Channel</h2>
+	<label>Add launch parameter</label><br>
+	<input id="lkey" value="videoUrl">=<input id="lvalue" value="http://video.ted.com/talks/podcast/CraigVenter_2008_480.mp4" />
+	<button id="lparamdo">Add</button>
+	</div>
+</div>
+
+<div id="apps" class="hidden">
+<ul id="applist">
+</ul>
+</div>
+
+<div id="config" class="hidden">
+	<div class="box" id="controlcontainer">
+		<h2>Control This Roku</h2>
+		<div id="rokucontrol">
+			<select id="rokus"></select>
+		</div>
+	</div>
+	<div class="box">
+		<h2>Find My Roku</h2>
+		<label>My Network: </label>
+		<input class="address" id="octet1" value="192" /> .
+		<input class="address" id="octet2" value="168" /> .
+		<input class="address" id="octet3" value="1" /> . X
+		<br>
+		<label>How Many Rokus? </label>
+		<select id="num">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12">12</option>
+			<option value="13">13</option>
+			<option value="14">14</option>
+			<option value="15">15</option>
+		</select> 
+		<button id="scanforroku">Scan</button>
+		<div id="scanresults" class="hidden"></div>
+		<br><br>
+		<label>Manual Add: </label><input class="maddress" id="maddress" value="192.168.1.3" /><button id="addroku">+</button><br>
+		<form><label>Remove this: </label><select id="manualrokus" disabled></select><button id="removeroku">-</button></form>
+	</div>
+	<div class="box hidden">
+		<h2>Apps</h2>First<br>Install Remoku Channel<br>Then<br>
+		<button id="startremoku">Launch Remoku Channel</button><br>Then<br>
+		<button id="loadapps">Load Channel List</button>
+	</div>
+</div>
+<div id="about" class="hidden">
+	<div class="box" id="debug">
+		<h2>Remoku</h2>
+		Instructions and tips can be found at:<br>
+		<a href="http://help.remoku.tv/" target="_blank" id="helplink">help.remoku.tv</a><br>
+		<div class="hslice" id="Remoku">
+		<div class="box"><h2>Version</h2><div id="ver"></div></div>
+		    <span class="entry-title" style="display:none;">Remoku</span>
+		    <a rel="entry-content" href="http://remoku.tv" style="display:none;"></a>
+		</div> 
+		<h2>Debug Output</h2>
+		<div id="dbgOut"></div>
+		<button id="wipesettings">Wipe Settings</button>
+	</div>
+
+</div>
+<div id="remotespopup" class="hidden">
+<ul>
+<li id="remote0" class="selected">Downstairs <span>192.168.1.13</span></li>
+<li id="remote1" >Office <span>192.168.1.15</span></li>
+<li id="remote2" >Bedroom <span>192.168.1.29</span></li>
+</ul>
+</div>
+<div id="firstsetup" class="hidden">
+	<div class="box">
+		<h2>This looks like the first time you've used Remoku.</h2>
+		To begin, click the settings icon above and enter your network details.<br><br>If you are not sure what to do, try just clicking the scan button and look for <a href="http://help.remoku.tv">help</a> under the About icon.
+	</div>
+</div>
+</div>
+</body>
+</html>

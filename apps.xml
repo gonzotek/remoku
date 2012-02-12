@@ -1,0 +1,47 @@
+<apps>
+ <app id="5127" version="1.0.18">Roku Spotlight</app>
+ <app id="11" version="2.4.20">Roku Channel Store</app>
+ <app id="12" version="3.0.1001">Netflix</app>
+ <app id="2285" version="2.0.1">Hulu Plus</app>
+ <app id="2016" version="3.0.29">Movies on Demand</app>
+ <app id="7767" version="1.0.28">EPIX</app>
+ <app id="28" version="2.0.20">Pandora</app>
+ <app id="1453_626c" version="1.1.100925">TuneIn Radio</app>
+ <app id="15" version="2.1.92">Facebook Photos &amp; Videos</app>
+ <app id="45" version="1.5.0">Revision3</app>
+ <app id="199" version="1.1.110207">The TWiT Netcast Network</app>
+ <app id="1418_12a0" version="1.3.13">Nowhere TV</app>
+ <app id="1152_7eb1" version="0.0.0">TED Talks HD</app>
+ <app id="1489_dd56" version="1.3.22">YouTube</app>
+ <app id="1616" version="0.0.0">NASA TV</app>
+ <app id="1688" version="1.5.13">Roku Newscaster</app>
+ <app id="1968" version="1.1.3">Flixster</app>
+ <app id="1997" version="1.1.8">Chow</app>
+ <app id="2267" version="1.2.0">HGTV</app>
+ <app id="2785" version="1.6.20110516">iTunes Podcasts</app>
+ <app id="2898" version="0.0.0">Weather Underground</app>
+ <app id="3261" version="1.0.3">Photo Puzzle</app>
+ <app id="5505" version="1.1.20110428">My Channels</app>
+ <app id="5601" version="0.0.0">Google Maps</app>
+ <app id="5622" version="0.0.0">MapQuest</app>
+ <app id="2585" version="1.2.0">Jewelry Television</app>
+ <app id="4730_834b" version="0.0.0">Chess Challenge</app>
+ <app id="4732_5ea3" version="0.0.0">Rockswap Adventures</app>
+ <app id="5415" version="1.8.20110714">Instant Watch Browser for Netflix</app>
+ <app id="7161" version="1.0.0">NASA TV</app>
+ <app id="6193_2df3" version="1.0.30">CNBC</app>
+ <app id="7865" version="1.0.13">Fandango</app>
+ <app id="6614" version="0.9.20111016">AOL HD</app>
+ <app id="2157" version="1.0.72">Disney</app>
+ <app id="2136" version="1.82.0">MOG music</app>
+ <app id="9101" version="1.8.0">Streaming Audio Player</app>
+ <app id="7359" version="1.6.2">Angry Birds</app>
+ <app id="8934_9bab" version="1.5.1">Angry Birds Seasons</app>
+ <app id="6600_0fc1" version="1.17.20">PAC-MAN Championship Edition</app>
+ <app id="6844_91c5" version="1.1.30">GALAGA</app>
+ <app id="8659_255b" version="0.0.0">Storm in a Teacup</app>
+ <app id="13" version="2.5.16">Amazon Instant Video</app>
+ <app id="9485_82b5" version="1.0.4">Librivox</app>
+ <app id="8378" version="1.1.1227">HBO GO</app>
+ <app id="dev" version="1.0.0">Remoku</app>
+</apps>
