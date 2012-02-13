@@ -184,6 +184,7 @@ function updateSelect() {
 	}
 	remotesPopup.innerHTML="";
 	var remoteUl = document.createElement("ul");
+	remoteUl.id = "remotepopupul"
 	var remoteLis = [];
 	rokus  = scannedRokus.concat(manualRokus).unique();
 	
@@ -394,21 +395,13 @@ function setRokuCount() {
 function setRokuAddress(){
 	this.options[this.selectedIndex].setAttribute("class","selected");
 	rokuAddress = this.options[this.selectedIndex].value;
-	for (i=0;i<remoteLis.length;i++){
-		if (remoteLis.id=="Remote"+this.selectedIndex){
-			remoteLis[i].setAttribute("class","selected");
-		} else {
-			remoteLis[i].setAttribute("class","");
-		}
-	}
-	try{
-		var apps = JSON.parse(localStorage.getItem(rokuAddress + '-apps'));
-	}catch(err){
-		apps = [];	
-	}
-	if(apps)_rmAppsCB(apps);
+	//remotesPopup.innerHTML="";
+	//var remoteUl = document.getElementById("remotepopupul");
+	//var remoteLis = [];
+
 	setConfig('rokuAddress', rokuAddress);
-	}
+	updateSelect();
+}
 
 function firstSetup(){
 	for(i=0;i<screenArray.length;i++){
@@ -1056,6 +1049,13 @@ window.onload = function(){
 	namerokuButton.onclick = nameRoku;
 	
 	remotesPopup = document.getElementById("remotespopup");
+	
+	try{
+		namedRokus = JSON.parse(getConfig('namedRokus')) ? JSON.parse(getConfig('namedRokus')) : {};
+		dbg(JSON.stringify(namedRokus));
+	} catch (err) {
+		namedRokus = {};
+	}
 
 	if(manualRokus.length>0) buildManualRokusMenu();
 	updateSelect();
@@ -1065,11 +1065,6 @@ window.onload = function(){
 		apps = [];	
 	}
 	
-	try{
-		namedRokus = JSON.parse(getConfig('namedRokus')) ? JSON.parse(getConfig('namedRokus')) : {};
-	} catch (err) {
-		namedRokus = {};
-	}
 	
 	
 	rokupostframe.name="rokuresponse"
