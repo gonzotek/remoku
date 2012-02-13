@@ -965,6 +965,8 @@ var remotesPopup;
 var clearTimer;
 var longtouch;
 
+var MacroInput;
+
 var remote0;
 
 // Check if a new cache is available on page load.
@@ -1201,7 +1203,9 @@ window.onload = function(){
 	MacroVerButton = document.getElementById("ver_macro");
 	MacroVerButton.onclick = macroChannelVersions;
 
-	
+	macroInput = document.getElementById("custommacroinput");
+	macroInput.onfocus = textModeOff;
+	macroInput.onblur = textModeOn;
 	
 	
 	
