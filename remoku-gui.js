@@ -261,17 +261,20 @@ function buildManualRokusMenu(){
 	else manualSelect.disabled = true;
 }
 
+function doNameRoku(evt){
+	if(!evt)evt = window.event;
+	if (evt.keyCode == 13){
+		nameRoku();
+	} else {
+		return false;
+	}
+}
+
+
 function nameRoku(){
-	dbg("nameRoku()");
 	var curRokuName = rokuName.value;
-	namedRoku = {name : curRokuName , address : rokuAddress};
-	dbg(namedRoku.name + " : " + namedRoku.address);
-	dbg(addresstoVarName(namedRoku.address) + " : " + namedRoku.name);
 	namedRokus[rokuAddress] = rokuName.value;
 	setConfig("namedRokus", JSON.stringify(namedRokus));
-	dbg(namedRokus[rokuAddress]);
-	dbg("stringify: " + JSON.stringify(namedRokus));
-	//dbg("in and out:" + varNametoAddress(addresstoVarName(namedRoku.address)));
 	updateSelect();
 }
 
@@ -395,11 +398,8 @@ function setRokuCount() {
 function setRokuAddress(){
 	this.options[this.selectedIndex].setAttribute("class","selected");
 	rokuAddress = this.options[this.selectedIndex].value;
-	//remotesPopup.innerHTML="";
-	//var remoteUl = document.getElementById("remotepopupul");
-	//var remoteLis = [];
-
 	setConfig('rokuAddress', rokuAddress);
+	rokuname.value = namedRokus[rokuAddress] ? namedRokus[rokuAddress] : "";
 	updateSelect();
 }
 
@@ -1057,6 +1057,7 @@ window.onload = function(){
 	rokuName = document.getElementById('rokuname');
 	rokuname.onfocus = textModeOff;
 	rokuName.onblur = textModeOn;
+	rokuName.onkeyup = doNameRoku;
 	namerokuButton = document.getElementById('nameroku');
 	namerokuButton.onclick = nameRoku;
 	
@@ -1071,6 +1072,7 @@ window.onload = function(){
 
 	if(manualRokus.length>0) buildManualRokusMenu();
 	updateSelect();
+	rokuname.value = namedRokus[rokuAddress] ? namedRokus[rokuAddress] : "Living Room";
 	try{
 		var apps = JSON.parse(localStorage.getItem(rokuAddress + '-apps'));
 	}catch(err){
