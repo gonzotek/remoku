@@ -1016,8 +1016,15 @@ window.onload = function(){
 	octet2 = document.getElementById('octet2');
 	octet3 = document.getElementById('octet3');
 	octet1.onchange = setMyNetwork;
+	octet1.onfocus = textModeOff;
+	octet1.onblur = textModeOn;
 	octet2.onchange = setMyNetwork;
+	octet2.onfocus = textModeOff;
+	octet2.onblur = textModeOn;
 	octet3.onchange = setMyNetwork;
+	octet3.onfocus = textModeOff;
+	octet3.onblur = textModeOn;
+	
 	
 	myNetwork = getConfig('myNetwork') ? getConfig('myNetwork') : "192.168.1";
 	var octets = myNetwork.split(".");
@@ -1037,6 +1044,9 @@ window.onload = function(){
 	
 	rokuAddress = getConfig('rokuAddress');
 	manualInput = document.getElementById('maddress');
+	manualInput.onfocus = textModeOff;
+	manualInput.onblur = textModeOn;
+
 	manualSelect = document.getElementById('manualrokus');
 	manualRokus = getConfig('manualRokus') ? getConfig('manualRokus').split(",") : [];
 	removeButton = document.getElementById('removeroku');
@@ -1045,6 +1055,8 @@ window.onload = function(){
 	addButton.onclick = addRoku;
 
 	rokuName = document.getElementById('rokuname');
+	rokuname.onfocus = textModeOff;
+	rokuName.onblur = textModeOn;
 	namerokuButton = document.getElementById('nameroku');
 	namerokuButton.onclick = nameRoku;
 	
@@ -1165,7 +1177,13 @@ window.onload = function(){
 	launchButton.onclick = launchRemokuWithParams;
 	
 	shoutCastNameInput = document.getElementById("sc_name");
+	shoutCastNameInput.onfocus = textModeOff;
+	shoutCastNameInput.onblur = textModeOn;
+
 	shoutCastUrlInput = document.getElementById("sc_url");
+	shoutCastUrlInput.onfocus = textModeOff;
+	shoutCastUrlInput.onblur = textModeOn;
+
 	shoutCastLaunchButton = document.getElementById("sc_launch");
 	shoutCastLaunchButton.onclick = launchShoutCast;
 	
