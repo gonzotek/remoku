@@ -13,11 +13,25 @@ if (!Array.unique) Array.prototype.unique = function() {
 	    return r;
 };
 
+function addresstoVarName(address){
+	var splitaddress = address.split(".");
+	var joinedaddress = splitaddress.join("_");
+	return "$" + joinedaddress;
+}
+
+function varNametoAddress(varName){
+	varName = varName.slice(1);
+	var splitName = varName.split("_");
+	var joinedName = splitName.join(".");
+	return joinedName;
+	}
+
+
 function isBadBrowser(){
 	//Blacklisted browsers claim to support localStorage, but don't follow spec
 	
 	//Fluid claims to support localStorage, but clears it when app is quit
-	if (navigator.userAgent.indexOf('FluidApp')!=-1) return true;
+	//if (navigator.userAgent.indexOf('FluidApp')!=-1) return true;
 	
 	//Older browsers might not have localStorage support
 	if (!localStorage.getItem) return true;
@@ -180,9 +194,10 @@ function updateSelect() {
 				setConfig('rokuAddress', rokuAddress);
 			}
 			var rokuSelected = rokuAddress==rokus[i] ? true : false;
-			rokuSelect.options[i] = new Option(rokus[i], rokus[i], rokuSelected, rokuSelected);
+			var thisRokuName =  namedRokus && namedRokus[rokus[i]] ? namedRokus[rokus[i]] : rokus[i];
+			rokuSelect.options[i] = new Option(thisRokuName, rokus[i], rokuSelected, rokuSelected);
 			remoteLis[i] = document.createElement("li");
-			remoteLis[i].innerHTML = rokus[i];
+			remoteLis[i].innerHTML = namedRokus && namedRokus[rokus[i]] ? namedRokus[rokus[i]] : rokus[i];
 			if(rokuSelected)remoteLis[i].setAttribute("class","selected");
 			remoteLis[i].id="remote"+ [i];
 			remoteLis[i].onclick = function(){
@@ -245,6 +260,19 @@ function buildManualRokusMenu(){
 	else manualSelect.disabled = true;
 }
 
+function nameRoku(){
+	dbg("nameRoku()");
+	var curRokuName = rokuName.value;
+	namedRoku = {name : curRokuName , address : rokuAddress};
+	dbg(namedRoku.name + " : " + namedRoku.address);
+	dbg(addresstoVarName(namedRoku.address) + " : " + namedRoku.name);
+	namedRokus[rokuAddress] = rokuName.value;
+	setConfig("namedRokus", JSON.stringify(namedRokus));
+	dbg(namedRokus[rokuAddress]);
+	dbg("stringify: " + JSON.stringify(namedRokus));
+	//dbg("in and out:" + varNametoAddress(addresstoVarName(namedRoku.address)));
+	updateSelect();
+}
 
 function loadedImage() {
 	var URL = this.src;
@@ -366,8 +394,15 @@ function setRokuCount() {
 function setRokuAddress(){
 	this.options[this.selectedIndex].setAttribute("class","selected");
 	rokuAddress = this.options[this.selectedIndex].value;
+	for (i=0;i<remoteLis.length;i++){
+		if (remoteLis.id=="Remote"+this.selectedIndex){
+			remoteLis[i].setAttribute("class","selected");
+		} else {
+			remoteLis[i].setAttribute("class","");
+		}
+	}
 	try{
-		var apps = JSON.parse(localStorage.getItem(rokuAddress + '-apps'))
+		var apps = JSON.parse(localStorage.getItem(rokuAddress + '-apps'));
 	}catch(err){
 		apps = [];	
 	}
@@ -876,6 +911,9 @@ var ipCount = 0;
 var numField;
 var manualInput;
 var manualSelect;
+var rokuName;
+var namerokuButton;
+var namedRokus = {};
 
 var scannedRokus = [];
 var manualRokus = [];
@@ -979,6 +1017,7 @@ window.onload = function(){
 	rokuSelect.onchange = setRokuAddress;
 	
 	scannedRokus = getConfig('scannedRokus') ? getConfig('scannedRokus').split(",") : [];
+	
 	keyboardMode = getConfig('keyboardMode') ? getConfig('keyboardMode') : true;
 	octet1 = document.getElementById('octet1');
 	octet2 = document.getElementById('octet2');
@@ -1011,15 +1050,27 @@ window.onload = function(){
 	removeButton.onclick = removeRoku;
 	addButton = document.getElementById('addroku');
 	addButton.onclick = addRoku;
+
+	rokuName = document.getElementById('rokuname');
+	namerokuButton = document.getElementById('nameroku');
+	namerokuButton.onclick = nameRoku;
+	
 	remotesPopup = document.getElementById("remotespopup");
 
 	if(manualRokus.length>0) buildManualRokusMenu();
 	updateSelect();
 	try{
-		var apps = JSON.parse(localStorage.getItem(rokuAddress + '-apps'))
+		var apps = JSON.parse(localStorage.getItem(rokuAddress + '-apps'));
 	}catch(err){
 		apps = [];	
 	}
+	
+	try{
+		namedRokus = JSON.parse(getConfig('namedRokus')) ? JSON.parse(getConfig('namedRokus')) : {};
+	} catch (err) {
+		namedRokus = {};
+	}
+	
 	
 	rokupostframe.name="rokuresponse"
 	rokupostframe.id="rokuresponse";
