@@ -68,12 +68,8 @@ button{
 #rokucontrol{text-align:center;}
 
 #screens{
-	position: fixed;
-	top:50px;
-	height:400px;
-	left:50%;
-	margin-left:-160px;
-	/* z-index:-1; */
+	height:416px;
+	z-index:-1;
 	}
 
 #apps, #remote, #config, #firstsetup, #goodies, #about{
