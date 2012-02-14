@@ -2,7 +2,6 @@ body{
 	background-color: #101010;
 	border-width: 0px;
 	color:#E8E8E8;
-	border:0;
 	padding:0;
 	margin:0;
 	font-family: sans-serif;
@@ -168,6 +167,8 @@ button{
 #textentry{
 	width:125px;
 	font-weight:bold;
+	background: url(images/keyboard.png) no-repeat 5px 5px;
+	padding-left:32px;
 	}
 	
 #sendtext{
