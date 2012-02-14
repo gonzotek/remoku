@@ -399,7 +399,7 @@ function setRokuAddress(){
 	this.options[this.selectedIndex].setAttribute("class","selected");
 	rokuAddress = this.options[this.selectedIndex].value;
 	setConfig('rokuAddress', rokuAddress);
-	rokuname.value = namedRokus[rokuAddress] ? namedRokus[rokuAddress] : "";
+	rokuName.value = namedRokus[rokuAddress] ? namedRokus[rokuAddress] : "";
 	updateSelect();
 }
 
@@ -1057,7 +1057,7 @@ window.onload = function(){
 	addButton.onclick = addRoku;
 
 	rokuName = document.getElementById('rokuname');
-	rokuname.onfocus = textModeOff;
+	rokuName.onfocus = textModeOff;
 	rokuName.onblur = textModeOn;
 	rokuName.onkeyup = doNameRoku;
 	namerokuButton = document.getElementById('nameroku');
@@ -1074,7 +1074,7 @@ window.onload = function(){
 
 	if(manualRokus.length>0) buildManualRokusMenu();
 	updateSelect();
-	rokuname.value = namedRokus[rokuAddress] ? namedRokus[rokuAddress] : "Living Room";
+	rokuName.value = namedRokus[rokuAddress] ? namedRokus[rokuAddress] : "Living Room";
 	try{
 		var apps = JSON.parse(localStorage.getItem(rokuAddress + '-apps'));
 	}catch(err){
