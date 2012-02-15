@@ -662,6 +662,7 @@ function wipeSettings(){
 	setConfig("scannedRokus", "");
 	setConfig("manualRokus", "");
 	setConfig("rokuCount", "");
+	setConfig("namedRokus","");
 	//setConfig("apps", "");
 	if (localStorage.clear) localStorage.clear();
 }

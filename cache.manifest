@@ -1,7 +1,7 @@
 CACHE MANIFEST
 #Remoku Web App
 #Dev Channel
-#February 14, 2012 11:46:58 AM 
+#February 14, 2012 07:34:55 PM 
 #
 NETWORK:
 *
@@ -16,6 +16,7 @@ favicon.ico
 remoku-splash.png
 images/about.png
 images/application_view_tile.png
+images/arrow_open.gif
 images/back.png
 images/bottom_edge.png
 images/bottom_left_corner.png

@@ -85,13 +85,13 @@ button{
 	text-align:left;
 	left:50%;
 	margin-left:-160px;
-	background-color: rgba(23,23,23, 0.5);
+	background-color: rgba(23,23,23, 0.75);
 	}
 
-#remotespopup ul{margin:0;padding:0; }
+#remotespopup ul{margin:0;padding:0; border:1px solid #E8E8E8; 	background-color: rgba(23,23,23, 1);
+}
 
 #remotespopup li{
-	background-color: rgba(23,23,23, 0.5);
 	list-style-type: none;
 	font-size:20px;
 	font-style:none;
@@ -100,6 +100,8 @@ button{
 	margin-right:5px;
 	height:30px;
 	padding-top:10px;
+	padding-left:5px;
+	padding-right:5px;
 	vertical-align:middle;
 }
 #remotespopup li span{font-size:10px;}
@@ -145,6 +147,9 @@ button{
 	margin:0px;
 	-webkit-appearance:none;
 	-moz-appearance:none;
+	background: url(images/arrow_open.gif) no-repeat right;
+	background-color: #2E2E2E;
+	padding-right:12px;
 	}
 
 #searchline{
@@ -288,3 +293,7 @@ margin:0;
 	color:white;
 	margin:50px;
 	}
+	
+#rokuname{
+	width:90px;
+}
