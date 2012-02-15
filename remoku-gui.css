@@ -71,7 +71,7 @@ button{
 	z-index:-1;
 	}
 
-#apps, #remote, #config, #firstsetup, #goodies, #about{
+#apps, #remote, #config, #goodies, #about{
 	position: fixed;
 	top:50px;
 	text-align:center;
@@ -105,9 +105,9 @@ button{
 	vertical-align:middle;
 }
 #remotespopup li span{font-size:10px;}
-#config, #apps, #goodies, #firstsetup, #about{
+#config, #apps, #goodies, #about{
 	width:320px;
-	height:366px;
+	height:400px;
 	overflow:auto;
 	-webkit-overflow-scrolling: touch;
 	}
@@ -297,3 +297,4 @@ margin:0;
 #rokuname{
 	width:90px;
 }
+.bold{font-weight:bold;}

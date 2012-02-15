@@ -408,6 +408,7 @@ function firstSetup(){
 		screenArray[i].setAttribute("class", "hidden");
 		}
 	firstSetupScreen.setAttribute("class", "visible");
+	configScreen.setAttribute("class", "visible");
 	//var setup = confirm("It looks like you haven't used Remoku before. Would you like to begin by scanning for Rokus?");
 	//if(setup){
 	//	rokuCount = prompt ("Ok, how many Rokus do you own?", "1");
