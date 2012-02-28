@@ -712,7 +712,7 @@ function rmousedownRemoteBtn(e){
 		if (!e) var e = window.event;
 		if (e.which) rightclick = (e.which == 3);
 		else if (e.button) rightclick = (e.button == 2);
-		if(rightclick)showRemotes();
+		//if(rightclick)showRemotes();
 		//dbg('Rightclick: ' + rightclick); // true or false
 		//return false;
 	}
@@ -1174,16 +1174,17 @@ window.onload = function(){
 	navAbout = document.getElementById("navabout");
     navArray = [navRemote,navGoodies,navApps,navConfig,navAbout];
     
-	if(is_touch_device()){
-		dbg("Touch Device Detected");
-		navRemoteImg.ontouchstart = touchshowRemotes; 
-		navRemoteImg.ontouchend = canceltouchshowRemotes;
-	} else {
-		navRemote.onclick = activateButton;
-		navRemote.onmousedown = rmousedownRemoteBtn;
-		navRemote.onmouseup = function(){return false;};
-		navRemote.oncontextmenu = function(){return false;};
-	}	
+// 	if(is_touch_device()){
+// 		dbg("Touch Device Detected");
+// 		navRemoteImg.ontouchstart = touchshowRemotes; 
+// 		navRemoteImg.ontouchend = canceltouchshowRemotes;
+// 	} else {
+// 		navRemote.onclick = activateButton;
+// 		navRemote.onmousedown = rmousedownRemoteBtn;
+// 		navRemote.onmouseup = function(){return false;};
+// 		navRemote.oncontextmenu = function(){return false;};
+// 	}	
+	navRemote.onclick = activateButton;
 	navApps.onclick = activateButton;
 	navConfig.onclick = activateButton;
 	navGoodies.onclick = activateButton;
