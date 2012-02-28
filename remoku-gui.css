@@ -202,12 +202,12 @@ button{
 	}
 
 #textentry{
-	width:125px;
+	width:122px;
 	font-weight:bold;
-	background: url(images/keyboard.png) no-repeat 5px 5px;
-	padding-left:32px;
+	background: rgba(25, 25, 25, 0.5) url(images/keyboard.png) no-repeat 6px 6px;
+	padding-left:35px;
 	}
-	
+		
 #sendtext{
 	width:50px;
 	margin-left:3px;
