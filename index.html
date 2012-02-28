@@ -16,7 +16,7 @@
 <link rel="help" type="text/html" href="http://help.remoku.tv" />
 <script src="remoku-gui.js"></script>
 </head>
-<body>
+<body ontouchmove="preventMove(event);" id="body">
 <table id="navtable">
   <tr>
 	<td>
@@ -128,9 +128,13 @@
 		</td>
 	</tr>
 	<tr>
-		<td colspan="3"><img src="images/bottom_edge.png"></td>
+		<td colspan="3"><div id="rokuNameDiv">
+				<div id="nameline">Remoku</div>
+			</div>
+		</td>
 	</tr>
 </table>
+<div id="lowerremotespopup" class="hidden"></div>
 </div>
 
 <div id="goodies" class="hidden">
@@ -219,23 +223,22 @@
 	</div>
 </div>
 <div id="about" class="hidden">
-	<div class="box" id="debug">
-		<h2>Remoku</h2>
-		Instructions and tips can be found at:<br>
-		<a href="http://help.remoku.tv/" target="_blank" id="helplink">help.remoku.tv</a><br>
-		<div class="hslice" id="Remoku">
-		<div class="box"><h2>Version</h2><div id="ver"></div></div>
-		    <span class="entry-title" style="display:none;">Remoku</span>
-		    <a rel="entry-content" href="http://remoku.tv" style="display:none;"></a>
-		</div> 
+	<h1>Remoku</h1>
+	<h2>A web app for Roku remote control.</h2>
+	Instructions and tips can be found at:<br>
+	<a href="http://help.remoku.tv/" target="_blank" id="helplink">help.remoku.tv</a><br>
+	<div class="hslice" id="Remoku">
+	<div class="box"><h2>Version</h2><div id="ver"></div></div>
+	    <span class="entry-title" style="display:none;">Remoku</span>
+	    <a rel="entry-content" href="http://remoku.tv" style="display:none;"></a>
+	</div> 
+	<div class="box">
 		<h2>Debug Output</h2>
 		<div id="dbgOut"></div>
 		<button id="wipesettings">Wipe Settings</button>
 	</div>
-
 </div>
-<div id="remotespopup" class="hidden">
-</div>
+<div id="remotespopup" class="hidden"></div>
 </div>
 </body>
 </html>

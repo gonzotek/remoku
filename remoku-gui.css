@@ -1,12 +1,15 @@
+*{
+	font-family: Tahoma, sans-serif;
+	}
+	
 body{
 	background-color: #101010;
 	border-width: 0px;
 	color:#E8E8E8;
 	padding:0;
 	margin:0;
-	font-family: sans-serif;
-	height:416px;
-	-webkit-overflow-scrolling: touch;
+	font-family:Tahoma, sans-serif;
+	height:450px;
 }
 label{
 	background-color: #101010;
@@ -30,9 +33,14 @@ option{
 	color: #E8E8E8;
 }
 
+.scrollable {
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
 .selected{
 	background-color: #101010;
-	color:#E8E8E8;
+	color:#CC99CC;
 	font-weight:bold;
 	}
 
@@ -67,12 +75,12 @@ button{
 #rokucontrol{text-align:center;}
 
 #screens{
-	height:416px;
+	height:450px;
 	z-index:-1;
 	}
 
 #apps, #remote, #config, #goodies, #about{
-	position: fixed;
+	position: absolute;
 	top:50px;
 	text-align:center;
 	left:50%;
@@ -88,10 +96,20 @@ button{
 	background-color: rgba(23,23,23, 0.75);
 	}
 
-#remotespopup ul{margin:0;padding:0; border:1px solid #E8E8E8; 	background-color: rgba(23,23,23, 1);
+#lowerremotespopup{
+	position: absolute;
+	bottom:5px;
+	text-align:left;
+	left:50%;
+	margin-left:-75px;
+	width:150px;
+	background-color: rgba(23,23,23, 0.75);
+	}
+
+#remotespopup ul, #lowerremotespopup ul{margin:0;padding:0; border:1px solid #E8E8E8; 	background-color: rgba(23,23,23, 1);
 }
 
-#remotespopup li{
+#remotespopup li, #lowerremotespopup li{
 	list-style-type: none;
 	font-size:20px;
 	font-style:none;
@@ -104,19 +122,22 @@ button{
 	padding-right:5px;
 	vertical-align:middle;
 }
-#remotespopup li span{font-size:10px;}
+#remotespopup li span, #lowerremotespopup li span{font-size:10px;}
+
+
 #config, #apps, #goodies, #about{
 	width:320px;
 	height:400px;
-	overflow:auto;
-	-webkit-overflow-scrolling: touch;
+/*	overflow:auto;
+	-webkit-overflow-scrolling: touch; */
 	}
 	
 #remote{
 	width:320px;
 	height:400px;
-	overflow:visible;
+/*	overflow:visible;
 	-webkit-overflow-scrolling: touch;
+	*/
 }
 
 #remotetable{
@@ -124,17 +145,28 @@ button{
 	}
 	
 
-#text{
+#text, #rokuNameDiv{
 	margin-left:auto;
 	margin-right:auto;
 	/* visibility:hidden;
 	display:none; */
-	background-image: url(./images/top_edge.png);
 	height: 32px;
 	width: 229px; 
 	text-align:center;
-	}
+}
 
+#text{
+	background-image: url(./images/top_edge.png);
+}
+
+#rokuNameDiv{
+	font-weight:bold;
+	font-size:20px;
+	color:#E8E8E8;
+	background-image: url(./images/bottom_edge.png);
+	background-repeat:no-repeat;
+}
+	
 #apps .icons{max-height:75px;}	
 #apps ul{margin:0;padding:0; }
 #apps li{list-style-type: none;  margin-top:5px; margin-left:0; height:100px; padding:0;vertical-align:middle; }
@@ -264,7 +296,7 @@ h2{
 	margin-left:0;
 	margin-right:3px;
 	margin-bottom:10px;
-	font-family:serif;
+	font-family:Georgia, serif;
 	}
 
 
@@ -281,6 +313,7 @@ h2{
 	font-size:8pt;
 	font-weight:bold;
 	width:320px;
+	z-index:10;
 	}
 
 #navtable div{

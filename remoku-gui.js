@@ -13,6 +13,16 @@ if (!Array.unique) Array.prototype.unique = function() {
 	    return r;
 };
 
+
+//Return an array of the ancestors of an element
+function parents(node) {
+  var nodes = [];
+  for (; node; node = node.parentNode) {
+    nodes.unshift(node);
+  }
+  return nodes;
+}
+
 function addresstoVarName(address){
 	var splitaddress = address.split(".");
 	var joinedaddress = splitaddress.join("_");
@@ -145,7 +155,7 @@ function getElementsByClass(theClass, classType)
 }
 
 function preventMove(event){
-	event.preventDefault();
+	if (window.innerHeight>450 && remoteScreen.getAttribute("class")=="visible")event.preventDefault();
 }
 
 function stopFindRokus() {
@@ -183,6 +193,7 @@ function updateSelect() {
 		rokuSelect.remove(rokuSelect.length -1);
 	}
 	remotesPopup.innerHTML="";
+	lowerRemotesPopup.innerHTML="";
 	var remoteUl = document.createElement("ul");
 	remoteUl.id = "remotepopupul"
 	var remoteLis = [];
@@ -203,10 +214,13 @@ function updateSelect() {
 			remoteLis[i].id="remote"+ [i];
 			remoteLis[i].onclick = function(){
 				remotesPopup.setAttribute("class","hidden");
+				lowerRemotesPopup.setAttribute("class","hidden");
 				var rokuId = (this.id).substring(6);
 				rokuAddress=rokus[rokuId];
 				setConfig('rokuAddress', rokuAddress);	
 				updateSelect();
+				rokuName.value = namedRokus[rokuAddress] ? namedRokus[rokuAddress] : "";
+				nameLine.innerHTML = rokuName.value ? rokuName.value : rokuAddress;
 			}	
 			remoteUl.appendChild(remoteLis[i]);
 		}
@@ -217,6 +231,7 @@ function updateSelect() {
 		controlContainer.setAttribute("class","hidden");
 	}
 	remotesPopup.appendChild(remoteUl);
+	lowerRemotesPopup.appendChild(remoteUl);
 	if(rokuAddress==undefined || rokuAddress=="")rokuAddress=rokus[0];
 }
 
@@ -400,6 +415,7 @@ function setRokuAddress(){
 	rokuAddress = this.options[this.selectedIndex].value;
 	setConfig('rokuAddress', rokuAddress);
 	rokuName.value = namedRokus[rokuAddress] ? namedRokus[rokuAddress] : "";
+	nameLine.innerHTML = rokuName.value ? rokuName.value : rokuAddress;
 	updateSelect();
 }
 
@@ -861,6 +877,7 @@ function showRemotesAfterDelay(){
 	
 function showRemotes(){
 	remotesPopup.setAttribute("class", "visible");
+	lowerRemotesPopup.setAttribute("class", "visible");
 	remotesPopupTimer = null;
 }
 
@@ -964,12 +981,15 @@ var firstDown = true;
 
 var remotesPopupTimer;
 var remotesPopup;
+var lowerRemotesPopup;
 var clearTimer;
 var longtouch;
 
 var MacroInput;
 
 var remote0;
+
+var nameLine;
 
 // Check if a new cache is available on page load.
 if(window.addEventListener){
@@ -1000,9 +1020,9 @@ window.onload = function(){
 	dbg(navigator.userAgent);
 	if(isBadBrowser()){
 		useCookies = true;
-		dbg("Browser lacks localStorage support, falling back to cookies. Channel lists cannot be saved.");
+		dbg("Browser lacks localStorage support, falling back to cookies.");
 	} else {
-		dbg("Browser has localStorage support. Channel lists will be saved.");
+		dbg("Browser has localStorage support.");
 	}
 
 	wipeSettingsButton = document.getElementById("wipesettings");
@@ -1066,17 +1086,21 @@ window.onload = function(){
 	namerokuButton.onclick = nameRoku;
 	
 	remotesPopup = document.getElementById("remotespopup");
+	lowerRemotesPopup = document.getElementById("lowerremotespopup");
 	
 	try{
 		namedRokus = JSON.parse(getConfig('namedRokus')) ? JSON.parse(getConfig('namedRokus')) : {};
-		dbg(JSON.stringify(namedRokus));
+		//dbg(JSON.stringify(namedRokus));
 	} catch (err) {
 		namedRokus = {};
 	}
 
 	if(manualRokus.length>0) buildManualRokusMenu();
 	updateSelect();
-	rokuName.value = namedRokus[rokuAddress] ? namedRokus[rokuAddress] : "Living Room";
+	rokuName.value = namedRokus[rokuAddress] ? namedRokus[rokuAddress] : "Remoku";
+	nameLine = document.getElementById("nameline");
+	nameLine.innerHTML = rokuName.value ? rokuName.value : rokuAddress;
+	nameLine.onclick = showRemotes;
 	try{
 		var apps = JSON.parse(localStorage.getItem(rokuAddress + '-apps'));
 	}catch(err){
@@ -1125,15 +1149,15 @@ window.onload = function(){
 	}
 	
 	var intViewportHeight = window.innerHeight;
-	dbg(intViewportHeight);
+	//dbg(intViewportHeight);
 	var screens = document.getElementById("remote");
-	if(intViewportHeight<419){
-		intViewportHeight+=40
-		dbg(intViewportHeight);
-		screens.style.height = intViewportHeight+"px";
-		remoteTable = document.getElementById("remotetable");
-		remoteTable.style.marginBottom = 40+"px";
-	}
+// 	if(intViewportHeight<419){
+// 		intViewportHeight+=40
+// 		dbg(intViewportHeight);
+// 		screens.style.height = intViewportHeight+"px";
+// 		remoteTable = document.getElementById("remotetable");
+// 		remoteTable.style.marginBottom = 40+"px";
+// 	}
 	remoteScreen = document.getElementById("remote");
 	goodiesScreen = document.getElementById("goodies");
 	appsScreen = document.getElementById("apps");
