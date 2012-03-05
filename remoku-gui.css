@@ -1,20 +1,28 @@
 *{
-	font-family: Tahoma, sans-serif;
+	font-family: arial, sans-serif;
 	}
 	
+.bgcolor{ 	background-color: #101010;
+}
+	
+.fgcolor{ 	background-color: #101010;
+}	
+	
 body{
-	background-color: #101010;
 	border-width: 0px;
 	color:#E8E8E8;
 	padding:0;
 	margin:0;
-	font-family:Tahoma, sans-serif;
+	font-family:arial, sans-serif;
 	height:450px;
 }
 label{
-	background-color: #101010;
+	/*background-color: #101010;*/
 	color :#E8E8E8;
 }
+fieldset{
+	text-align:left;
+	}
 input{
 	background-color: #101010;
 	color: #E8E8E8;
@@ -24,12 +32,12 @@ input{
 select{
 	-webkit-appearance:none;
 	-moz-appearance:none;
-	background-color: #101010 !important;
+	background-color: #101010;
 	color: #E8E8E8;
 }
 
 option{
-	background-color: #101010 !important;
+	background-color: #101010;
 	color: #E8E8E8;
 }
 
@@ -59,7 +67,7 @@ button{
 	border: 1px solid #E8E8E8;
 	margin: 1px;
 	margin-bottom:10px;
-	background-color: #101010;
+	/*background-color: #101010;*/
 	}
 .remoteicons{
 	clear:both;
@@ -156,14 +164,14 @@ button{
 }
 
 #text{
-	background-image: url(./images/top_edge.png);
+	background-image: url(images/top_edge.png);
 }
 
 #rokuNameDiv{
 	font-weight:bold;
 	font-size:20px;
 	color:#E8E8E8;
-	background-image: url(./images/bottom_edge.png);
+	background-image: url(images/bottom_edge.png);
 	background-repeat:no-repeat;
 }
 	
@@ -202,7 +210,9 @@ button{
 	}
 
 #textentry{
-	width:122px;
+	font-family:arial;
+	font-size:12px;
+	width:115px;
 	font-weight:bold;
 	background: rgba(25, 25, 25, 0.5) url(images/keyboard.png) no-repeat 6px 6px;
 	padding-left:35px;
@@ -273,7 +283,7 @@ td,tr{
 	padding: 0px;
 	border-style: none;
 	border-collapse: collapse;
-	background-color: #101010;
+	/*background-color: #101010;*/
 
 }
 
@@ -282,7 +292,7 @@ table{
 	border-width: 0px;
 	border-spacing:0px ;
 	border-style: none;
-	background-color: #101010;
+	/*background-color: #101010;*/
 	display:table;
 	margin-left:auto; 
 	margin-right:auto;
@@ -305,8 +315,8 @@ h2{
 	text-align:center;
 	left:50%;
 	margin-left:-160px;
+	margin-bottom:3px;
 	position:fixed;
-	margin-top:3px;
     border-width: 0px;
 	border-spacing:0px ;
 	border-style: none;
@@ -331,3 +341,39 @@ margin:0;
 	width:90px;
 }
 .bold{font-weight:bold;}
+
+.tweakinput{
+	width:75px;
+	}
+	
+.link{color:white;}
+#favtable{
+	text-align:center;
+	left:50%;
+	margin-left:-160px;
+	margin-bottom:3px;
+	position:absolute;
+    border-width: 0px;
+	border-spacing:0px ;
+	border-style: none;
+	font-size:8pt;
+	font-weight:bold;
+	width:320px;
+	z-index:10;
+}
+
+#favtable td{
+text-align:center;	
+margin:0;
+}
+.favicons{
+	clear:both;
+	float:none;
+	margin-left:auto;
+	margin-right:auto;
+	text-align:center;
+	margin-top:0;
+	margin-bottom:0;
+	display:block;
+	max-height:40px;
+}

@@ -5,6 +5,17 @@
 
 ////////////////////////
 //BEGIN HELPER FUNCTIONS
+function changeBackgroundColor(theSelector, parameter){
+	[].every.call( document.styleSheets, function ( sheet ) {
+	    return [].every.call( sheet.cssRules, function ( rule ) {
+	        if ( rule.selectorText === theSelector ) {
+	            rule.style.backgroundColor = parameter;
+	            return false;
+	        }
+	        return true;
+	    });
+	});	
+}
 
 if (!Array.unique) Array.prototype.unique = function() {
 	    var o = {}, i, l = this.length, r = [];
@@ -226,7 +237,7 @@ function updateSelect() {
 		}
 	}
 	if(rokuSelect.length>0){
-		controlContainer.setAttribute("class","box visible");
+		controlContainer.setAttribute("class","visible");
 	} else {
 		controlContainer.setAttribute("class","hidden");
 	}
@@ -486,6 +497,11 @@ function macroDumpCore(){
 	sendSequence(cmds);
 	}
 
+function macroSecretScreen(){
+	var cmds = "Home,Home,Home,Home,Home,Fwd,Fwd,Fwd,Rev,Rev".split(",");
+	sendSequence(cmds);
+	}
+	
 function macroBRO(){
 	var cmds = "Home,Home,Home,Home,Home,Rev,Rev,Rev,Fwd,Fwd".split(",");
 	sendSequence(cmds);
@@ -585,7 +601,7 @@ function rokuText(){
 			rokutext.setAttribute("action", "http://" + rokuAddress + ":8060/" + "keypress" + "/" + "LIT_" + encodeURIComponent(letter));
 		}
 		rokutext.submit();
-		document.getElementById("textentry").value = text
+		document.getElementById("textentry").value = text;
 		}
 	}	
 	
@@ -680,6 +696,7 @@ function wipeSettings(){
 	setConfig("manualRokus", "");
 	setConfig("rokuCount", "");
 	setConfig("namedRokus","");
+	setConfig("bgColor","");
 	//setConfig("apps", "");
 	if (localStorage.clear) localStorage.clear();
 }
@@ -924,7 +941,6 @@ var numField;
 var manualInput;
 var manualSelect;
 var rokuName;
-var namerokuButton;
 var namedRokus = {};
 
 var scannedRokus = [];
@@ -990,6 +1006,8 @@ var MacroInput;
 var remote0;
 
 var nameLine;
+
+var bgcolorInput;
 
 // Check if a new cache is available on page load.
 if(window.addEventListener){
@@ -1080,10 +1098,11 @@ window.onload = function(){
 
 	rokuName = document.getElementById('rokuname');
 	rokuName.onfocus = textModeOff;
-	rokuName.onblur = textModeOn;
+	rokuName.onblur = function(){
+		textModeOn();
+		nameRoku(); 
+	};
 	rokuName.onkeyup = doNameRoku;
-	namerokuButton = document.getElementById('nameroku');
-	namerokuButton.onclick = nameRoku;
 	
 	remotesPopup = document.getElementById("remotespopup");
 	lowerRemotesPopup = document.getElementById("lowerremotespopup");
@@ -1106,37 +1125,7 @@ window.onload = function(){
 	}catch(err){
 		apps = [];	
 	}
-	
-	
-	
-	rokupostframe.name="rokuresponse"
-	rokupostframe.id="rokuresponse";
-	rokupostframe.style.visibility="hidden";
-	rokupostframe.style.display="none";
-	rokupostframe = document.body.appendChild(rokupostframe);
-
-	rokutextframe.name="rokutextresponse"
-	rokutextframe.id="rokutextresponse";
-	rokutextframe.style.visibility="hidden";
-	rokutextframe.style.display="none";
-	rokutextframe.onload = delayNextQuery;
-	rokutextframe = document.body.appendChild(rokutextframe);
-	
-	rokupostform.style.visibility="hidden";
-	rokupostform.style.display="none";
-	rokupostform.id="rokupost";
-	rokupostform.method="post";
-	rokupostform.target="rokuresponse";
-	rokupostform = document.body.appendChild(rokupostform);
-	
-	rokutextform.style.visibility="hidden";
-	rokutextform.style.display="none";
-	rokutextform.id="rokutext";
-	rokutextform.method="post";
-	rokutextform.target="rokutextresponse";
-	rokutextform = document.body.appendChild(rokutextform);
-	
-	
+		
 	remoteButtons = getElementsByClass("link");
 	for(var i=0; i<remoteButtons.length; i++){
 		if (is_touch_device()){
@@ -1224,6 +1213,9 @@ window.onload = function(){
 	MacroCoreButton = document.getElementById("cor_macro");
 	MacroCoreButton.onclick = macroDumpCore;
 	
+	MacroSecretButton = document.getElementById("sec_macro");
+	MacroSecretButton.onclick = macroSecretScreen;
+	
 	MacroBroButton = document.getElementById("bro_macro");
 	MacroBroButton.onclick = macroBRO;
 	
@@ -1233,22 +1225,188 @@ window.onload = function(){
 	macroInput = document.getElementById("custommacroinput");
 	macroInput.onfocus = textModeOff;
 	macroInput.onblur = textModeOn;
+		
+	document.onkeyup = handleArrowKeyUp;
+	document.onkeydown = handleArrowKeyDown;
 	
 	
+	showFavoritesChkbx = document.getElementById("showFaves");
+	showFavs = getConfig('showFavs')?getConfig('showFavs'):'true';
+	if(showFavs=='true'){
+		showFavoritesChkbx.checked=true;
+		document.getElementById('favtable').setAttribute('class','');
+	} else {
+		showFavoritesChkbx.checked=false;
+		document.getElementById('favtable').setAttribute('class','hidden');
+	}
+	showFavoritesChkbx.onclick = function(){
+		if(showFavoritesChkbx.checked){
+				setConfig('showFavs','true');
+				document.getElementById('favtable').setAttribute('class','');
+			} else {
+				setConfig('showFavs','false');
+				document.getElementById('favtable').setAttribute('class','hidden');
+			}
+		}
+	var fav1Input = document.getElementById("inputfav1");
+	fav1Value = getConfig('fav1')?getConfig('fav1'):'12';
+	fav1Input.value = fav1Value;
+	fav1Input.onblur = function(){
+		textModeOff();
+		var fav1Value = this.value;
+		fav1Link = document.getElementById("fav1link");
+		fav1Link.setAttribute('onclick','rokulaunch("'+fav1Value+'")');
+		favImg1 = document.getElementById("favimg1");
+		favImg1.setAttribute('src','http://' + rokuAddress +':8060/query/icon/'+fav1Value);
+		setConfig('fav1',fav1Value);
+		};
+	fav1Input.onfocus = function(){
+		textModeOff();
+		}
+	var fav1 = document.getElementById("fav1");
+	    var favlink = document.createElement("a");
+	    favlink.setAttribute('href','#fav1');
+		favlink.setAttribute('onclick','rokulaunch("'+fav1Value+'")');
+	    favlink.setAttribute('id','fav1link');
+	    var favimg = document.createElement("img");
+		favimg.setAttribute('class','favicons');
+		favimg.setAttribute('Id','favimg1');
+		favimg.setAttribute('src','http://' + rokuAddress +':8060/query/icon/'+fav1Value);
+		favlink.appendChild(favimg);
+	fav1.appendChild(favlink);
 	
 	
+	var fav2Input = document.getElementById("inputfav2");
+	fav2Value = getConfig('fav2')?getConfig('fav2'):'28';
+	fav2Input.value = fav2Value;
+	fav2Input.onblur = function(){
+		textModeOn();
+		var fav2Value = this.value;
+		fav2Link = document.getElementById("fav2link");
+		fav2Link.setAttribute('onclick','rokulaunch("'+fav2Value+'")');
+		favImg2 = document.getElementById("favimg2");
+		favImg2.setAttribute('src','http://' + rokuAddress +':8060/query/icon/'+fav2Value);
+		setConfig('fav2',fav2Value);
+		};
+	fav2Input.onfocus = function(){
+		textModeOff();
+		}
+		var fav2 = document.getElementById("fav2");
+	    var favlink = document.createElement("a");
+	    favlink.setAttribute('href','#fav2');
+		favlink.setAttribute('onclick','rokulaunch("'+fav2Value+'")');
+	    favlink.setAttribute('id','fav2link');
+	    var favimg = document.createElement("img");
+		favimg.setAttribute('class','favicons');
+		favimg.setAttribute('Id','favimg2');
+		favimg.setAttribute('src','http://' + rokuAddress +':8060/query/icon/'+fav2Value);
+		favlink.appendChild(favimg);
+	fav2.appendChild(favlink);
+	
+	var fav3Input = document.getElementById("inputfav3");
+	fav3Value = getConfig('fav3')?getConfig('fav3'):'2016';
+	fav3Input.value = fav3Value;
+	fav3Input.onblur = function(){
+		textModeOn();
+		var fav3Value = this.value;
+		fav3Link = document.getElementById("fav3link");
+		fav3Link.setAttribute('onclick','rokulaunch("'+fav3Value+'")');
+		favImg3 = document.getElementById("favimg3");
+		favImg3.setAttribute('src','http://' + rokuAddress +':8060/query/icon/'+fav3Value);
+		setConfig('fav3',fav3Value);
+		};
+	fav3Input.onfocus = function(){
+		textModeOff();
+		}
+		var fav3 = document.getElementById("fav3");
+	    var favlink = document.createElement("a");
+	    favlink.setAttribute('href','#fav3');
+		favlink.setAttribute('onclick','rokulaunch("'+fav3Value+'")');
+	    favlink.setAttribute('id','fav3link');
+	    var favimg = document.createElement("img");
+		favimg.setAttribute('class','favicons');
+		favimg.setAttribute('Id','favimg3');
+		favimg.setAttribute('src','http://' + rokuAddress +':8060/query/icon/'+fav3Value);
+		favlink.appendChild(favimg);
+	fav3.appendChild(favlink);
+	
+	if(apps)_rmAppsCB(apps);
+    bgcolorInput = document.getElementById("bgcolor");
+    bgcolor = getConfig('bgColor') ? getConfig('bgColor') : "101010";
+    bgcolorInput.value = bgcolor;
+    changeBackgroundColor('.bgcolor', '#' + bgcolor);
+    bgcolorInput.onfocus = function(){
+	    textModeOff();
+	    bgcolor = bgcolorInput.value;
+		changeBackgroundColor('.bgcolor', '#' + bgcolor);
+		setConfig('bgColor', bgcolor);	
+	    };
+	bgcolorInput.onblur = function(){
+		textModeOn();
+		}
+	//Foreground objects
+	//input select option button
+    fgcolorInput = document.getElementById("fgcolor");
+    fgcolor = getConfig('fgColor') ? getConfig('fgColor') : "101010";
+	changeBackgroundColor('input', '#' + fgcolor);
+	changeBackgroundColor('select', '#' + fgcolor);
+	changeBackgroundColor('option', '#' + fgcolor);
+	changeBackgroundColor('button', '#' + fgcolor);
+	changeBackgroundColor('.selected', '#' + fgcolor);
+	changeBackgroundColor('#rokus', '#' + fgcolor);
+	
+    fgcolorInput.value = fgcolor;
+    fgcolorInput.onfocus = function(){
+	    textModeOff();
+	    fgcolor = fgcolorInput.value;
+		changeBackgroundColor('input', '#' + fgcolor);
+		changeBackgroundColor('select', '#' + fgcolor);
+		changeBackgroundColor('option', '#' + fgcolor);
+		changeBackgroundColor('button', '#' + fgcolor);
+		changeBackgroundColor('.selected', '#' + fgcolor);
+		changeBackgroundColor('#rokus', '#' + fgcolor);
+		setConfig('fgColor', fgcolor);
+	    };
+	fgcolorInput.onblur = function(){
+		textModeOn();
+		}
 	textEntryInput = document.getElementById("textentry");
+	textEntryInput.value = "";
 	textEntryInput.onkeyup = rokuDeleteOrBlur;
 	textEntryInput.onkeypress = rokuText;
 	
 	textEntryInput.onfocus = textModeOff;
 	textEntryInput.onblur = textModeOn;
 	textEntryInput.enter = rokuText;
-	
-	document.onkeyup = handleArrowKeyUp;
-	document.onkeydown = handleArrowKeyDown;
-	if(apps)_rmAppsCB(apps);
 
+	rokupostframe.name="rokuresponse"
+	rokupostframe.id="rokuresponse";
+	rokupostframe.style.visibility="hidden";
+	rokupostframe.style.display="none";
+	rokupostframe = document.body.appendChild(rokupostframe);
+
+	rokutextframe.name="rokutextresponse"
+	rokutextframe.id="rokutextresponse";
+	rokutextframe.style.visibility="hidden";
+	rokutextframe.style.display="none";
+	rokutextframe.onload = delayNextQuery;
+	rokutextframe = document.body.appendChild(rokutextframe);
+	
+	rokupostform.style.visibility="hidden";
+	rokupostform.style.display="none";
+	rokupostform.id="rokupost";
+	rokupostform.method="post";
+	rokupostform.target="rokuresponse";
+	rokupostform = document.body.appendChild(rokupostform);
+	
+	rokutextform.style.visibility="hidden";
+	rokutextform.style.display="none";
+	rokutextform.id="rokutext";
+	rokutextform.method="post";
+	rokutextform.target="rokutextresponse";
+	rokutextform = document.body.appendChild(rokutextform);
+
+	
 }
 
 //Hide iPhone URL bar
