@@ -17,6 +17,19 @@ function changeBackgroundColor(theSelector, parameter){
 	});	
 }
 
+function changeTextColor(theSelector, parameter){
+	[].every.call( document.styleSheets, function ( sheet ) {
+	    return [].every.call( sheet.cssRules, function ( rule ) {
+	        if ( rule.selectorText === theSelector ) {
+	            rule.style.color = parameter;
+	            return false;
+	        }
+	        return true;
+	    });
+	});	
+}
+
+
 if (!Array.unique) Array.prototype.unique = function() {
 	    var o = {}, i, l = this.length, r = [];
 	    for(i=0; i<l;i+=1) o[this[i]] = this[i];
@@ -1008,6 +1021,8 @@ var remote0;
 var nameLine;
 
 var bgcolorInput;
+var fgElements = new Array();
+
 
 // Check if a new cache is available on page load.
 if(window.addEventListener){
@@ -1271,7 +1286,7 @@ window.onload = function(){
 	    var favimg = document.createElement("img");
 		favimg.setAttribute('class','favicons');
 		favimg.setAttribute('Id','favimg1');
-		favimg.setAttribute('src','http://' + rokuAddress +':8060/query/icon/'+fav1Value);
+		if(getConfig('showFavs')=='true'){favimg.setAttribute('src','http://' + rokuAddress +':8060/query/icon/'+fav1Value);};
 		favlink.appendChild(favimg);
 	fav1.appendChild(favlink);
 	
@@ -1299,7 +1314,7 @@ window.onload = function(){
 	    var favimg = document.createElement("img");
 		favimg.setAttribute('class','favicons');
 		favimg.setAttribute('Id','favimg2');
-		favimg.setAttribute('src','http://' + rokuAddress +':8060/query/icon/'+fav2Value);
+		if(getConfig('showFavs')=='true'){favimg.setAttribute('src','http://' + rokuAddress +':8060/query/icon/'+fav2Value);};
 		favlink.appendChild(favimg);
 	fav2.appendChild(favlink);
 	
@@ -1326,15 +1341,22 @@ window.onload = function(){
 	    var favimg = document.createElement("img");
 		favimg.setAttribute('class','favicons');
 		favimg.setAttribute('Id','favimg3');
-		favimg.setAttribute('src','http://' + rokuAddress +':8060/query/icon/'+fav3Value);
+		if(getConfig('showFavs')=='true'){favimg.setAttribute('src','http://' + rokuAddress +':8060/query/icon/'+fav3Value);}
 		favlink.appendChild(favimg);
 	fav3.appendChild(favlink);
 	
 	if(apps)_rmAppsCB(apps);
+	
+	//Background
     bgcolorInput = document.getElementById("bgcolor");
     bgcolor = getConfig('bgColor') ? getConfig('bgColor') : "101010";
     bgcolorInput.value = bgcolor;
     changeBackgroundColor('.bgcolor', '#' + bgcolor);
+
+    txtcolorInput = document.getElementById("txtcolor");
+    txtcolor = getConfig('txtColor') ? getConfig('txtColor') : "101010";
+    changeTextColor('.bgcolor', '#' + txtcolor);
+    
     bgcolorInput.onfocus = function(){
 	    textModeOff();
 	    bgcolor = bgcolorInput.value;
@@ -1344,32 +1366,49 @@ window.onload = function(){
 	bgcolorInput.onblur = function(){
 		textModeOn();
 		}
+		
+		
 	//Foreground objects
 	//input select option button
     fgcolorInput = document.getElementById("fgcolor");
-    fgcolor = getConfig('fgColor') ? getConfig('fgColor') : "101010";
-	changeBackgroundColor('input', '#' + fgcolor);
-	changeBackgroundColor('select', '#' + fgcolor);
-	changeBackgroundColor('option', '#' + fgcolor);
-	changeBackgroundColor('button', '#' + fgcolor);
-	changeBackgroundColor('.selected', '#' + fgcolor);
-	changeBackgroundColor('#rokus', '#' + fgcolor);
-	
+    fgcolor = getConfig('fgColor') ? getConfig('fgColor') : "101010";    
+    fgElements = ['input','select','option','button','.selected','#rokus'];
+    for (var i = 0; i<fgElements.length;i++) {
+	    changeBackgroundColor(fgElements[i], '#' + fgcolor);
+	    changeTextColor(fgElements[i], '#' + txtcolor);
+	    };
+	txtcolorInput.value = txtcolor;
     fgcolorInput.value = fgcolor;
     fgcolorInput.onfocus = function(){
 	    textModeOff();
 	    fgcolor = fgcolorInput.value;
-		changeBackgroundColor('input', '#' + fgcolor);
-		changeBackgroundColor('select', '#' + fgcolor);
-		changeBackgroundColor('option', '#' + fgcolor);
-		changeBackgroundColor('button', '#' + fgcolor);
-		changeBackgroundColor('.selected', '#' + fgcolor);
-		changeBackgroundColor('#rokus', '#' + fgcolor);
+	    for (var i = 0; i<fgElements.length;i++) {
+		    changeBackgroundColor(fgElements[i], '#' + fgcolor);
+			//changeTextColor(fgElements[i], '#' + txtcolor);
+		    };
 		setConfig('fgColor', fgcolor);
 	    };
 	fgcolorInput.onblur = function(){
 		textModeOn();
 		}
+    txtcolorInput.onfocus = function(){
+	    textModeOff();
+	    txtcolor = txtcolorInput.value;
+	    for (var i = 0; i<fgElements.length;i++) {
+		    //changeBackgroundColor(fgElements[i], '#' + fgcolor);
+			changeTextColor(fgElements[i], '#' + txtcolor);
+		};
+	    changeTextColor('.bgcolor', '#' + txtcolor);
+	    changeTextColor('#textentry', '#' + txtcolor);
+		setConfig('txtColor', txtcolor);
+	    };
+	txtcolorInput.onblur = function(){
+		textModeOn();
+		}
+		
+		
+		
+		
 	textEntryInput = document.getElementById("textentry");
 	textEntryInput.value = "";
 	textEntryInput.onkeyup = rokuDeleteOrBlur;

@@ -62,7 +62,7 @@
 	<tr>
 		<td colspan="3">
 			<div id="text">
-				<span id="searchline"><input id="textentry" type="text" tabindex="1" value="Loading..."><button id="sendtext">Send</button></span>
+				<span id="searchline"><input id="textentry" class="bgcolor" type="text" tabindex="1" value="Loading..."><button id="sendtext">Send</button></span>
 			</div>
 		</td>
 	</tr>
@@ -225,8 +225,9 @@
 </fieldset>
 <fieldset>
 	<legend>Colors</legend>
-	<label>Background Color:</label><input class="tweakinput" id="bgcolor" value="#101010"  onclick="colorPicker(event,'B',1)"/><br>
-	<label>Foreground Color:</label><input class="tweakinput" id="fgcolor" value="#101010"  onclick="colorPicker(event,'B',1)"/><br>
+	<label>Background Color:</label><input class="tweakinput" id="bgcolor" value="101010"  onclick="colorPicker(event,'B',1)"/><br>
+	<label>Foreground Color:</label><input class="tweakinput" id="fgcolor" value="101010"  onclick="colorPicker(event,'B',1)"/><br>
+	<label>Text Color:</label><input class="tweakinput" id="txtcolor" value="101010"  onclick="colorPicker(event,'B',1)"/><br>
 </fieldset>
 <fieldset>
 	<legend>Favorites</legend>

@@ -7,7 +7,9 @@
 	
 .fgcolor{ 	background-color: #101010;
 }	
-	
+#txtentry{
+	color:blue;
+	}	
 body{
 	border-width: 0px;
 	color:#E8E8E8;
@@ -18,7 +20,7 @@ body{
 }
 label{
 	/*background-color: #101010;*/
-	color :#E8E8E8;
+	/*color :#E8E8E8;*/
 }
 fieldset{
 	text-align:left;
@@ -32,8 +34,8 @@ input{
 select{
 	-webkit-appearance:none;
 	-moz-appearance:none;
-	background-color: #101010;
-	color: #E8E8E8;
+	/*background-color: #101010;*/
+	/*color: #E8E8E8;*/
 }
 
 option{
@@ -53,8 +55,8 @@ option{
 	}
 
 button{
-	background-color:#101010;
-	color:#E8E8E8;
+	/*background-color:#101010;
+	color:#E8E8E8;*/
 	height:25px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
@@ -199,7 +201,6 @@ button{
 	margin-top: 7px;
 	height:20px;
 	background-color:transparent;
-	color:#E8E8E8;
 	border:1px solid #101010;
 	-webkit-border-radius: 8px;
 	-moz-border-radius: 8px;
