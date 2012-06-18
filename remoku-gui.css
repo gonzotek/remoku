@@ -225,6 +225,11 @@ button{
 	display:none;
 	visibility:hidden;
 	}	
+	
+#chstoreappid{
+	width:25px;
+}	
+	
 #lkey{
 	width:50px;
 	}	
