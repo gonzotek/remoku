@@ -513,6 +513,23 @@ function sendSequence(cmds){
 	}
 }
 
+function sendCustomMacro(cmds){
+	if(cmds.length>0){
+		var command = cmds.shift();
+		var cmdAction = Object.keys(command);
+		var cmdParam = command[cmdAction];
+		//dbg("action: " + cmdAction);
+		//dbg("param: " + cmdParam);
+		if(cmdAction=="pause"){
+			dbg ('pause: ' + cmdParam);
+			setTimeout(function(){sendCustomMacro(cmds);},cmdParam);
+		} else {
+			dbg('rokupost: ' + cmdAction + '/' + cmdParam);
+			setTimeout(function(){sendCustomMacro(cmds);},750);
+		}
+	}
+}
+
 function macroDevScreen(){
 	var cmds = "Home,Home,Home,Up,Up,Right,Left,Right,Left,Right".split(",");
 	sendSequence(cmds);
@@ -1257,10 +1274,15 @@ window.onload = function(){
 	addMacroButton = document.getElementById("addMacro");
 	addMacro.onclick = function(){
 		dbg(macroInput.value);
-		var cmds = [];
-		cmds = macroInput.value.split(',');
-		for (i=0;i<cmds.length;i++){dbg(cmds[i])};
-		dbg(JSON.stringify(cmds));
+		var cmds = [{pause:3751},{keypress:"Left"},{pause:3752},{keypress:"Down"},{pause:3753},{keypress:"Right"},{pause:3754},{keypress:"Up"}];
+		//cmds = macroInput.value.split(',');
+		for (i=0;i<cmds.length;i++){
+
+			//dbg(Object.keys(cmds[i]) + " " + cmds[i][Object.keys(cmds[i])]);
+			//dbg(JSON.stringify(Object.keys(cmds[i])));
+			};
+		//dbg(JSON.stringify(cmds));
+		sendCustomMacro(cmds);
 		};
 			
 	document.onkeyup = handleArrowKeyUp;
