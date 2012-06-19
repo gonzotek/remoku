@@ -1253,7 +1253,16 @@ window.onload = function(){
 	macroInput = document.getElementById("custommacroinput");
 	macroInput.onfocus = textModeOff;
 	macroInput.onblur = textModeOn;
-		
+
+	addMacroButton = document.getElementById("addMacro");
+	addMacro.onclick = function(){
+		dbg(macroInput.value);
+		var cmds = [];
+		cmds = macroInput.value.split(',');
+		for (i=0;i<cmds.length;i++){dbg(cmds[i])};
+		dbg(JSON.stringify(cmds));
+		};
+			
 	document.onkeyup = handleArrowKeyUp;
 	document.onkeydown = handleArrowKeyDown;
 	
