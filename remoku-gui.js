@@ -518,7 +518,7 @@ function sendSequence(cmds){
 function sendCustomMacro(cmds){
 	if(cmds.length>0){
 		var command = cmds.shift();
-		var cmdAction = Object.keys(command);
+		var cmdAction = Object.keys(command);//need object.keys polyfill for ie7/ie8 support.  worth it?
 		var cmdParam = command[cmdAction];
 		//dbg("action: " + cmdAction);
 		//dbg("param: " + cmdParam);
@@ -1278,14 +1278,9 @@ window.onload = function(){
 	addMacroButton = document.getElementById("addMacro");
 	addMacro.onclick = function(){
 		dbg(macroInput.value);
-		var cmds = [{pause:3751},{keypress:"Left"},{pause:3752},{keypress:"Down"},{pause:3753},{keypress:"Right"},{pause:3754},{keypress:"Up"}];
-		//cmds = macroInput.value.split(',');
-		for (i=0;i<cmds.length;i++){
-
-			//dbg(Object.keys(cmds[i]) + " " + cmds[i][Object.keys(cmds[i])]);
-			//dbg(JSON.stringify(Object.keys(cmds[i])));
-			};
-		//dbg(JSON.stringify(cmds));
+		var cmds = JSON.parse(macroInput.value);
+		//Example JSON:
+		// [{"pause":3751},{"keypress":"Left"},{"pause":3752},{"keypress":"Down"},{"pause":3753},{"keypress":"Right"},{"pause":3754},{"keypress":"Up"}]
 		sendCustomMacro(cmds);
 		};
 			
