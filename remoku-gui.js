@@ -509,7 +509,9 @@ function rokupost(action, param){
 function sendSequence(cmds){
 	if (cmds.length>0){
 		rokupost("keypress", cmds.shift() );
-		setTimeout(function(){sendSequence(cmds);}, 750);
+		setTimeout(function(){
+			sendSequence(cmds);
+			}, 750);
 	}
 }
 
@@ -520,12 +522,14 @@ function sendCustomMacro(cmds){
 		var cmdParam = command[cmdAction];
 		//dbg("action: " + cmdAction);
 		//dbg("param: " + cmdParam);
-		if(cmdAction=="pause"){
+		switch(cmdAction[0]){
+			case 'pause':
 			dbg ('pause: ' + cmdParam);
 			setTimeout(function(){sendCustomMacro(cmds);},cmdParam);
-		} else {
+			break;
+			default:
 			dbg('rokupost: ' + cmdAction + '/' + cmdParam);
-			setTimeout(function(){sendCustomMacro(cmds);},750);
+			setTimeout(function(){sendCustomMacro(cmds);},750);			
 		}
 	}
 }
