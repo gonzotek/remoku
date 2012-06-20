@@ -518,21 +518,60 @@ function sendSequence(cmds){
 function sendCustomMacro(cmds){
 	if(cmds.length>0){
 		var command = cmds.shift();
-		var cmdAction = Object.keys(command);//need object.keys polyfill for ie7/ie8 support.  worth it?
+		var cmdAction = Object.keys(command)[0];//need object.keys polyfill for ie7/ie8 support.  worth it?
 		var cmdParam = command[cmdAction];
-		//dbg("action: " + cmdAction);
-		//dbg("param: " + cmdParam);
-		switch(cmdAction[0]){
+		switch(cmdAction){
 			case 'pause':
-			dbg ('pause: ' + cmdParam);
-			setTimeout(function(){sendCustomMacro(cmds);},cmdParam);
+				dbg ('pause: ' + cmdParam);
+				setTimeout(function(){sendCustomMacro(cmds);},cmdParam);
+			break;
+			case 'text':
+				cmdParam = rokuMacroText(cmdParam);
+				if(cmdParam)cmds.unshift({text:cmdParam});
+				setTimeout(function(){sendCustomMacro(cmds);},750);
 			break;
 			default:
-			dbg('rokupost: ' + cmdAction + '/' + cmdParam);
-			setTimeout(function(){sendCustomMacro(cmds);},750);			
+				dbg('rokupost: ' + cmdAction + '/' + cmdParam);
+				setTimeout(function(){sendCustomMacro(cmds);},750);
 		}
 	}
 }
+
+function rokuMacroText(cmdParam){
+	var rokutext =  document.getElementById('rokutext');
+	var text = cmdParam;
+//	dbg(text);
+	if(text){
+		var letter = text.slice(0,1);
+		text = text.slice(1);
+		//Handle the few characters Roku needs encoded beyond escape();
+		if(letter=="/"){ 
+//			dbg(letter);
+			letter = "%2f";
+//			dbg("  " + letter);
+			rokutext.setAttribute("action", "http://" + rokuAddress + ":8060/" + "keypress" + "/" + "LIT_" + letter);
+		} else if(letter=="@"){ 
+//			dbg(letter);
+			letter = "%40";
+//			dbg("  " + letter);
+			rokutext.setAttribute("action", "http://" + rokuAddress + ":8060/" + "keypress" + "/" + "LIT_" + letter);
+		} else if(letter=="+"){ 
+//			dbg(letter);
+			letter = "%2b";
+//			dbg("  " + letter);
+			rokutext.setAttribute("action", "http://" + rokuAddress + ":8060/" + "keypress" + "/" + "LIT_" + letter);
+		} else {
+//			dbg(letter);
+//			dbg("  " + escape(letter));
+			rokutext.setAttribute("action", "http://" + rokuAddress + ":8060/" + "keypress" + "/" + "LIT_" + encodeURIComponent(letter));
+		}
+		//rokutext.submit();
+		dbg (rokutext.getAttribute("action"));
+		return text;
+		}
+	}	
+
+
 
 function macroDevScreen(){
 	var cmds = "Home,Home,Home,Up,Up,Right,Left,Right,Left,Right".split(",");
