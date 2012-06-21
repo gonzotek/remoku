@@ -1374,13 +1374,30 @@ window.onload = function(){
 	addMacroButton.onclick = function() {
 		dbg("add name: " + macroInput.value + "<br> commands: " + macroArea.value);
 	  		macro = {};
-	  		macro[macroInput.value] = JSON.parse(macroArea.value);
-	  		macros.push(macro);
+	  		macro[macroInput.value] = JSON.parse("["+macroArea.value+"]")[0];
+	  		dbg(macro[macroInput.value]);
+	  		for(i=0;i<macros.length;i++){
+		  		dbg(macros[i]);
+		  		if (macros[i][macroInput.value]){
+			  		macros[i]=macro;
+			  		macro=null;
+			  		break;
+			  		}
+		  		}
+	  		if(macro!=null){
+		  		macros.push(macro);
+		  		addSelectOption("macroSelect", macroArea.value, macroInput.value);
+		  		} else {
+			  		removeSelectOption("macroSelect",macroInput.value);
+		  		addSelectOption("macroSelect", macroArea.value, macroInput.value);
+			  		}
 	  		setConfig('macros',JSON.stringify(macros));
-	  		addSelectOption("macroSelect", macroArea.value, macroInput.value);
+	  		
 		};
 	removeMacroButton = document.getElementById("removeMacro");
-		removeMacroButton.onclick = function (){};
+		removeMacroButton.onclick = function (){
+			removeSelectOption("macroSelect",macroInput.value);
+			};
 		
 	runMacroButton = document.getElementById("runCustomMacro");
 	runMacroButton.onclick = function(){
