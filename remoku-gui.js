@@ -5,6 +5,42 @@
 
 ////////////////////////
 //BEGIN HELPER FUNCTIONS
+
+
+
+// addSelectOption
+//
+// Add the single select option to the selection list with the id specified
+//
+function addSelectOption(selectId, value, display) {
+ if (display == null) {
+  display = value;
+ }
+    var anOption = document.createElement('option');
+    anOption.value = value;
+    anOption.innerHTML = display;
+    document.getElementById(selectId).appendChild(anOption);
+    return anOption;
+}
+
+// removeSelectOption
+//
+// Remove the option with the specified value from the list of options
+// in the selection list with the id specified
+//
+function removeSelectOption(selectId, display) {
+ var select = document.getElementById(selectId);
+ var kids = select.childNodes; 
+ var numkids = kids.length; 
+ for (var i = 0; i < numkids; i++) {
+		if (kids[i].innerHTML == display) {
+			select.removeChild(kids[i]);
+			break;
+     }
+    }
+}
+
+
 function changeBackgroundColor(theSelector, parameter){
 	[].every.call( document.styleSheets, function ( sheet ) {
 	    return [].every.call( sheet.cssRules, function ( rule ) {
@@ -1319,7 +1355,13 @@ window.onload = function(){
 		macroInput.value = macroname;
 		macroArea.value = macro;
 		};
-	
+	macros = (getConfig('macros') && getConfig('macros').length>0)?JSON.parse(getConfig('macros')):[{"Email":{"text":"gonzotek@gmail.com"}},{"Home":{"keypress":"Home"}}]
+    for (i=0;i<macros.length;i++){
+	    macro = macros[i];
+		var name = Object.keys(macro)[0];//need object.keys polyfill for ie7/ie8 support.  worth it?
+		var macro = JSON.stringify(macro[name]);
+		addSelectOption("macroSelect", macro, name)
+	    }
 	macroInput = document.getElementById("custommacroinput");
 	macroInput.onfocus = textModeOff;
 	macroInput.onblur = textModeOn;
@@ -1331,9 +1373,15 @@ window.onload = function(){
 	addMacroButton = document.getElementById("addMacro");
 	addMacroButton.onclick = function() {
 		dbg("add name: " + macroInput.value + "<br> commands: " + macroArea.value);
-	  		
+	  		macro = {};
+	  		macro[macroInput.value] = JSON.parse(macroArea.value);
+	  		macros.push(macro);
+	  		setConfig('macros',JSON.stringify(macros));
+	  		addSelectOption("macroSelect", macroArea.value, macroInput.value);
 		};
-	
+	removeMacroButton = document.getElementById("removeMacro");
+		removeMacroButton.onclick = function (){};
+		
 	runMacroButton = document.getElementById("runCustomMacro");
 	runMacroButton.onclick = function(){
 		dbg("run name: " + macroInput.value + "<br> commands: " + macroArea.value);
