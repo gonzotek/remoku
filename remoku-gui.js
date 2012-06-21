@@ -532,6 +532,7 @@ function sendCustomMacro(cmds){
 			break;
 			default:
 				dbg('rokupost: ' + cmdAction + '/' + cmdParam);
+				rokupost(cmdAction, cmdParam);
 				setTimeout(function(){sendCustomMacro(cmds);},750);
 		}
 	}
@@ -565,7 +566,7 @@ function rokuMacroText(cmdParam){
 //			dbg("  " + escape(letter));
 			rokutext.setAttribute("action", "http://" + rokuAddress + ":8060/" + "keypress" + "/" + "LIT_" + encodeURIComponent(letter));
 		}
-		//rokutext.submit();
+		rokutext.submit();
 		dbg (rokutext.getAttribute("action"));
 		return text;
 		}
@@ -1310,14 +1311,34 @@ window.onload = function(){
 	MacroVerButton = document.getElementById("ver_macro");
 	MacroVerButton.onclick = macroChannelVersions;
 
+	macroSelect = document.getElementById("macroSelect");
+	macroSelect.onchange = function(){
+		macro = this.options[this.selectedIndex].value;
+		macroname = this.options[this.selectedIndex].innerHTML;
+		dbg(macro + macroname);
+		macroInput.value = macroname;
+		macroArea.value = macro;
+		};
+	
 	macroInput = document.getElementById("custommacroinput");
 	macroInput.onfocus = textModeOff;
 	macroInput.onblur = textModeOn;
 
+	macroArea = document.getElementById("macroArea");
+	macroArea.onfocus = textModeOff;
+	macroArea.onblur = textModeOn;
+
 	addMacroButton = document.getElementById("addMacro");
-	addMacro.onclick = function(){
-		dbg(macroInput.value);
-		var cmds = JSON.parse(macroInput.value);
+	addMacroButton.onclick = function() {
+		dbg("add name: " + macroInput.value + "<br> commands: " + macroArea.value);
+	  		
+		};
+	
+	runMacroButton = document.getElementById("runCustomMacro");
+	runMacroButton.onclick = function(){
+		dbg("run name: " + macroInput.value + "<br> commands: " + macroArea.value);
+		
+		var cmds = JSON.parse("["+macroArea.value+"]");
 		//Example JSON:
 		// [{"pause":3751},{"keypress":"Left"},{"pause":3752},{"keypress":"Down"},{"pause":3753},{"keypress":"Right"},{"pause":3754},{"keypress":"Up"}]
 		sendCustomMacro(cmds);
@@ -1458,7 +1479,7 @@ window.onload = function(){
 	//input select option button
     fgcolorInput = document.getElementById("fgcolor");
     fgcolor = getConfig('fgColor') ? getConfig('fgColor') : "101010";    
-    fgElements = ['input','select','option','button','.selected','#rokus'];
+    fgElements = ['input','textarea','#macroArea','select','option','button','.selected','#rokus'];
     txtcolor = Brightness( fgcolor ) < 130 ? 'FFFFFF' : '000000';
     for (var i = 0; i<fgElements.length;i++) {
 	    changeBackgroundColor(fgElements[i], '#' + fgcolor);
