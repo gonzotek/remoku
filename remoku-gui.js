@@ -1353,9 +1353,14 @@ window.onload = function(){
 		macroname = this.options[this.selectedIndex].innerHTML;
 		dbg(macro + macroname);
 		macroInput.value = macroname;
+		macro = macro.substring(1,macro.length-1);
 		macroArea.value = macro;
 		};
-	macros = (getConfig('macros') && getConfig('macros').length>0)?JSON.parse(getConfig('macros')):[{"Email":{"text":"gonzotek@gmail.com"}},{"Home":{"keypress":"Home"}}]
+	macros = (getConfig('macros') && getConfig('macros').length>0)?JSON.parse(getConfig('macros')):[
+	{"Email":[{"text":"gonzotek@gmail.com"}]},
+	{"Home":[{"keypress":"Home"}]},
+	{"Developer Screen":[{"keypress":"Home"},{"keypress":"Home"},{"keypress":"Home"},{"keypress":"Up"},{"keypress":"Up"},{"keypress":"Right"},{"keypress":"Left"},{"keypress":"Right"},{"keypress":"Left"},{"keypress":"Right"}]}
+	];
     for (i=0;i<macros.length;i++){
 	    macro = macros[i];
 		var name = Object.keys(macro)[0];//need object.keys polyfill for ie7/ie8 support.  worth it?
@@ -1374,7 +1379,7 @@ window.onload = function(){
 	addMacroButton.onclick = function() {
 		dbg("add name: " + macroInput.value + "<br> commands: " + macroArea.value);
 	  		macro = {};
-	  		macro[macroInput.value] = JSON.parse("["+macroArea.value+"]")[0];
+	  		macro[macroInput.value] = JSON.parse("["+macroArea.value+"]");
 	  		dbg(macro[macroInput.value]);
 	  		for(i=0;i<macros.length;i++){
 		  		dbg(macros[i]);
@@ -1386,10 +1391,10 @@ window.onload = function(){
 		  		}
 	  		if(macro!=null){
 		  		macros.push(macro);
-		  		addSelectOption("macroSelect", macroArea.value, macroInput.value);
+		  		addSelectOption("macroSelect", "["+macroArea.value+"]", macroInput.value);
 		  		} else {
 			  		removeSelectOption("macroSelect",macroInput.value);
-		  		addSelectOption("macroSelect", macroArea.value, macroInput.value);
+		  		addSelectOption("macroSelect", "["+macroArea.value+"]", macroInput.value);
 			  		}
 	  		setConfig('macros',JSON.stringify(macros));
 	  		
@@ -1397,6 +1402,12 @@ window.onload = function(){
 	removeMacroButton = document.getElementById("removeMacro");
 		removeMacroButton.onclick = function (){
 			removeSelectOption("macroSelect",macroInput.value);
+			idx = -1;
+			for(i=0;i<macros.length;i++){
+				if (macros[i][macroInput.value])idx=i;
+				}
+			if (idx>-1)macros.splice(idx,1);
+	  	setConfig('macros',JSON.stringify(macros));
 			};
 		
 	runMacroButton = document.getElementById("runCustomMacro");
