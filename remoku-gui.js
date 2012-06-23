@@ -608,34 +608,6 @@ function rokuMacroText(cmdParam){
 		}
 	}	
 
-
-
-function macroDevScreen(){
-	var cmds = "Home,Home,Home,Up,Up,Right,Left,Right,Left,Right".split(",");
-	sendSequence(cmds);
-	}
-
-function macroDumpCore(){
-	var cmds = "Home,Home,Home,Home,Home,Up,Rev,Rev,Fwd,Fwd".split(",");
-	sendSequence(cmds);
-	}
-
-function macroSecretScreen(){
-	var cmds = "Home,Home,Home,Home,Home,Fwd,Fwd,Fwd,Rev,Rev".split(",");
-	sendSequence(cmds);
-	}
-	
-function macroBRO(){
-	var cmds = "Home,Home,Home,Home,Home,Rev,Rev,Rev,Fwd,Fwd".split(",");
-	sendSequence(cmds);
-	}
-
-function macroChannelVersions(){
-	var cmds = "Home,Home,Home,Up,Up,Left,Right,Left,Right,Left".split(",");
-	sendSequence(cmds);
-	}
-
-
 //ECP APPS
 function launchShoutCast(){
 	var rokupost = document.getElementById('rokupost');
@@ -1332,20 +1304,6 @@ window.onload = function(){
 	shoutCastLaunchButton = document.getElementById("sc_launch");
 	shoutCastLaunchButton.onclick = launchShoutCast;
 	
-	MacroDevButton = document.getElementById("dev_macro");
-	MacroDevButton.onclick = macroDevScreen;
-	
-	MacroCoreButton = document.getElementById("cor_macro");
-	MacroCoreButton.onclick = macroDumpCore;
-	
-	MacroSecretButton = document.getElementById("sec_macro");
-	MacroSecretButton.onclick = macroSecretScreen;
-	
-	MacroBroButton = document.getElementById("bro_macro");
-	MacroBroButton.onclick = macroBRO;
-	
-	MacroVerButton = document.getElementById("ver_macro");
-	MacroVerButton.onclick = macroChannelVersions;
 
 	macroSelect = document.getElementById("macroSelect");
 	macroSelect.onchange = function(){
@@ -1359,7 +1317,11 @@ window.onload = function(){
 	macros = (getConfig('macros') && getConfig('macros').length>0)?JSON.parse(getConfig('macros')):[
 	{"Email":[{"text":"gonzotek@gmail.com"}]},
 	{"Home":[{"keypress":"Home"}]},
-	{"Developer Screen":[{"keypress":"Home"},{"keypress":"Home"},{"keypress":"Home"},{"keypress":"Up"},{"keypress":"Up"},{"keypress":"Right"},{"keypress":"Left"},{"keypress":"Right"},{"keypress":"Left"},{"keypress":"Right"}]}
+	{"Developer Screen":[{"keypress":"Home"},{"keypress":"Home"},{"keypress":"Home"},{"keypress":"Up"},{"keypress":"Up"},{"keypress":"Right"},{"keypress":"Left"},{"keypress":"Right"},{"keypress":"Left"},{"keypress":"Right"}]},
+	{"Dump Core":[{"keypress":"Home"},{"keypress":"Home"},{"keypress":"Home"},{"keypress":"Home"},{"keypress":"Home"},{"keypress":"Up"},{"keypress":"Rev"},{"keypress":"Rev"},{"keypress":"Fwd"},{"keypress":"Fwd"}]},
+	{"Secret Screen":[{"keypress":"Home"},{"keypress":"Home"},{"keypress":"Home"},{"keypress":"Home"},{"keypress":"Home"},{"keypress":"Fwd"},{"keypress":"Fwd"},{"keypress":"Fwd"},{"keypress":"Rev"},{"keypress":"Rev"}]},
+	{"Bit Rate Override":[{"keypress":"Home"},{"keypress":"Home"},{"keypress":"Home"},{"keypress":"Home"},{"keypress":"Home"},{"keypress":"Rev"},{"keypress":"Rev"},{"keypress":"Rev"},{"keypress":"Fwd"},{"keypress":"Fwd"}]},
+	{"Channels Info":[{"keypress":"Home"},{"keypress":"Home"},{"keypress":"Home"},{"keypress":"Up"},{"keypress":"Up"},{"keypress":"Left"},{"keypress":"Right"},{"keypress":"Left"},{"keypress":"Right"},{"keypress":"Left"}]}
 	];
     for (i=0;i<macros.length;i++){
 	    macro = macros[i];

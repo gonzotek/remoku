@@ -147,27 +147,19 @@
 </div>
 
 <div id="goodies" class="hidden">
-	<div class="box" id="shoutcast">
-	<h2>Launch Shoutcast Channel</h2>
+	<fieldset>
+	<legend>Shoutcast Channel</legend>
 	<label>Station Name:</label><input id="sc_name" value="My Station"><br>
 	<label>Station URL:</label><input id="sc_url" value="http://my.shoutcast.url/station.pls" />
 	<button id="sc_launch">Launch Shoutcast</button>
-	</div>
-	<div class="box" id="macros">
-	<h2>Macros</h2>
-	<button id="dev_macro">Developer Screen</button><br>
-	<button id="ver_macro">Channel Version Info</button><br>
-	<button id="bro_macro">Bit Rate Override Screen</button><br>
-	<button id="sec_macro">Secret Screen</button><br>
-	<button id="cor_macro">Dump Core</button><br>
-	<label>App id:</label><input id="chstoreappid"  value="11" />
+	</fieldset>
+	Launch Channel Store <label>App id:</label><input id="chstoreappid"  value="11" />
 	<button id="chs_macro">Channel Store</button><br>
-	<fieldset><legend>Custom Macros</legend>
+	<fieldset><legend>Macros</legend>
 	<select id="macroSelect"></select><button id="runCustomMacro">Run</button><br>
 	<input id="custommacroinput"><button id="addMacro">Add</button><button id="removeMacro">Remove</button><br>
 	<textarea id="macroArea"></textarea>
 	</fieldset>
-	</div>
 	<div class="box hidden" id="goodieLaunch">
 		<h2>Launch Remoku Channel</h2>
 		<label>Add launch parameter</label><br>
