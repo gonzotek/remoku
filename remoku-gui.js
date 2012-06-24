@@ -43,7 +43,8 @@ function removeSelectOption(selectId, display) {
 
 function changeBackgroundColor(theSelector, parameter){
 	[].every.call( document.styleSheets, function ( sheet ) {
-	    return [].every.call( sheet.cssRules, function ( rule ) {
+		  rules = sheet.rules || sheet.cssRules || [];
+	    return [].every.call( rules, function ( rule ) {
 	        if ( rule.selectorText === theSelector ) {
 	            rule.style.backgroundColor = parameter;
 	            return false;
@@ -55,7 +56,8 @@ function changeBackgroundColor(theSelector, parameter){
 
 function changeTextColor(theSelector, parameter){
 	[].every.call( document.styleSheets, function ( sheet ) {
-	    return [].every.call( sheet.cssRules, function ( rule ) {
+		  rules = sheet.rules || sheet.cssRules || [];
+	    return [].every.call( rules, function ( rule ) {
 	        if ( rule.selectorText === theSelector ) {
 	            rule.style.color = parameter;
 	            return false;
@@ -65,7 +67,7 @@ function changeTextColor(theSelector, parameter){
 	});	
 }
 
-
+//Array.unique polyfill
 if (!Array.unique) Array.prototype.unique = function() {
 	    var o = {}, i, l = this.length, r = [];
 	    for(i=0; i<l;i+=1) o[this[i]] = this[i];
@@ -73,6 +75,9 @@ if (!Array.unique) Array.prototype.unique = function() {
 	    return r;
 };
 
+
+//Object.keys polyfill
+Object.keys=Object.keys||function(o,k,r){r=[];for(k in o)r.hasOwnProperty.call(o,k)&&r.push(k);return r}
 
 //Return an array of the ancestors of an element
 function parents(node) {
@@ -566,8 +571,19 @@ function sendCustomMacro(cmds){
 				if(cmdParam)cmds.unshift({text:cmdParam});
 				setTimeout(function(){sendCustomMacro(cmds);},750);
 			break;
+			case 'loop':
+				var loops = cmdParam-2;
+				cmds = JSON.parse("["+macroArea.value+"]");
+				cmds.pop();//remove loop command 
+				for (i=0;i<loops;i++){
+					var tempcmds = JSON.parse("["+macroArea.value+"]");
+					tempcmds.pop();
+					cmds = cmds.concat(tempcmds);
+				}
+				setTimeout(function(){sendCustomMacro(cmds);},750);
+			break;
 			default:
-				dbg('rokupost: ' + cmdAction + '/' + cmdParam);
+				//dbg('rokupost: ' + cmdAction + '/' + cmdParam);
 				rokupost(cmdAction, cmdParam);
 				setTimeout(function(){sendCustomMacro(cmds);},750);
 		}
@@ -786,12 +802,19 @@ function getBuild(){
 ////////////////////////
 
 function wipeSettings(){
-	setConfig("rokuAddress","");
+	setConfig("rokuAddress", "");
 	setConfig("scannedRokus", "");
 	setConfig("manualRokus", "");
 	setConfig("rokuCount", "");
-	setConfig("namedRokus","");
-	setConfig("bgColor","");
+	setConfig("namedRokus", "");
+	setConfig("bgColor", "");	
+	setConfig("fgColor", "");
+	setConfig("macros", "");
+	setConfig("showFavs", "");
+	setConfig("myNetwork","");
+	setConfig("fav1","");
+	setConfig("fav2","");
+	setConfig("fav3","");
 	//setConfig("apps", "");
 	if (localStorage.clear) localStorage.clear();
 }
@@ -1116,11 +1139,8 @@ window.addEventListener('load', function(e) {
       // Browser downloaded a new app cache.
       // Swap it in and reload the page to get the new hotness.
       window.applicationCache.swapCache();
-      if (confirm('A new version of Remoku is available. Load it now?')) {
-        window.location.reload();
-      }
-    } else {
-      // Manifest hasn't changed. Nothing new to serve.
+      var notifications = document.getElementById('notifications');
+			notifications.setAttribute('class','box');
     }
   }, false);
  }
@@ -1139,7 +1159,14 @@ window.onload = function(){
 	} else {
 		dbg("Browser has localStorage support.");
 	}
-
+	var reloadlink = document.getElementById('reloadlink');
+  reloadlink.onclick = function (){window.location.reload();};
+  var channelStoreMacroButton = document.getElementById('chs_macro');
+  channelStoreMacroButton.onclick = function(){
+	  var launchid = document.getElementById('chstoreappid').value;
+	  rokupost('launch','11?contentId='+launchid);
+	  // /launch/11?contentId=12
+	  };
 	wipeSettingsButton = document.getElementById("wipesettings");
 	wipeSettingsButton.onclick = wipeSettings;
 	
@@ -1193,6 +1220,8 @@ window.onload = function(){
 	addButton = document.getElementById('addroku');
 	addButton.onclick = addRoku;
 
+	
+	
 	rokuName = document.getElementById('rokuname');
 	rokuName.onfocus = textModeOff;
 	rokuName.onblur = function(){
@@ -1494,19 +1523,16 @@ window.onload = function(){
     bgcolor = getConfig('bgColor') ? getConfig('bgColor') : "101010";
     bgcolorInput.value = bgcolor;
     changeBackgroundColor('.bgcolor', '#' + bgcolor);
-
-    txtcolorInput = document.getElementById("txtcolor");
-    //txtcolor = getConfig('txtColor') ? getConfig('txtColor') : "F0F0F0";
     txtcolor = Brightness( bgcolor ) < 130 ? 'FFFFFF' : '000000';
     changeTextColor('.bgcolor', '#' + txtcolor);
     
     bgcolorInput.onfocus = function(){
 	    textModeOff();
 	    bgcolor = bgcolorInput.value;
-		changeBackgroundColor('.bgcolor', '#' + bgcolor);
-		txtcolor = Brightness( bgcolor ) < 130 ? 'FFFFFF' : '000000';
-		changeTextColor('.bgcolor', '#' + txtcolor);
-		setConfig('bgColor', bgcolor);	
+			changeBackgroundColor('.bgcolor', '#' + bgcolor);
+			txtcolor = Brightness( bgcolor ) < 130 ? 'FFFFFF' : '000000';
+			changeTextColor('.bgcolor', '#' + txtcolor);
+			setConfig('bgColor', bgcolor);	
 	    };
 	bgcolorInput.onblur = function(){
 		textModeOn();

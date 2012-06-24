@@ -336,12 +336,6 @@ h2{
 text-align:center;	
 margin:0;
 }
-
-#helplink{
-	font-size:20px;
-	color:white;
-	margin:50px;
-	}
 	
 #rokuname{
 	width:90px;
@@ -353,6 +347,7 @@ margin:0;
 	}
 	
 .link{color:white;}
+
 #favtable{
 	text-align:center;
 	left:50%;
@@ -388,5 +383,5 @@ margin:0;
 	}
 #macroArea{
 	width:272px;
-	height:200px;
+	height:100px;
 	}
