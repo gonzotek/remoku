@@ -858,7 +858,7 @@ function activateButton(e){
 	firstSetupScreen.setAttribute("class", "hidden");
 		for(i=0;i<navArray.length;i++){
 			if (activeBtn == navArray[i].id){
-				navArray[i].setAttribute("class", "active nav");
+				navArray[i].setAttribute("class", "nav active");
 				screenArray[i].setAttribute("class", "visible");
 			} else {
 				screenArray[i].setAttribute("class", "hidden");
@@ -1023,7 +1023,7 @@ function canceltouchshowRemotes(){
 		activeBtn = "navremote";
 		for(i=0;i<navArray.length;i++){
 			if (activeBtn == navArray[i].id){
-				navArray[i].setAttribute("class", "active nav");
+				navArray[i].setAttribute("class", "nav active");
 				screenArray[i].setAttribute("class", "visible");
 			} else {
 				screenArray[i].setAttribute("class", "hidden");
@@ -1220,7 +1220,10 @@ window.onload = function(){
 	addButton = document.getElementById('addroku');
 	addButton.onclick = addRoku;
 
-	
+	var channelsLink = document.getElementById('channelslink');
+		channelsLink.innerHTML = 'Refer to your <a href="http://'+ rokuAddress +':8060/query/apps" target="_blank">installed channels</a> for channel ids.'
+	var channelsLink2 = document.getElementById('channelslink2');
+		channelsLink2.innerHTML = 'Refer to your <a href="http://'+ rokuAddress +':8060/query/apps" target="_blank">installed channels</a> for channel ids.'
 	
 	rokuName = document.getElementById('rokuname');
 	rokuName.onfocus = textModeOff;
@@ -1524,6 +1527,10 @@ window.onload = function(){
     bgcolorInput.value = bgcolor;
     changeBackgroundColor('.bgcolor', '#' + bgcolor);
     txtcolor = Brightness( bgcolor ) < 130 ? 'FFFFFF' : '000000';
+    navTextColor = Brightness( bgcolor ) < 130 ? 'D0D0D0' : '555555';
+    activeNavTextColor = Brightness( bgcolor ) < 130 ? 'FFFFFF' : '000000';
+    changeTextColor('.nav', '#' + navTextColor);
+    changeTextColor('.active', '#' + activeNavTextColor);
     changeTextColor('.bgcolor', '#' + txtcolor);
     
     bgcolorInput.onfocus = function(){
@@ -1532,6 +1539,10 @@ window.onload = function(){
 			changeBackgroundColor('.bgcolor', '#' + bgcolor);
 			txtcolor = Brightness( bgcolor ) < 130 ? 'FFFFFF' : '000000';
 			changeTextColor('.bgcolor', '#' + txtcolor);
+	    navTextColor = Brightness( bgcolor ) < 130 ? 'D0D0D0' : '555555';
+	    activeNavTextColor = Brightness( bgcolor ) < 130 ? 'FFFFFF' : '000000';
+	    changeTextColor('.nav', '#' + navTextColor);
+	    changeTextColor('.active', '#' + activeNavTextColor);
 			setConfig('bgColor', bgcolor);	
 	    };
 	bgcolorInput.onblur = function(){

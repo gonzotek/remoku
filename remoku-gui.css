@@ -251,7 +251,8 @@ button{
 	
 .nav{
 	cursor:pointer;
-	color:#E8E8E8;
+		opacity:0.5;
+
 	}	
 .nav img{
 	opacity:0.5;
@@ -259,8 +260,10 @@ button{
 .active img{
 	opacity:1 !important;	
 }
-.active{
-	color:#E8E8E8 !important;
+.active {
+	color:white;
+	opacity:1 !important;	
+
 	}
 .link{
 	cursor:pointer;
