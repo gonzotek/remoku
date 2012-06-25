@@ -6,6 +6,8 @@
 ////////////////////////
 //BEGIN HELPER FUNCTIONS
 
+function $(o){return document.getElementById(o);};
+
 //HH:MM:SS to seconds
 function hmsToSecondsOnly(str){
     var p = str.split(':'),
@@ -30,7 +32,7 @@ function addSelectOption(selectId, value, display) {
     var anOption = document.createElement('option');
     anOption.value = value;
     anOption.innerHTML = display;
-    document.getElementById(selectId).appendChild(anOption);
+    $(selectId).appendChild(anOption);
     return anOption;
 }
 
@@ -40,7 +42,7 @@ function addSelectOption(selectId, value, display) {
 // in the selection list with the id specified
 //
 function removeSelectOption(selectId, display) {
- var select = document.getElementById(selectId);
+ var select = $(selectId);
  var kids = select.childNodes; 
  var numkids = kids.length; 
  for (var i = 0; i < numkids; i++) {
@@ -187,7 +189,7 @@ function dbg(log){
 function ver(channel, build){
 	var slicescript = "window.external.addToFavoritesBar('http://remoku.tv/', 'Remoku', 'slice');"
 	var webslice = '<a onclick="' + slicescript +'">Remoku</a>' + '<br>' + channel + '<br>' + build;
-	ver = document.getElementById("ver");
+	ver = $("ver");
 	ver.innerHTML = webslice;	
 }
 
@@ -310,16 +312,16 @@ function updateSelect() {
 	lowerRemotesPopup.appendChild(remoteUl);
 	if(rokuAddress==undefined || rokuAddress=="")rokuAddress=rokus[0];
 	fav1Value = getConfig('fav1') ? getConfig('fav1') : '12' ; 
-	favImg1 = document.getElementById("favimg1");
+	favImg1 = $("favimg1");
 	if(favImg1)favImg1.setAttribute('src','http://' + rokuAddress +':8060/query/icon/'+fav1Value);
 		
 	fav2Value = getConfig('fav2');
-	favImg2 = document.getElementById("favimg2");
+	favImg2 = $("favimg2");
 	fav2Value = getConfig('fav2') ? getConfig('fav2') : '28' ; 
 	if(favImg2)favImg2.setAttribute('src','http://' + rokuAddress +':8060/query/icon/'+fav2Value);
 
 	fav3Value = getConfig('fav3');
-	favImg3 = document.getElementById("favimg3");
+	favImg3 = $("favimg3");
 	fav3Value = getConfig('fav3') ? getConfig('fav3') : '2016' ; 
 	if(favImg3)favImg3.setAttribute('src','http://' + rokuAddress +':8060/query/icon/'+fav3Value);
 }
@@ -537,7 +539,7 @@ function firstSetup(){
 *  output: none
 */
 function rokupost(action, param){
-	var rokupost = document.getElementById('rokupost');
+	var rokupost = $('rokupost');
 	rokupost.setAttribute("action", "http://" + rokuAddress + ":8060/" + action + "/" + param);
 	rokupost.submit();
 	return false;
@@ -605,7 +607,7 @@ function sendCustomMacro(cmds){
 }
 
 function rokuMacroText(cmdParam){
-	var rokutext =  document.getElementById('rokutext');
+	var rokutext =  $('rokutext');
 	var text = cmdParam;
 //	dbg(text);
 	if(text){
@@ -640,7 +642,7 @@ function rokuMacroText(cmdParam){
 
 //ECP APPS
 function launchShoutCast(){
-	var rokupost = document.getElementById('rokupost');
+	var rokupost = $('rokupost');
 	//params = launchKey.value + "=" + encodeURIComponent(launchValue.value);
 	params = "name=" + escape(shoutCastNameInput.value) + "&url=" + escape(shoutCastUrlInput.value).split("/").join("%2F");
 	rokupost.setAttribute("action", "http://" + rokuAddress + ":8060/launch/2115?" + params );
@@ -650,7 +652,7 @@ function launchShoutCast(){
 
 
 function launchRemokuWithParams(){
-	var rokupost = document.getElementById('rokupost');
+	var rokupost = $('rokupost');
 	params = launchKey.value + "=" + encodeURIComponent(launchValue.value);
 	rokupost.setAttribute("action", "http://" + rokuAddress + ":8060/launch/dev?" + params );
 	rokupost.submit();
@@ -671,7 +673,7 @@ function rokuDeleteOrBlur(evt){
 		this.blur();
 	}
 	else if(evt.keyCode==13){
-		if (document.getElementById("textentry").value==""){
+		if ($("textentry").value==""){
 			rokutext.setAttribute("action", "http://" + rokuAddress + ":8060/" + "keypress" + "/" + "Enter");
 			rokutext.submit();
 			this.blur();
@@ -698,8 +700,8 @@ function delayNextQuery(){
 	}
 	
 function rokuText(){
-	var rokutext =  document.getElementById('rokutext');
-	var text = document.getElementById("textentry").value;
+	var rokutext =  $('rokutext');
+	var text = $("textentry").value;
 //	dbg(text);
 	if(text){
 		var letter = text.slice(0,1);
@@ -726,13 +728,13 @@ function rokuText(){
 			rokutext.setAttribute("action", "http://" + rokuAddress + ":8060/" + "keypress" + "/" + "LIT_" + encodeURIComponent(letter));
 		}
 		rokutext.submit();
-		document.getElementById("textentry").value = text;
+		$("textentry").value = text;
 		}
 	}	
 	
 function delayLoadIcons(){
 	if(appidarray.length>0) var appid = appidarray.shift();
-	if(appid)document.getElementById("app"+appid).src = 'http://' + rokuAddress +':8060/query/icon/' + appid;	
+	if(appid)$("app"+appid).src = 'http://' + rokuAddress +':8060/query/icon/' + appid;	
 	}
 
 
@@ -746,7 +748,7 @@ function _rmAppsCB(apps){
 		localStorage.setItem(rokuAddress + '-apps', JSON.stringify(apps));
 	}
 	var list = "";
-	var applist = document.getElementById("applist");
+	var applist = $("applist");
     appidarray = new Array();
     for (i=0;i<apps.length;i++){
 	    var li = document.createElement("li");
@@ -778,7 +780,7 @@ function _rmAppsCB(apps){
 // 	}
 	//applist.innerHTML = list;
 	appid = appidarray.shift();
-	if(appid!=null)document.getElementById("app"+appid).src = 'http://' + rokuAddress +':8060/query/icon/' + appid;
+	if(appid!=null)$("app"+appid).src = 'http://' + rokuAddress +':8060/query/icon/' + appid;
 		
 }
 	
@@ -1153,7 +1155,7 @@ window.addEventListener('load', function(e) {
       // Browser downloaded a new app cache.
       // Swap it in and reload the page to get the new hotness.
       window.applicationCache.swapCache();
-      var notifications = document.getElementById('notifications');
+      var notifications = $('notifications');
 			notifications.setAttribute('class','box');
     }
   }, false);
@@ -1164,7 +1166,7 @@ window.addEventListener('load', function(e) {
 
 window.onload = function(){
 	window.scrollTo(0, 1);
-	dbgOut = document.getElementById("dbgOut");
+	dbgOut = $("dbgOut");
 	getBuild();
 	dbg(navigator.userAgent);
 	if(isBadBrowser()){
@@ -1173,28 +1175,28 @@ window.onload = function(){
 	} else {
 		dbg("Browser has localStorage support.");
 	}
-	var reloadlink = document.getElementById('reloadlink');
+	var reloadlink = $('reloadlink');
   reloadlink.onclick = function (){window.location.reload();};
-  var channelStoreMacroButton = document.getElementById('chs_macro');
+  var channelStoreMacroButton = $('chs_macro');
   channelStoreMacroButton.onclick = function(){
-	  var launchid = document.getElementById('chstoreappid').value;
+	  var launchid = $('chstoreappid').value;
 	  rokupost('launch','11?contentId='+launchid);
 	  // /launch/11?contentId=12
 	  };
-	wipeSettingsButton = document.getElementById("wipesettings");
+	wipeSettingsButton = $("wipesettings");
 	wipeSettingsButton.onclick = wipeSettings;
 	
-	controlContainer = document.getElementById("controlcontainer");
+	controlContainer = $("controlcontainer");
 	
-	rokuSelect = document.getElementById("rokus");
+	rokuSelect = $("rokus");
 	rokuSelect.onchange = setRokuAddress;
 	
 	scannedRokus = getConfig('scannedRokus') ? getConfig('scannedRokus').split(",") : [];
 	
 	keyboardMode = getConfig('keyboardMode') ? getConfig('keyboardMode') : true;
-	octet1 = document.getElementById('octet1');
-	octet2 = document.getElementById('octet2');
-	octet3 = document.getElementById('octet3');
+	octet1 = $('octet1');
+	octet2 = $('octet2');
+	octet3 = $('octet3');
 	octet1.onchange = setMyNetwork;
 	octet1.onfocus = textModeOff;
 	octet1.onblur = textModeOn;
@@ -1213,33 +1215,33 @@ window.onload = function(){
 	octet3.value=octets[2];
 
 	rokuCount = getConfig('rokuCount') ? getConfig('rokuCount') : "1";
-	numField = document.getElementById('num');
+	numField = $('num');
 	numField.value = rokuCount;
 	numField.onchange = setRokuCount;
 	
-	scanButton = document.getElementById('scanforroku');
+	scanButton = $('scanforroku');
 	scanButton.onclick = findRokus;
 	
-	scanResults = document.getElementById('scanresults');
+	scanResults = $('scanresults');
 	
 	rokuAddress = getConfig('rokuAddress');
-	manualInput = document.getElementById('maddress');
+	manualInput = $('maddress');
 	manualInput.onfocus = textModeOff;
 	manualInput.onblur = textModeOn;
 
-	manualSelect = document.getElementById('manualrokus');
+	manualSelect = $('manualrokus');
 	manualRokus = getConfig('manualRokus') ? getConfig('manualRokus').split(",") : [];
-	removeButton = document.getElementById('removeroku');
+	removeButton = $('removeroku');
 	removeButton.onclick = removeRoku;
-	addButton = document.getElementById('addroku');
+	addButton = $('addroku');
 	addButton.onclick = addRoku;
 
-	var channelsLink = document.getElementById('channelslink');
+	var channelsLink = $('channelslink');
 		channelsLink.innerHTML = 'Refer to your <a href="http://'+ rokuAddress +':8060/query/apps" target="_blank">installed channels</a> for channel ids.'
-	var channelsLink2 = document.getElementById('channelslink2');
+	var channelsLink2 = $('channelslink2');
 		channelsLink2.innerHTML = 'Refer to your <a href="http://'+ rokuAddress +':8060/query/apps" target="_blank">installed channels</a> for channel ids.'
 	
-	rokuName = document.getElementById('rokuname');
+	rokuName = $('rokuname');
 	rokuName.onfocus = textModeOff;
 	rokuName.onblur = function(){
 		textModeOn();
@@ -1247,8 +1249,8 @@ window.onload = function(){
 	};
 	rokuName.onkeyup = doNameRoku;
 	
-	remotesPopup = document.getElementById("remotespopup");
-	lowerRemotesPopup = document.getElementById("lowerremotespopup");
+	remotesPopup = $("remotespopup");
+	lowerRemotesPopup = $("lowerremotespopup");
 	
 	try{
 		namedRokus = JSON.parse(getConfig('namedRokus')) ? JSON.parse(getConfig('namedRokus')) : {};
@@ -1260,7 +1262,7 @@ window.onload = function(){
 	if(manualRokus.length>0) buildManualRokusMenu();
 	updateSelect();
 	rokuName.value = namedRokus[rokuAddress] ? namedRokus[rokuAddress] : "Remoku";
-	nameLine = document.getElementById("nameline");
+	nameLine = $("nameline");
 	nameLine.innerHTML = rokuName.value ? rokuName.value : rokuAddress;
 	nameLine.onclick = showRemotes;
 	try{
@@ -1282,28 +1284,28 @@ window.onload = function(){
 	
 	var intViewportHeight = window.innerHeight;
 	//dbg(intViewportHeight);
-	var screens = document.getElementById("remote");
+	var screens = $("remote");
 // 	if(intViewportHeight<419){
 // 		intViewportHeight+=40
 // 		dbg(intViewportHeight);
 // 		screens.style.height = intViewportHeight+"px";
-// 		remoteTable = document.getElementById("remotetable");
+// 		remoteTable = $("remotetable");
 // 		remoteTable.style.marginBottom = 40+"px";
 // 	}
-	remoteScreen = document.getElementById("remote");
-	goodiesScreen = document.getElementById("goodies");
-	appsScreen = document.getElementById("apps");
-	configScreen = document.getElementById("config");
-	aboutScreen =  document.getElementById("about");
-	firstSetupScreen = document.getElementById("firstsetup");
+	remoteScreen = $("remote");
+	goodiesScreen = $("goodies");
+	appsScreen = $("apps");
+	configScreen = $("config");
+	aboutScreen =  $("about");
+	firstSetupScreen = $("firstsetup");
 	screenArray = [remoteScreen,goodiesScreen,appsScreen,configScreen,aboutScreen];
 	
-	navRemote = document.getElementById("navremote");
-	navRemoteImg = document.getElementById("navremoteimg");
-	navGoodies = document.getElementById("navgoodies");
-	navApps   = document.getElementById("navapps");
-	navConfig = document.getElementById("navconfig");
-	navAbout = document.getElementById("navabout");
+	navRemote = $("navremote");
+	navRemoteImg = $("navremoteimg");
+	navGoodies = $("navgoodies");
+	navApps   = $("navapps");
+	navConfig = $("navconfig");
+	navAbout = $("navabout");
     navArray = [navRemote,navGoodies,navApps,navConfig,navAbout];
     
 // 	if(is_touch_device()){
@@ -1322,36 +1324,36 @@ window.onload = function(){
 	navGoodies.onclick = activateButton;
 	navAbout.onclick = activateButton;
 	
-	sendTextBtn = document.getElementById("sendtext");
+	sendTextBtn = $("sendtext");
 	sendTextBtn.onclick = rokuText;
 	
-	loadAppsButton = document.getElementById("loadapps");
+	loadAppsButton = $("loadapps");
 	loadAppsButton.onclick = rokuApps;
 
-	startAppsButton = document.getElementById("startremoku");
+	startAppsButton = $("startremoku");
 	startAppsButton .onclick = launchRemoku;
 	if(!rokuAddress) {
 		 firstSetup();
 	 }
 	 
-	launchButton = document.getElementById("lparamdo");
-	launchValue = document.getElementById("lvalue");
-	launchKey = document.getElementById("lkey");
+	launchButton = $("lparamdo");
+	launchValue = $("lvalue");
+	launchKey = $("lkey");
 	launchButton.onclick = launchRemokuWithParams;
 	
-	shoutCastNameInput = document.getElementById("sc_name");
+	shoutCastNameInput = $("sc_name");
 	shoutCastNameInput.onfocus = textModeOff;
 	shoutCastNameInput.onblur = textModeOn;
 
-	shoutCastUrlInput = document.getElementById("sc_url");
+	shoutCastUrlInput = $("sc_url");
 	shoutCastUrlInput.onfocus = textModeOff;
 	shoutCastUrlInput.onblur = textModeOn;
 
-	shoutCastLaunchButton = document.getElementById("sc_launch");
+	shoutCastLaunchButton = $("sc_launch");
 	shoutCastLaunchButton.onclick = launchShoutCast;
 	
 
-	macroSelect = document.getElementById("macroSelect");
+	macroSelect = $("macroSelect");
 	macroSelect.onchange = function(){
 		macro = this.options[this.selectedIndex].value;
 		macroname = this.options[this.selectedIndex].innerHTML;
@@ -1368,7 +1370,8 @@ window.onload = function(){
 	{"Secret Screen":[{"keypress":"Home"},{"keypress":"Home"},{"keypress":"Home"},{"keypress":"Home"},{"keypress":"Home"},{"keypress":"Fwd"},{"keypress":"Fwd"},{"keypress":"Fwd"},{"keypress":"Rev"},{"keypress":"Rev"}]},
 	{"Bit Rate Override":[{"keypress":"Home"},{"keypress":"Home"},{"keypress":"Home"},{"keypress":"Home"},{"keypress":"Home"},{"keypress":"Rev"},{"keypress":"Rev"},{"keypress":"Rev"},{"keypress":"Fwd"},{"keypress":"Fwd"}]},
 	{"Channels Info":[{"keypress":"Home"},{"keypress":"Home"},{"keypress":"Home"},{"keypress":"Up"},{"keypress":"Up"},{"keypress":"Left"},{"keypress":"Right"},{"keypress":"Left"},{"keypress":"Right"},{"keypress":"Left"}]},
-	{"RepeatPlayWait":[{"repeat":"5"},{"keypress":"Play"},{"wait":"30:00"}]}
+	{"RepeatPlayWait":[{"repeat":"5"},{"keypress":"Play"},{"wait":"30:00"}]},
+	{"Launch Channel Store":[{"launch":"11?contentId=12"}]}
 	];
     for (i=0;i<macros.length;i++){
 	    macro = macros[i];
@@ -1376,15 +1379,15 @@ window.onload = function(){
 		var macro = JSON.stringify(macro[name]);
 		addSelectOption("macroSelect", macro, name)
 	    }
-	macroInput = document.getElementById("custommacroinput");
+	macroInput = $("custommacroinput");
 	macroInput.onfocus = textModeOff;
 	macroInput.onblur = textModeOn;
 
-	macroArea = document.getElementById("macroArea");
+	macroArea = $("macroArea");
 	macroArea.onfocus = textModeOff;
 	macroArea.onblur = textModeOn;
 
-	addMacroButton = document.getElementById("addMacro");
+	addMacroButton = $("addMacro");
 	addMacroButton.onclick = function() {
 		dbg("add name: " + macroInput.value + "<br> commands: " + macroArea.value);
 	  		macro = {};
@@ -1408,7 +1411,7 @@ window.onload = function(){
 	  		setConfig('macros',JSON.stringify(macros));
 	  		
 		};
-	removeMacroButton = document.getElementById("removeMacro");
+	removeMacroButton = $("removeMacro");
 		removeMacroButton.onclick = function (){
 			removeSelectOption("macroSelect",macroInput.value);
 			idx = -1;
@@ -1419,7 +1422,7 @@ window.onload = function(){
 	  	setConfig('macros',JSON.stringify(macros));
 			};
 		
-	runMacroButton = document.getElementById("runCustomMacro");
+	runMacroButton = $("runCustomMacro");
 	runMacroButton.onclick = function(){
 		dbg("run name: " + macroInput.value + "<br> commands: " + macroArea.value);
 		
@@ -1433,41 +1436,41 @@ window.onload = function(){
 	document.onkeydown = handleArrowKeyDown;
 	
 	
-	showFavoritesChkbx = document.getElementById("showFaves");
+	showFavoritesChkbx = $("showFaves");
 	showFavs = getConfig('showFavs')=='false'?getConfig('showFavs'):'true';
 	setConfig('showFavs',showFavs);
 	if(showFavs=='true'){
 		showFavoritesChkbx.checked=true;
-		document.getElementById('favtable').setAttribute('class','');
+		$('favtable').setAttribute('class','');
 	} else {
 		showFavoritesChkbx.checked=false;
-		document.getElementById('favtable').setAttribute('class','hidden');
+		$('favtable').setAttribute('class','hidden');
 	}
 	showFavoritesChkbx.onclick = function(){
 		if(showFavoritesChkbx.checked){
 				setConfig('showFavs','true');
-				document.getElementById('favtable').setAttribute('class','');
+				$('favtable').setAttribute('class','');
 			} else {
 				setConfig('showFavs','false');
-				document.getElementById('favtable').setAttribute('class','hidden');
+				$('favtable').setAttribute('class','hidden');
 			}
 		}
-	var fav1Input = document.getElementById("inputfav1");
+	var fav1Input = $("inputfav1");
 	fav1Value = getConfig('fav1')?getConfig('fav1'):'12';
 	fav1Input.value = fav1Value;
 	fav1Input.onblur = function(){
 		textModeOff();
 		var fav1Value = this.value;
-		fav1Link = document.getElementById("fav1link");
+		fav1Link = $("fav1link");
 		fav1Link.setAttribute('onclick','rokulaunch("'+fav1Value+'")');
-		favImg1 = document.getElementById("favimg1");
+		favImg1 = $("favimg1");
 		favImg1.setAttribute('src','http://' + rokuAddress +':8060/query/icon/'+fav1Value);
 		setConfig('fav1',fav1Value);
 		};
 	fav1Input.onfocus = function(){
 		textModeOff();
 		}
-	var fav1 = document.getElementById("fav1");
+	var fav1 = $("fav1");
 	    var favlink = document.createElement("a");
 	    favlink.setAttribute('href','#fav1');
 		favlink.setAttribute('onclick','rokulaunch("'+fav1Value+'")');
@@ -1480,22 +1483,22 @@ window.onload = function(){
 	fav1.appendChild(favlink);
 	
 	
-	var fav2Input = document.getElementById("inputfav2");
+	var fav2Input = $("inputfav2");
 	fav2Value = getConfig('fav2')?getConfig('fav2'):'28';
 	fav2Input.value = fav2Value;
 	fav2Input.onblur = function(){
 		textModeOn();
 		var fav2Value = this.value;
-		fav2Link = document.getElementById("fav2link");
+		fav2Link = $("fav2link");
 		fav2Link.setAttribute('onclick','rokulaunch("'+fav2Value+'")');
-		favImg2 = document.getElementById("favimg2");
+		favImg2 = $("favimg2");
 		favImg2.setAttribute('src','http://' + rokuAddress +':8060/query/icon/'+fav2Value);
 		setConfig('fav2',fav2Value);
 		};
 	fav2Input.onfocus = function(){
 		textModeOff();
 		}
-		var fav2 = document.getElementById("fav2");
+		var fav2 = $("fav2");
 	    var favlink = document.createElement("a");
 	    favlink.setAttribute('href','#fav2');
 		favlink.setAttribute('onclick','rokulaunch("'+fav2Value+'")');
@@ -1507,22 +1510,22 @@ window.onload = function(){
 		favlink.appendChild(favimg);
 	fav2.appendChild(favlink);
 	
-	var fav3Input = document.getElementById("inputfav3");
+	var fav3Input = $("inputfav3");
 	fav3Value = getConfig('fav3')?getConfig('fav3'):'2016';
 	fav3Input.value = fav3Value;
 	fav3Input.onblur = function(){
 		textModeOn();
 		var fav3Value = this.value;
-		fav3Link = document.getElementById("fav3link");
+		fav3Link = $("fav3link");
 		fav3Link.setAttribute('onclick','rokulaunch("'+fav3Value+'")');
-		favImg3 = document.getElementById("favimg3");
+		favImg3 = $("favimg3");
 		favImg3.setAttribute('src','http://' + rokuAddress +':8060/query/icon/'+fav3Value);
 		setConfig('fav3',fav3Value);
 		};
 	fav3Input.onfocus = function(){
 		textModeOff();
 		}
-		var fav3 = document.getElementById("fav3");
+		var fav3 = $("fav3");
 	    var favlink = document.createElement("a");
 	    favlink.setAttribute('href','#fav3');
 		favlink.setAttribute('onclick','rokulaunch("'+fav3Value+'")');
@@ -1537,7 +1540,7 @@ window.onload = function(){
 	if(apps)_rmAppsCB(apps);
 	
 	//Background
-    bgcolorInput = document.getElementById("bgcolor");
+    bgcolorInput = $("bgcolor");
     bgcolor = getConfig('bgColor') ? getConfig('bgColor') : "101010";
     bgcolorInput.value = bgcolor;
     changeBackgroundColor('.bgcolor', '#' + bgcolor);
@@ -1547,7 +1550,26 @@ window.onload = function(){
     changeTextColor('.nav', '#' + navTextColor);
     changeTextColor('.active', '#' + activeNavTextColor);
     changeTextColor('.bgcolor', '#' + txtcolor);
-    
+    cP = colorPicker;
+    cP.exportColor = function () {
+	    bgcolor = bgcolorInput.value;
+			changeBackgroundColor('.bgcolor', '#' + bgcolor);
+			txtcolor = Brightness( bgcolor ) < 130 ? 'FFFFFF' : '000000';
+			changeTextColor('.bgcolor', '#' + txtcolor);
+	    navTextColor = Brightness( bgcolor ) < 130 ? 'D0D0D0' : '555555';
+	    activeNavTextColor = Brightness( bgcolor ) < 130 ? 'FFFFFF' : '000000';
+	    changeTextColor('.nav', '#' + navTextColor);
+	    changeTextColor('.active', '#' + activeNavTextColor);
+			setConfig('bgColor', bgcolor);
+			
+			fgcolor = fgcolorInput.value;
+	    txtcolor = Brightness( fgcolor ) < 130 ? 'FFFFFF' : '000000';
+	    for (var i = 0; i<fgElements.length;i++) {
+		    changeBackgroundColor(fgElements[i], '#' + fgcolor);
+			changeTextColor(fgElements[i], '#' + txtcolor);
+		    };
+		setConfig('fgColor', fgcolor);
+	    }
     bgcolorInput.onfocus = function(){
 	    textModeOff();
 	    bgcolor = bgcolorInput.value;
@@ -1563,11 +1585,22 @@ window.onload = function(){
 	bgcolorInput.onblur = function(){
 		textModeOn();
 		}
-		
+	bgcolorInput.onchange = function(){
+	    bgcolor = bgcolorInput.value;
+			changeBackgroundColor('.bgcolor', '#' + bgcolor);
+			txtcolor = Brightness( bgcolor ) < 130 ? 'FFFFFF' : '000000';
+			changeTextColor('.bgcolor', '#' + txtcolor);
+	    navTextColor = Brightness( bgcolor ) < 130 ? 'D0D0D0' : '555555';
+	    activeNavTextColor = Brightness( bgcolor ) < 130 ? 'FFFFFF' : '000000';
+	    changeTextColor('.nav', '#' + navTextColor);
+	    changeTextColor('.active', '#' + activeNavTextColor);
+			setConfig('bgColor', bgcolor);	
+
+		}
 		
 	//Foreground objects
 	//input select option button
-    fgcolorInput = document.getElementById("fgcolor");
+    fgcolorInput = $("fgcolor");
     fgcolor = getConfig('fgColor') ? getConfig('fgColor') : "101010";    
     fgElements = ['input','textarea','#macroArea','select','option','button','.selected','#rokus'];
     txtcolor = Brightness( fgcolor ) < 130 ? 'FFFFFF' : '000000';
@@ -1589,7 +1622,7 @@ window.onload = function(){
 	fgcolorInput.onblur = function(){
 		textModeOn();
 		}
-	textEntryInput = document.getElementById("textentry");
+	textEntryInput = $("textentry");
 	textEntryInput.value = "";
 	textEntryInput.onkeyup = rokuDeleteOrBlur;
 	textEntryInput.onkeypress = rokuText;
