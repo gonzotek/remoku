@@ -6,7 +6,18 @@
 ////////////////////////
 //BEGIN HELPER FUNCTIONS
 
+//HH:MM:SS to seconds
+function hmsToSecondsOnly(str){
+    var p = str.split(':'),
+        s =0, m =1;
 
+    while(p.length >0){
+        s += m * parseInt(p.pop());
+        m *=60;
+    }
+
+    return s;
+}
 
 // addSelectOption
 //
@@ -562,29 +573,32 @@ function sendCustomMacro(cmds){
 		var cmdAction = Object.keys(command)[0];//need object.keys polyfill for ie7/ie8 support.  worth it?
 		var cmdParam = command[cmdAction];
 		switch(cmdAction){
-			case 'pause':
-				dbg ('pause: ' + cmdParam);
-				setTimeout(function(){sendCustomMacro(cmds);},cmdParam);
+			case 'wait':
+				dbg ('wait: ' + cmdParam);
+				//120m60s
+				dbg('seconds: ' + hmsToSecondsOnly(cmdParam));
+				dbg('millisecs: ' + hmsToSecondsOnly(cmdParam)*1000);
+				setTimeout(function(){sendCustomMacro(cmds);},hmsToSecondsOnly(cmdParam)*1000);
 			break;
 			case 'text':
 				cmdParam = rokuMacroText(cmdParam);
 				if(cmdParam)cmds.unshift({text:cmdParam});
 				setTimeout(function(){sendCustomMacro(cmds);},750);
 			break;
-			case 'loop':
-				var loops = cmdParam-2;
-				cmds = JSON.parse("["+macroArea.value+"]");
-				cmds.pop();//remove loop command 
+			case 'repeat':
+				var loops = cmdParam - 1;
+				//cmds = JSON.parse("["+macroArea.value+"]");
 				for (i=0;i<loops;i++){
 					var tempcmds = JSON.parse("["+macroArea.value+"]");
-					tempcmds.pop();
+					tempcmds.shift();
 					cmds = cmds.concat(tempcmds);
 				}
 				setTimeout(function(){sendCustomMacro(cmds);},750);
 			break;
 			default:
-				//dbg('rokupost: ' + cmdAction + '/' + cmdParam);
+				dbg('rokupost: ' + cmdAction + '/' + cmdParam);
 				rokupost(cmdAction, cmdParam);
+				//dbg('rokupost'+cmdAction+'/'+cmdParam);
 				setTimeout(function(){sendCustomMacro(cmds);},750);
 		}
 	}
@@ -1353,7 +1367,8 @@ window.onload = function(){
 	{"Dump Core":[{"keypress":"Home"},{"keypress":"Home"},{"keypress":"Home"},{"keypress":"Home"},{"keypress":"Home"},{"keypress":"Up"},{"keypress":"Rev"},{"keypress":"Rev"},{"keypress":"Fwd"},{"keypress":"Fwd"}]},
 	{"Secret Screen":[{"keypress":"Home"},{"keypress":"Home"},{"keypress":"Home"},{"keypress":"Home"},{"keypress":"Home"},{"keypress":"Fwd"},{"keypress":"Fwd"},{"keypress":"Fwd"},{"keypress":"Rev"},{"keypress":"Rev"}]},
 	{"Bit Rate Override":[{"keypress":"Home"},{"keypress":"Home"},{"keypress":"Home"},{"keypress":"Home"},{"keypress":"Home"},{"keypress":"Rev"},{"keypress":"Rev"},{"keypress":"Rev"},{"keypress":"Fwd"},{"keypress":"Fwd"}]},
-	{"Channels Info":[{"keypress":"Home"},{"keypress":"Home"},{"keypress":"Home"},{"keypress":"Up"},{"keypress":"Up"},{"keypress":"Left"},{"keypress":"Right"},{"keypress":"Left"},{"keypress":"Right"},{"keypress":"Left"}]}
+	{"Channels Info":[{"keypress":"Home"},{"keypress":"Home"},{"keypress":"Home"},{"keypress":"Up"},{"keypress":"Up"},{"keypress":"Left"},{"keypress":"Right"},{"keypress":"Left"},{"keypress":"Right"},{"keypress":"Left"}]},
+	{"RepeatPlayWait":[{"repeat":"5"},{"keypress":"Play"},{"wait":"30:00"}]}
 	];
     for (i=0;i<macros.length;i++){
 	    macro = macros[i];
