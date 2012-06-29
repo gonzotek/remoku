@@ -153,9 +153,9 @@ Remoku has an update available.<br>
 <div id="goodies" class="hidden">
 	<fieldset><legend>Macros</legend>
 	<select id="macroSelect"></select><button id="runCustomMacro">Run</button><br>
-	<input id="custommacroinput"><button id="addMacro">Add</button><button id="removeMacro">Remove</button><br>
-	<textarea id="macroArea"></textarea><br>
-	See <a href="http://help.remoku.tv" target="_blank">help.remoku.tv</a> for macro command reference.
+	<input id="custommacroinput"><button id="addMacro">Save</button><button id="removeMacro">Remove</button><br>
+	<textarea id="macroArea"></textarea><br><div id="macroerror"></div>
+	See <a href="http://help.remoku.tv" class="bgcolor" target="_blank">help.remoku.tv</a> for macro command reference.
 	</fieldset>
 	<fieldset>
 	<legend>Shoutcast Channel</legend>
@@ -165,7 +165,7 @@ Remoku has an update available.<br>
 	</fieldset>
 	<fieldset><legend>Channel Store</legend> <label>Focus App id:</label><input id="chstoreappid"  value="12" />
 	<button id="chs_macro">Launch Channel Store</button><br>
-	<div id="channelslink"></div>
+	<div id="channelslink" class="bgcolor"></div>
 	</fieldset>
 	<div class="box hidden" id="goodieLaunch">
 		<h2>Launch Remoku Channel</h2>
@@ -225,8 +225,8 @@ Remoku has an update available.<br>
 </fieldset>
 <fieldset>
 	<legend>Colors</legend>
-	<label>Background Color:</label><input class="tweakinput" id="bgcolor" value="101010"  onclick="colorPicker(event,'B',1, 1)"/><br>
-	<label>Foreground Color:</label><input class="tweakinput" id="fgcolor" value="101010"  onclick="colorPicker(event,'B',1, 1)"/><br>
+	<label>Background Color: #</label><input class="tweakinput" id="bgcolor" value="101010"  onclick="colorPicker(event,'B',1, 1)"/><br>
+	<label>Foreground Color: #</label><input class="tweakinput" id="fgcolor" value="101010"  onclick="colorPicker(event,'B',1, 1)"/><br>
 </fieldset>
 <fieldset>
 	<legend>Favorites</legend>
@@ -234,7 +234,7 @@ Remoku has an update available.<br>
 	<label>Favorite 1: </label><input class="tweakinput" id="inputfav1" value="12"/><br>
 	<label>Favorite 2: </label><input class="tweakinput" id="inputfav2" value="28"/><br>
 	<label>Favorite 3: </label><input class="tweakinput" id="inputfav3" value="2016"/><br>
-		<div id="channelslink2"></div>
+		<div id="channelslink2" class="bgcolor"></div>
 
 </fieldset>
 
@@ -248,15 +248,15 @@ Remoku has an update available.<br>
 <div id="about" class="hidden">
 	<fieldset><legend>Remoku</legend>
   A web app for Roku remote control.<br>
-	Get help with using Remoku at <a href="http://help.remoku.tv/" target="_blank" class="bgcolor" id="helplink">help.remoku.tv</a>
+	<div class="smalltext">Get help with using Remoku at <a href="http://help.remoku.tv/" target="_blank" class="bgcolor" id="helplink">help.remoku.tv</a></div>
 	</fieldset>
 	<fieldset><legend>Version</legend>
-	<div id="ver"></div>
+	<div id="ver" class="smalltext"></div>
 	<button id="wipesettings">Wipe Settings</button>
 	</fieldset>
 	<fieldset>
 		<legend>Debug Output</legend>
-		<div id="dbgOut"></div>
+		<div id="dbgOut" class="smalltext"></div>
 	</fieldset>
 </div>
 <div id="remotespopup" class="hidden"></div>

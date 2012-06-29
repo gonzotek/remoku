@@ -7,6 +7,17 @@
 	
 .fgcolor{ 	background-color: #101010;
 }	
+.smalltext{
+	font-size:small;
+	}
+#macroSelect{
+	width:70%;
+	height:27px;
+	}
+	#custommacroinput{
+		width:130px;
+		}
+		
 #txtentry{
 	color:blue;
 	}	
@@ -192,6 +203,7 @@ button{
 	background: url(images/arrow_open.gif) no-repeat right;
 	background-color: #2E2E2E;
 	padding-right:12px;
+	width:90%;
 	}
 
 #searchline{
@@ -381,9 +393,6 @@ margin:0;
 	display:block;
 	max-height:40px;
 }
-#custommacroinput{
-	width:150px;
-	}
 #macroArea{
 	width:272px;
 	height:100px;

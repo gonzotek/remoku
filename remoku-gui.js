@@ -188,7 +188,7 @@ function dbg(log){
 
 function ver(channel, build){
 	var slicescript = "window.external.addToFavoritesBar('http://remoku.tv/', 'Remoku', 'slice');"
-	var webslice = '<a onclick="' + slicescript +'">Remoku</a>' + '<br>' + channel + '<br>' + build;
+	var webslice = '<a onclick="' + slicescript +'">Remoku</a> ' + channel + '<br>' + build;
 	ver = $("ver");
 	ver.innerHTML = webslice;	
 }
@@ -1237,9 +1237,9 @@ window.onload = function(){
 	addButton.onclick = addRoku;
 
 	var channelsLink = $('channelslink');
-		channelsLink.innerHTML = 'Refer to your <a href="http://'+ rokuAddress +':8060/query/apps" target="_blank">installed channels</a> for channel ids.'
+		channelsLink.innerHTML = 'Refer to your <a class="bgcolor" href="http://'+ rokuAddress +':8060/query/apps" target="_blank">installed channels</a> for channel ids.'
 	var channelsLink2 = $('channelslink2');
-		channelsLink2.innerHTML = 'Refer to your <a href="http://'+ rokuAddress +':8060/query/apps" target="_blank">installed channels</a> for channel ids.'
+		channelsLink2.innerHTML = 'Refer to your <a class="bgcolor" href="http://'+ rokuAddress +':8060/query/apps" target="_blank">installed channels</a> for channel ids.'
 	
 	rokuName = $('rokuname');
 	rokuName.onfocus = textModeOff;
@@ -1391,9 +1391,10 @@ window.onload = function(){
 	addMacroButton.onclick = function() {
 		dbg("add name: " + macroInput.value + "<br> commands: " + macroArea.value);
 	  		macro = {};
+	  		try{
 	  		macro[macroInput.value] = JSON.parse("["+macroArea.value+"]");
-	  		dbg(macro[macroInput.value]);
-	  		for(i=0;i<macros.length;i++){
+	  		$('macroerror').innerHTML = '';
+	  			for(i=0;i<macros.length;i++){
 		  		dbg(macros[i]);
 		  		if (macros[i][macroInput.value]){
 			  		macros[i]=macro;
@@ -1409,7 +1410,10 @@ window.onload = function(){
 		  		addSelectOption("macroSelect", "["+macroArea.value+"]", macroInput.value);
 			  		}
 	  		setConfig('macros',JSON.stringify(macros));
-	  		
+
+  			} catch(e){
+	  			$('macroerror').innerHTML = e;
+	  			}  		
 		};
 	removeMacroButton = $("removeMacro");
 		removeMacroButton.onclick = function (){
