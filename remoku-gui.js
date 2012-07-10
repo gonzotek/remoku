@@ -119,7 +119,7 @@ function isBadBrowser(){
 	//Blacklisted browsers claim to support localStorage, but don't follow spec
 	
 	//Fluid claims to support localStorage, but clears it when app is quit
-	//if (navigator.userAgent.indexOf('FluidApp')!=-1) return true;
+	if (navigator.userAgent.indexOf('FluidApp')!=-1) return true;
 	
 	//Older browsers might not have localStorage support
 	if (!localStorage.getItem) return true;
@@ -152,7 +152,7 @@ function getConfig(name){
 	
 function setConfig(name, value){
 	if (useCookies){
-		createCookie(name, value);
+		createCookie(name, value, 365);
 	} else {
 		localStorage.setItem(name, value);
 	}
