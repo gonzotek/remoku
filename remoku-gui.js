@@ -8,18 +8,19 @@
 
 function $(o){return document.getElementById(o);};
 
-//HH:MM:SS to seconds
 function hmsToSecondsOnly(str){
+//HH:MM:SS to seconds
     var p = str.split(':'),
         s =0, m =1;
 
     while(p.length >0){
-        s += m * parseInt(p.pop());
+        s += m * parseInt(p.pop(),10);
         m *=60;
     }
 
     return s;
 }
+
 
 // addSelectOption
 //
