@@ -6,7 +6,57 @@
 ////////////////////////
 //BEGIN HELPER FUNCTIONS
 
+//alias $ to document.getElementById for brevity
 function $(o){return document.getElementById(o);}
+
+//Array.unique polyfill
+if (!Array.unique) {
+	Array.prototype.unique = function() {
+	var o = {}, i, l = this.length, r = [];
+	for(i=0; i<l;i+=1){ o[this[i]] = this[i];}
+	    for(i in o){r.push(o[i]);}
+	    return r;
+	};
+}
+
+//Array.every polyfill
+if (!Array.prototype.every)
+{
+  Array.prototype.every = function(fun /*, thisp */)
+  {
+    "use strict";
+
+    if (this == null)
+      throw new TypeError();
+
+    var t = Object(this);
+    var len = t.length >>> 0;
+    if (typeof fun != "function")
+      throw new TypeError();
+
+    var thisp = arguments[1];
+    for (var i = 0; i < len; i++)
+    {
+      if (i in t && !fun.call(thisp, t[i], i, t))
+        return false;
+    }
+
+    return true;
+  };
+}
+
+
+//Object.keys polyfill
+Object.keys=Object.keys||function(o,k,r){r=[];for(k in o)r.hasOwnProperty.call(o,k)&&r.push(k);return r;};
+
+//Return an array of the ancestors of an element
+function parents(node) {
+  var nodes = [];
+  for (; node; node = node.parentNode) {
+    nodes.unshift(node);
+  }
+  return nodes;
+}
 
 function hmsToSecondsOnly(str){
 //HH:MM:SS to seconds
@@ -55,53 +105,30 @@ function removeSelectOption(selectId, display) {
 
 
 function changeBackgroundColor(theSelector, parameter){
-	[].every.call( document.styleSheets, function ( sheet ) {
-		  rules = sheet.rules || sheet.cssRules || [];
-	    return [].every.call( rules, function ( rule ) {
-	        if ( rule.selectorText === theSelector ) {
-	            rule.style.backgroundColor = parameter;
-	            return false;
-	        }
-	        return true;
-	    });
-	});	
+		[].every.call( document.styleSheets, function ( sheet ) {
+			  rules = sheet.rules || sheet.cssRules || [];
+		    return [].every.call( rules, function ( rule ) {
+		        if ( rule.selectorText === theSelector ) {
+		            rule.style.backgroundColor = parameter;
+		            return false;
+		        }
+		        return true;
+		    });
+		});	
 }
-
 function changeTextColor(theSelector, parameter){
-	[].every.call( document.styleSheets, function ( sheet ) {
-		  rules = sheet.rules || sheet.cssRules || [];
-	    return [].every.call( rules, function ( rule ) {
-	        if ( rule.selectorText === theSelector ) {
-	            rule.style.color = parameter;
-	            return false;
-	        }
-	        return true;
-	    });
-	});	
+		[].every.call( document.styleSheets, function ( sheet ) {
+			  rules = sheet.rules || sheet.cssRules || [];
+		    return [].every.call( rules, function ( rule ) {
+		        if ( rule.selectorText === theSelector ) {
+		            rule.style.color = parameter;
+		            return false;
+		        }
+		        return true;
+		    });
+		});	
 }
 
-//Array.unique polyfill
-if (!Array.unique) {
-	Array.prototype.unique = function() {
-	var o = {}, i, l = this.length, r = [];
-	for(i=0; i<l;i+=1){ o[this[i]] = this[i];}
-	    for(i in o){r.push(o[i]);}
-	    return r;
-	};
-}
-
-
-//Object.keys polyfill
-Object.keys=Object.keys||function(o,k,r){r=[];for(k in o)r.hasOwnProperty.call(o,k)&&r.push(k);return r;};
-
-//Return an array of the ancestors of an element
-function parents(node) {
-  var nodes = [];
-  for (; node; node = node.parentNode) {
-    nodes.unshift(node);
-  }
-  return nodes;
-}
 
 function addresstoVarName(address){
 	var splitaddress = address.split(".");
@@ -1120,6 +1147,8 @@ var launchKey;
 var shoutCastNameInput;
 var shoutCastUrlInput;
 var shoutCastLaunchButton;
+var macroSelect;
+var macroArea;
 
 var navRemote;
 var navGoodies;
@@ -1153,6 +1182,8 @@ var remote0;
 var nameLine;
 
 var bgcolorInput;
+var bgcolor;
+var fgcolor;
 var fgElements = new Array();
 
 
@@ -1666,6 +1697,7 @@ window.onload = function(){
 	fgcolorInput.onblur = function(){
 		textModeOn();
 		};
+		
 	textEntryInput = $("textentry");
 	textEntryInput.value = "";
 	textEntryInput.onkeyup = rokuDeleteOrBlur;
