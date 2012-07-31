@@ -1,1 +1,31 @@
 AddType text/cache-manifest .manifest
+AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/x-javascript application/javascript text/javascript text/cache-manifest
+<IfModule mod_expires.c>
+  ExpiresActive on
+
+# Perhaps better to whitelist expires rules? Perhaps.
+  ExpiresDefault                          "access plus 1 month"
+
+# cache.appcache needs re-requests in FF 3.6 (thx Remy ~Introducing HTML5)
+  ExpiresByType text/cache-manifest       "access plus 0 seconds"
+# css and javascript
+  ExpiresByType text/css                  "access plus 7 days"
+  ExpiresByType application/javascript    "access plus 7 days"
+  ExpiresByType text/javascript           "access plus 7 days"
+</IfModule>
+
+<IfModule mod_headers.c>
+	<filesMatch "\\.(ico|pdf|flv|jpg|jpeg|png|gif|swf)$">
+		Header set Cache-Control "max-age=2592000, public"
+	</filesMatch>
+  <filesMatch "\.(css|js)$">
+		Header set Cache-Control "max-age=604800, no-cache"
+	</filesMatch>
+  <filesMatch "\.(manifest)$">
+		Header set Cache-Control "max-age=0, no-cache"
+	</filesMatch>
+	<filesMatch "\.(htm|html|css|js)$">
+		AddDefaultCharset UTF-8
+		DefaultLanguage en-US
+	</filesMatch>
+</IfModule>

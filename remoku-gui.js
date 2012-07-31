@@ -2,22 +2,20 @@
 //A. Cassidy Napoli
 //Copyright 2012 
 //License: NEW BSD
-
+//July 30, 2012 03:22:57 PM 
 ////////////////////////
 //BEGIN HELPER FUNCTIONS
 
-function $(o){return document.getElementById(o);};
+function $(o){return document.getElementById(o);}
 
 function hmsToSecondsOnly(str){
 //HH:MM:SS to seconds
     var p = str.split(':'),
         s =0, m =1;
-
     while(p.length >0){
         s += m * parseInt(p.pop(),10);
         m *=60;
     }
-
     return s;
 }
 
@@ -27,7 +25,7 @@ function hmsToSecondsOnly(str){
 // Add the single select option to the selection list with the id specified
 //
 function addSelectOption(selectId, value, display) {
- if (display == null) {
+ if (display === null) {
   display = value;
  }
     var anOption = document.createElement('option');
@@ -43,10 +41,11 @@ function addSelectOption(selectId, value, display) {
 // in the selection list with the id specified
 //
 function removeSelectOption(selectId, display) {
+ var i;
  var select = $(selectId);
  var kids = select.childNodes; 
  var numkids = kids.length; 
- for (var i = 0; i < numkids; i++) {
+ for (i = 0; i < numkids; i++) {
 		if (kids[i].innerHTML == display) {
 			select.removeChild(kids[i]);
 			break;
@@ -82,16 +81,18 @@ function changeTextColor(theSelector, parameter){
 }
 
 //Array.unique polyfill
-if (!Array.unique) Array.prototype.unique = function() {
-	    var o = {}, i, l = this.length, r = [];
-	    for(i=0; i<l;i+=1) o[this[i]] = this[i];
-	    for(i in o) r.push(o[i]);
+if (!Array.unique) {
+	Array.prototype.unique = function() {
+	var o = {}, i, l = this.length, r = [];
+	for(i=0; i<l;i+=1){ o[this[i]] = this[i];}
+	    for(i in o){r.push(o[i]);}
 	    return r;
-};
+	};
+}
 
 
 //Object.keys polyfill
-Object.keys=Object.keys||function(o,k,r){r=[];for(k in o)r.hasOwnProperty.call(o,k)&&r.push(k);return r}
+Object.keys=Object.keys||function(o,k,r){r=[];for(k in o)r.hasOwnProperty.call(o,k)&&r.push(k);return r;};
 
 //Return an array of the ancestors of an element
 function parents(node) {
@@ -161,12 +162,13 @@ function setConfig(name, value){
 }
 
 function createCookie(name,value,days) {
+	var expires;
   if (days) {
     var date = new Date();
     date.setTime(date.getTime()+(days*24*60*60*1000));
-    var expires = "; expires="+date.toGMTString();
+    expires = "; expires="+date.toGMTString();
   }
-  else var expires = "";
+  else expires = "";
   document.cookie = name+"="+value+expires+"; path=/";
 }
 
@@ -176,7 +178,7 @@ function readCookie(name) {
   for(var i=0;i < ca.length;i++) {
     var c = ca[i];
     while (c.charAt(0)==' ') c = c.substring(1,c.length);
-    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length,c.length);
   }
   return null;
 }
@@ -188,7 +190,7 @@ function dbg(log){
 }
 
 function ver(channel, build){
-	var slicescript = "window.external.addToFavoritesBar('http://remoku.tv/', 'Remoku', 'slice');"
+	var slicescript = "window.external.addToFavoritesBar('http://remoku.tv/', 'Remoku', 'slice');";
 	var webslice = '<a onclick="' + slicescript +'">Remoku</a> ' + channel + '<br>' + build;
 	ver = $("ver");
 	ver.innerHTML = webslice;	
@@ -252,11 +254,12 @@ function stopFindRokus() {
 	    images[i].src="";
 	    }
 }
-//Use following javascript function to get domain from URL.
-//Example url: http://192.168.1.3:8060/query/icon/11
-//Example return: 192.168.1.3
-function getDomainFromUrl(url) {
-	return url.match(/:\/\/(.[^/]+)\:/)[1];
+function getHostFromUrl(url) {
+/*
+    url: http://192.168.1.3:8060/query/icon/11
+    returns: 192.168.1.3
+*/
+    return url.split('/')[2].split(':')[0];
 }
 
 //END HELPER FUNCTIONS
@@ -274,12 +277,12 @@ function updateSelect() {
 	remotesPopup.innerHTML="";
 	lowerRemotesPopup.innerHTML="";
 	var remoteUl = document.createElement("ul");
-	remoteUl.id = "remotepopupul"
+	remoteUl.id = "remotepopupul";
 	var remoteLis = [];
 	rokus  = scannedRokus.concat(manualRokus).unique();
 	
 	for (i=0;i<rokus.length;i++) {
-		if(rokus[i]!=null){
+		if(rokus[i]!==null){
 			if(rokus.length==1){
 				rokuAddress=rokus[i];
 				setConfig('rokuAddress', rokuAddress);
@@ -300,7 +303,7 @@ function updateSelect() {
 				updateSelect();
 				rokuName.value = namedRokus[rokuAddress] ? namedRokus[rokuAddress] : "";
 				nameLine.innerHTML = rokuName.value ? rokuName.value : rokuAddress;
-			}	
+			};	
 			remoteUl.appendChild(remoteLis[i]);
 		}
 	}
@@ -311,7 +314,7 @@ function updateSelect() {
 	}
 	remotesPopup.appendChild(remoteUl);
 	lowerRemotesPopup.appendChild(remoteUl);
-	if(rokuAddress==undefined || rokuAddress=="")rokuAddress=rokus[0];
+	if(rokuAddress===undefined || rokuAddress==="")rokuAddress=rokus[0];
 	fav1Value = getConfig('fav1') ? getConfig('fav1') : '12' ; 
 	favImg1 = $("favimg1");
 	if(favImg1)favImg1.setAttribute('src','http://' + rokuAddress +':8060/query/icon/'+fav1Value);
@@ -372,6 +375,7 @@ function doNameRoku(evt){
 	if(!evt)evt = window.event;
 	if (evt.keyCode == 13){
 		nameRoku();
+		return true;
 	} else {
 		return false;
 	}
@@ -387,7 +391,7 @@ function nameRoku(){
 
 function loadedImage() {
 	var URL = this.src;
-	scannedRokus.push(getDomainFromUrl(URL));
+	scannedRokus.push(getHostFromUrl(URL));
 	ipCount++;
 	//dbg("ipCount: " + ipCount);
 	if(scannedRokus.length<=rokuCount){
@@ -603,6 +607,7 @@ function sendCustomMacro(cmds){
 				rokupost(cmdAction, cmdParam);
 				//dbg('rokupost'+cmdAction+'/'+cmdParam);
 				setTimeout(function(){sendCustomMacro(cmds);},750);
+				break;
 		}
 	}
 }
@@ -674,7 +679,7 @@ function rokuDeleteOrBlur(evt){
 		this.blur();
 	}
 	else if(evt.keyCode==13){
-		if ($("textentry").value==""){
+		if ($("textentry").value===""){
 			rokutext.setAttribute("action", "http://" + rokuAddress + ":8060/" + "keypress" + "/" + "Enter");
 			rokutext.submit();
 			this.blur();
@@ -781,7 +786,7 @@ function _rmAppsCB(apps){
 // 	}
 	//applist.innerHTML = list;
 	appid = appidarray.shift();
-	if(appid!=null)$("app"+appid).src = 'http://' + rokuAddress +':8060/query/icon/' + appid;
+	if(appid!==null)$("app"+appid).src = 'http://' + rokuAddress +':8060/query/icon/' + appid;
 		
 }
 	
@@ -809,7 +814,7 @@ function getBuild(){
 				var build = "Build date: " + response[3].substr(1);
 				ver(channel, build);
 				}
-			}
+			};
 		xmlhttp.open("GET","cache.manifest",true);
 		xmlhttp.send();
 	}
@@ -861,7 +866,8 @@ function rmousedownRemoteBtn(e){
 	var activeBtn = this.id;
 	if (activeBtn=="navremote"){
 		var rightclick;
-		if (!e) var e = window.event;
+		e = e || window.event;
+//		if (!e) var e = window.event;
 		if (e.which) rightclick = (e.which == 3);
 		else if (e.button) rightclick = (e.button == 2);
 		//if(rightclick)showRemotes();
@@ -950,7 +956,9 @@ function handleArrowKeyDown(evt) {
             case 190:
                 //dbg("Fwd");
                 rokupost("keydown","Fwd");
-                break;    
+                break;
+            default:
+            break;
          }
     }
 }
@@ -1011,7 +1019,9 @@ function handleArrowKeyUp(evt) {
             case 190:
                 //dbg("Fwd");
                 rokupost("keyup","Fwd");
-                break;    
+                break;
+            default:
+            break;
          }
     }
 }
@@ -1112,7 +1122,7 @@ var shoutCastUrlInput;
 var shoutCastLaunchButton;
 
 var navRemote;
-var navGoodies
+var navGoodies;
 var navApps;
 var navConfig;
 var navAbout;
@@ -1151,6 +1161,34 @@ if(window.addEventListener){
 window.addEventListener('load', function(e) {
 
   if(window.applicationCache){ 
+	  
+		// Fired after the first cache of the manifest.
+		window.applicationCache.addEventListener('cached', function(){dbg('appCache: Cached');}, false);
+		
+		// Checking for an update. Always the first event fired in the sequence.
+		window.applicationCache.addEventListener('checking', function(){dbg('appCache: Checking');}, false);
+		
+		// An update was found. The browser is fetching resources.
+		window.applicationCache.addEventListener('downloading', function(){dbg('appCache: Downloading');}, false);
+		
+		// The manifest returns 404 or 410, the download failed,
+		// or the manifest changed while the download was in progress.
+		window.applicationCache.addEventListener('error', function(){dbg('appCache: Error');}, false);
+		
+		// Fired after the first download of the manifest.
+		window.applicationCache.addEventListener('noupdate', function(){dbg('appCache: NoUpdate');}, false);
+		
+		// Fired if the manifest file returns a 404 or 410.
+		// This results in the application cache being deleted.
+		window.applicationCache.addEventListener('obsolete', function(){dbg('appCache: Obsolete');}, false);
+		
+		// Fired for each resource listed in the manifest as it is being fetched.
+		window.applicationCache.addEventListener('progress', function(){dbg('appCache: Progress');}, false);
+		
+		// Fired when the manifest resources have been newly redownloaded.
+		window.applicationCache.addEventListener('updateready', function(){dbg('appCache: UpdateReady');}, false);
+
+	  
 	window.applicationCache.addEventListener('updateready', function(e) {
     if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
       // Browser downloaded a new app cache.
@@ -1238,9 +1276,9 @@ window.onload = function(){
 	addButton.onclick = addRoku;
 
 	var channelsLink = $('channelslink');
-		channelsLink.innerHTML = 'Refer to your <a class="bgcolor" href="http://'+ rokuAddress +':8060/query/apps" target="_blank">installed channels</a> for channel ids.'
+		channelsLink.innerHTML = 'Refer to your <a class="bgcolor" href="http://'+ rokuAddress +':8060/query/apps" target="_blank">installed channels</a> for channel ids.';
 	var channelsLink2 = $('channelslink2');
-		channelsLink2.innerHTML = 'Refer to your <a class="bgcolor" href="http://'+ rokuAddress +':8060/query/apps" target="_blank">installed channels</a> for channel ids.'
+		channelsLink2.innerHTML = 'Refer to your <a class="bgcolor" href="http://'+ rokuAddress +':8060/query/apps" target="_blank">installed channels</a> for channel ids.';
 	
 	rokuName = $('rokuname');
 	rokuName.onfocus = textModeOff;
@@ -1378,7 +1416,7 @@ window.onload = function(){
 	    macro = macros[i];
 		var name = Object.keys(macro)[0];//need object.keys polyfill for ie7/ie8 support.  worth it?
 		var macro = JSON.stringify(macro[name]);
-		addSelectOption("macroSelect", macro, name)
+		addSelectOption("macroSelect", macro, name);
 	    }
 	macroInput = $("custommacroinput");
 	macroInput.onfocus = textModeOff;
@@ -1403,7 +1441,7 @@ window.onload = function(){
 			  		break;
 			  		}
 		  		}
-	  		if(macro!=null){
+	  		if(macro!==null){
 		  		macros.push(macro);
 		  		addSelectOption("macroSelect", "["+macroArea.value+"]", macroInput.value);
 		  		} else {
@@ -1459,7 +1497,7 @@ window.onload = function(){
 				setConfig('showFavs','false');
 				$('favtable').setAttribute('class','hidden');
 			}
-		}
+		};
 	var fav1Input = $("inputfav1");
 	fav1Value = getConfig('fav1')?getConfig('fav1'):'12';
 	fav1Input.value = fav1Value;
@@ -1474,7 +1512,7 @@ window.onload = function(){
 		};
 	fav1Input.onfocus = function(){
 		textModeOff();
-		}
+		};
 	var fav1 = $("fav1");
 	    var favlink = document.createElement("a");
 	    favlink.setAttribute('href','#fav1');
@@ -1483,7 +1521,7 @@ window.onload = function(){
 	    var favimg = document.createElement("img");
 		favimg.setAttribute('class','favicons');
 		favimg.setAttribute('Id','favimg1');
-		if(getConfig('showFavs')=='true'){favimg.setAttribute('src','http://' + rokuAddress +':8060/query/icon/'+fav1Value);};
+		if(getConfig('showFavs')=='true'){favimg.setAttribute('src','http://' + rokuAddress +':8060/query/icon/'+fav1Value);}
 		favlink.appendChild(favimg);
 	fav1.appendChild(favlink);
 	
@@ -1502,16 +1540,16 @@ window.onload = function(){
 		};
 	fav2Input.onfocus = function(){
 		textModeOff();
-		}
+		};
 		var fav2 = $("fav2");
-	    var favlink = document.createElement("a");
-	    favlink.setAttribute('href','#fav2');
+	  favlink = document.createElement("a");
+	  favlink.setAttribute('href','#fav2');
 		favlink.setAttribute('onclick','rokulaunch("'+fav2Value+'")');
-	    favlink.setAttribute('id','fav2link');
-	    var favimg = document.createElement("img");
+	  favlink.setAttribute('id','fav2link');
+	  favimg = document.createElement("img");
 		favimg.setAttribute('class','favicons');
 		favimg.setAttribute('Id','favimg2');
-		if(getConfig('showFavs')=='true'){favimg.setAttribute('src','http://' + rokuAddress +':8060/query/icon/'+fav2Value);};
+		if(getConfig('showFavs')=='true'){favimg.setAttribute('src','http://' + rokuAddress +':8060/query/icon/'+fav2Value);}
 		favlink.appendChild(favimg);
 	fav2.appendChild(favlink);
 	
@@ -1529,13 +1567,13 @@ window.onload = function(){
 		};
 	fav3Input.onfocus = function(){
 		textModeOff();
-		}
+		};
 		var fav3 = $("fav3");
-	    var favlink = document.createElement("a");
-	    favlink.setAttribute('href','#fav3');
+	  favlink = document.createElement("a");
+	  favlink.setAttribute('href','#fav3');
 		favlink.setAttribute('onclick','rokulaunch("'+fav3Value+'")');
-	    favlink.setAttribute('id','fav3link');
-	    var favimg = document.createElement("img");
+	  favlink.setAttribute('id','fav3link');
+	  favimg = document.createElement("img");
 		favimg.setAttribute('class','favicons');
 		favimg.setAttribute('Id','favimg3');
 		if(getConfig('showFavs')=='true'){favimg.setAttribute('src','http://' + rokuAddress +':8060/query/icon/'+fav3Value);}
@@ -1572,9 +1610,10 @@ window.onload = function(){
 	    for (var i = 0; i<fgElements.length;i++) {
 		    changeBackgroundColor(fgElements[i], '#' + fgcolor);
 			changeTextColor(fgElements[i], '#' + txtcolor);
-		    };
+		    }
 		setConfig('fgColor', fgcolor);
-	    }
+	  };
+	    
     bgcolorInput.onfocus = function(){
 	    textModeOff();
 	    bgcolor = bgcolorInput.value;
@@ -1589,7 +1628,7 @@ window.onload = function(){
 	    };
 	bgcolorInput.onblur = function(){
 		textModeOn();
-		}
+		};
 	bgcolorInput.onchange = function(){
 	    bgcolor = bgcolorInput.value;
 			changeBackgroundColor('.bgcolor', '#' + bgcolor);
@@ -1601,7 +1640,7 @@ window.onload = function(){
 	    changeTextColor('.active', '#' + activeNavTextColor);
 			setConfig('bgColor', bgcolor);	
 
-		}
+		};
 		
 	//Foreground objects
 	//input select option button
@@ -1612,7 +1651,7 @@ window.onload = function(){
     for (var i = 0; i<fgElements.length;i++) {
 	    changeBackgroundColor(fgElements[i], '#' + fgcolor);
 	    changeTextColor(fgElements[i], '#' + txtcolor);
-	    };
+	    }
     fgcolorInput.value = fgcolor;
     fgcolorInput.onfocus = function(){
 	    textModeOff();
@@ -1621,12 +1660,12 @@ window.onload = function(){
 	    for (var i = 0; i<fgElements.length;i++) {
 		    changeBackgroundColor(fgElements[i], '#' + fgcolor);
 			changeTextColor(fgElements[i], '#' + txtcolor);
-		    };
+		    }
 		setConfig('fgColor', fgcolor);
 	    };
 	fgcolorInput.onblur = function(){
 		textModeOn();
-		}
+		};
 	textEntryInput = $("textentry");
 	textEntryInput.value = "";
 	textEntryInput.onkeyup = rokuDeleteOrBlur;
@@ -1636,13 +1675,13 @@ window.onload = function(){
 	textEntryInput.onblur = textModeOn;
 	textEntryInput.enter = rokuText;
 
-	rokupostframe.name="rokuresponse"
+	rokupostframe.name="rokuresponse";
 	rokupostframe.id="rokuresponse";
 	rokupostframe.style.visibility="hidden";
 	rokupostframe.style.display="none";
 	rokupostframe = document.body.appendChild(rokupostframe);
 
-	rokutextframe.name="rokutextresponse"
+	rokutextframe.name="rokutextresponse";
 	rokutextframe.id="rokutextresponse";
 	rokutextframe.style.visibility="hidden";
 	rokutextframe.style.display="none";
@@ -1664,7 +1703,7 @@ window.onload = function(){
 	rokutextform = document.body.appendChild(rokutextform);
 
 	
-}
+};
 
 //Hide iPhone URL bar
 if(window.addEventListener) window.addEventListener("load", function(){setTimeout(hideURLbar, 100);}, false);
