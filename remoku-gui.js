@@ -9,6 +9,17 @@
 //alias $ to document.getElementById for brevity
 function $(o){return document.getElementById(o);}
 
+//test for localStorage, store result in var hasStorage
+var hasStorage = (function() {
+      try {
+        localStorage.setItem('LStest', 'LStest');
+        localStorage.removeItem('LStest');
+        return true;
+      } catch(e) {
+        return false;
+      }
+    }());
+
 //Array.unique polyfill
 if (!Array.unique) {
 	Array.prototype.unique = function() {
@@ -151,7 +162,7 @@ function isBadBrowser(){
 	if (navigator.userAgent.indexOf('FluidApp')!=-1) return true;
 	
 	//Older browsers might not have localStorage support
-	if (!localStorage.getItem) return true;
+	if (!hasStorage) return true;
 	
 	//otherwise localStorage will be used
 	return false;
@@ -832,7 +843,7 @@ function launchRemoku(){
 	
 function getBuild(){
 	if (window.XMLHttpRequest){
-		xmlhttp=new XMLHttpRequest();
+		var xmlhttp=new XMLHttpRequest();
 		xmlhttp.onreadystatechange=function(){
 			if (xmlhttp.readyState==4 && xmlhttp.status==200){
 				var response = xmlhttp.responseText;
