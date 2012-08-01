@@ -186,7 +186,11 @@ function getConfig(name){
 	if (useCookies){
 		return readCookie(name);
 	} else {
-		return localStorage.getItem(name);
+		try {
+			return localStorage.getItem(name);
+	  } catch (e){
+		  dbg(e);
+		}
 	}
 }
 	
@@ -194,7 +198,11 @@ function setConfig(name, value){
 	if (useCookies){
 		createCookie(name, value, 365);
 	} else {
-		localStorage.setItem(name, value);
+		try{
+		  localStorage.setItem(name, value);
+	  } catch (e){
+		  dbg(e);
+	  }
 	}
 
 }
@@ -788,8 +796,12 @@ function loadRokuImages(){
 
 		
 function _rmAppsCB(apps){
-	if(localStorage.setItem){
-		localStorage.setItem(rokuAddress + '-apps', JSON.stringify(apps));
+	if(hasStorage){
+		try{
+		  localStorage.setItem(rokuAddress + '-apps', JSON.stringify(apps));
+	  } catch(e){
+		  dbg(e);
+	  }
 	}
 	var list = "";
 	var applist = $("applist");
@@ -876,7 +888,11 @@ function wipeSettings(){
 	setConfig("fav2","");
 	setConfig("fav3","");
 	//setConfig("apps", "");
-	if (localStorage.clear) localStorage.clear();
+	try{
+		if (hasStorage && localStorage.clear) localStorage.clear();
+	} catch(e) {
+		
+	}
 }
 //////////////
 //GUI BINDINGS
@@ -1347,7 +1363,7 @@ window.onload = function(){
 	nameLine.innerHTML = rokuName.value ? rokuName.value : rokuAddress;
 	nameLine.onclick = showRemotes;
 	try{
-		var apps = JSON.parse(localStorage.getItem(rokuAddress + '-apps'));
+		var apps = JSON.parse(getConfig(rokuAddress + '-apps'));
 	}catch(err){
 		apps = [];	
 	}
