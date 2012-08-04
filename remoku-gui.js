@@ -2,7 +2,7 @@
 //A. Cassidy Napoli
 //Copyright 2012 
 //License: NEW BSD
-//August 03, 2012 10:55:37 PM  
+//
 ////////////////////////
 //BEGIN HELPER FUNCTIONS
 
@@ -230,7 +230,8 @@ function readCookie(name) {
 }
 
 function dbg(log){
-	if (typeof console!=undefined) console.log(log);
+	if (typeof JSON!==undefined)JSON.stringify(log);
+	if (typeof console!==undefined) console.log(log);
 	//else alert (log);
 	dbgOut.innerHTML += log + "<br><br>";	
 }
