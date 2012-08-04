@@ -861,7 +861,7 @@ function getBuild(){
 				var response = xmlhttp.responseText;
 				response = response.split("\n");
 				var channel = response[2].substr(1);
-				var build = "Build date: " + response[3].substr(1);
+				var build = response[3].substr(1);
 				ver(channel, build);
 				}
 			};
