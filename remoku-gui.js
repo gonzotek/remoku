@@ -230,10 +230,10 @@ function readCookie(name) {
 }
 
 function dbg(log){
-	if (typeof JSON!==undefined) log = JSON.stringify(log);
+	if (typeof JSON!==undefined && typeof log !==String) log = JSON.stringify(log);
 	if (typeof console!==undefined) console.log(log);
 	//else alert (log);
-	dbgOut.innerHTML += log + "<br><br>";	
+	dbgOut.innerHTML += log + "<br>";	
 }
 
 function ver(channel, build){
