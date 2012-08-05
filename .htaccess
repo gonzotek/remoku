@@ -18,7 +18,7 @@ AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css a
 	<filesMatch "\\.(ico|pdf|flv|jpg|jpeg|png|gif|swf)$">
 		Header set Cache-Control "max-age=2592000, public"
 	</filesMatch>
-  <filesMatch "\.(css|js)$">
+  <filesMatch "\.(css|js|htm|html)$">
 		Header set Cache-Control "max-age=604800, no-cache"
 	</filesMatch>
   <filesMatch "\.(manifest)$">
