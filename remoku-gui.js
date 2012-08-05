@@ -227,7 +227,7 @@ function saveConfigToText(){
 		exportedConfigs[key] = localStorage.getItem(key);
   }
   dbg(JSON.stringify(exportedConfigs));
-  window.open('data:application/octetstream,' + escape(JSON.stringify(exportedConfigs)));
+  window.open('data:application/json,' + escape(JSON.stringify(exportedConfigs)));
 }
 
 function getConfig(name){
