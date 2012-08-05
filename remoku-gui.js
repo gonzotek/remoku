@@ -204,7 +204,14 @@ function wipeConfig(){
 	}
 }
 
-function loadConfigFromText(){}
+function loadConfigFromText(){
+	var configs = {};
+	for (var key in localStorage){
+		dbg(key);
+		configs[key] = localStorage.getItem(key);
+  }
+ 
+}
 
 function saveConfigToText(){
 	var configs = {};
@@ -212,7 +219,7 @@ function saveConfigToText(){
 		dbg(key);
 		configs[key] = localStorage.getItem(key);
   }
-  dbg(configs);
+  dbg(JSON.stringify(configs));
 }
 
 function getConfig(name){
