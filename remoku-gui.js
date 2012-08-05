@@ -215,7 +215,7 @@ function loadConfigFromText(){
  	for (var key in importedConfigs){
 		dbg(key);
 		dbg(importedConfigs[key]);
-		//exportedConfigs[key] = localStorage.getItem(key);
+		localStorage.setItem(key,importedConfigs[key]);
   }
  
 }
