@@ -182,6 +182,36 @@ function is_touch_device() {
 //   }  
 }
 
+function wipeConfig(){
+	setConfig("rokuAddress", "");
+	setConfig("scannedRokus", "");
+	setConfig("manualRokus", "");
+	setConfig("rokuCount", "");
+	setConfig("namedRokus", "");
+	setConfig("bgColor", "");	
+	setConfig("fgColor", "");
+	setConfig("macros", "");
+	setConfig("showFavs", "");
+	setConfig("myNetwork","");
+	setConfig("fav1","");
+	setConfig("fav2","");
+	setConfig("fav3","");
+	//setConfig("apps", "");
+	try{
+		if (hasStorage && localStorage.clear) localStorage.clear();
+	} catch(e) {
+		
+	}
+}
+
+function loadConfigFromText(){}
+
+function saveConfigToText(){
+	for (var key in localStorage){
+		dbg(key);
+  }
+}
+
 function getConfig(name){
 	if (useCookies){
 		return readCookie(name);
@@ -874,27 +904,6 @@ function getBuild(){
 //END ROKU SPECIFIC CODE
 ////////////////////////
 
-function wipeSettings(){
-	setConfig("rokuAddress", "");
-	setConfig("scannedRokus", "");
-	setConfig("manualRokus", "");
-	setConfig("rokuCount", "");
-	setConfig("namedRokus", "");
-	setConfig("bgColor", "");	
-	setConfig("fgColor", "");
-	setConfig("macros", "");
-	setConfig("showFavs", "");
-	setConfig("myNetwork","");
-	setConfig("fav1","");
-	setConfig("fav2","");
-	setConfig("fav3","");
-	//setConfig("apps", "");
-	try{
-		if (hasStorage && localStorage.clear) localStorage.clear();
-	} catch(e) {
-		
-	}
-}
 //////////////
 //GUI BINDINGS
 function btnDown(){
@@ -1282,7 +1291,7 @@ window.onload = function(){
 	  // /launch/11?contentId=12
 	  };
 	wipeSettingsButton = $("wipesettings");
-	wipeSettingsButton.onclick = wipeSettings;
+	wipeSettingsButton.onclick = wipeConfig;
 	
 	controlContainer = $("controlcontainer");
 	
