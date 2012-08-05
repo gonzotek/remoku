@@ -211,7 +211,7 @@ function loadConfigFromText(){
 		exportedConfigs[key] = localStorage.getItem(key);
   }
  var importedConfigs = {};
- importedConfigs = JSON.parse(exportedConfigs);
+ importedConfigs = JSON.parse(JSON.stringify(exportedConfigs));
  	for (var key in importedConfigs){
 		dbg(key);
 		dbg(importedConfigs[key]);
