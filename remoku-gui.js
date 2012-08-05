@@ -1299,7 +1299,8 @@ window.onload = function(){
 	rokuSelect.onchange = setRokuAddress;
 	
 	scannedRokus = getConfig('scannedRokus') ? getConfig('scannedRokus').split(",") : [];
-	dbg(scannedRokus);
+	dbg({scannedRokus:scannedRokus});
+	saveConfigToText();
 	keyboardMode = getConfig('keyboardMode') ? getConfig('keyboardMode') : true;
 	octet1 = $('octet1');
 	octet2 = $('octet2');
