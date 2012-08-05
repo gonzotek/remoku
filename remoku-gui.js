@@ -1294,8 +1294,8 @@ window.onload = function(){
 	  // /launch/11?contentId=12
 	  };
 	$("wipesettings").onclick = wipeConfig;
-	$("importsettings").onclick = loadConfigFromText
-	$("exportsettings").onclick = saveConfigFromText
+	$("importsettings").onclick = loadConfigFromText;
+	$("exportsettings").onclick = saveConfigToText;
 	controlContainer = $("controlcontainer");
 	
 	rokuSelect = $("rokus");
