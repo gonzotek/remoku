@@ -207,9 +207,12 @@ function wipeConfig(){
 function loadConfigFromText(){}
 
 function saveConfigToText(){
+	var configs = {};
 	for (var key in localStorage){
 		dbg(key);
+		configs[key] = localStorage.getItem(key);
   }
+  dbg(configs);
 }
 
 function getConfig(name){
