@@ -1303,7 +1303,7 @@ window.onload = function(){
 	
 	scannedRokus = getConfig('scannedRokus') ? getConfig('scannedRokus').split(",") : [];
 	//dbg({scannedRokus:scannedRokus});
-	sasaveConfigToText();
+	//saveConfigToText();
 	keyboardMode = getConfig('keyboardMode') ? getConfig('keyboardMode') : true;
 	octet1 = $('octet1');
 	octet2 = $('octet2');
