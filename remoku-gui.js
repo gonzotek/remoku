@@ -1293,17 +1293,17 @@ window.onload = function(){
 	  rokupost('launch','11?contentId='+launchid);
 	  // /launch/11?contentId=12
 	  };
-	wipeSettingsButton = $("wipesettings");
-	wipeSettingsButton.onclick = wipeConfig;
-	
+	$("wipesettings").onclick = wipeConfig;
+	$("importsettings").onclick = loadConfigFromText
+	$("exportsettings").onclick = saveConfigFromText
 	controlContainer = $("controlcontainer");
 	
 	rokuSelect = $("rokus");
 	rokuSelect.onchange = setRokuAddress;
 	
 	scannedRokus = getConfig('scannedRokus') ? getConfig('scannedRokus').split(",") : [];
-	dbg({scannedRokus:scannedRokus});
-	saveConfigToText();
+	//dbg({scannedRokus:scannedRokus});
+	sasaveConfigToText();
 	keyboardMode = getConfig('keyboardMode') ? getConfig('keyboardMode') : true;
 	octet1 = $('octet1');
 	octet2 = $('octet2');
