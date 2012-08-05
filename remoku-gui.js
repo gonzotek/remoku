@@ -205,21 +205,28 @@ function wipeConfig(){
 }
 
 function loadConfigFromText(){
-	var configs = {};
+	var exportedConfigs = {};
 	for (var key in localStorage){
 		dbg(key);
-		configs[key] = localStorage.getItem(key);
+		exportedConfigs[key] = localStorage.getItem(key);
+  }
+ var importedConfigs = {};
+ importedConfigs = JSON.parse(exportedConfigs);
+ 	for (var key in importedConfigs){
+		dbg(key);
+		dbg(importedConfigs[key]);
+		//exportedConfigs[key] = localStorage.getItem(key);
   }
  
 }
 
 function saveConfigToText(){
-	var configs = {};
+	var exportedConfigs = {};
 	for (var key in localStorage){
 		dbg(key);
-		configs[key] = localStorage.getItem(key);
+		exportedConfigs[key] = localStorage.getItem(key);
   }
-  dbg(JSON.stringify(configs));
+  dbg(JSON.stringify(exportedConfigs));
 }
 
 function getConfig(name){
