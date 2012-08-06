@@ -209,12 +209,11 @@ function loadConfigFromText(){
 try{	var importedConfigs = {};
   var importedConfigs = JSON.parse( $('settingstextarea').innerHTML );
  	for (var key in importedConfigs){
-		//dbg(key);
-		//dbg(importedConfigs[key]);
+		dbg(key);
+		dbg(importedConfigs[key]);
 		localStorage.setItem(key,importedConfigs[key]);
   }
-    if(window.confirm("Settings loaded, reload page to begin using new settings?"))document.location.reload(true);
-
+    document.location.reload(true);
 }catch(e){
 	}
 	}
@@ -1369,6 +1368,10 @@ window.onload = function(){
 	var channelsLink2 = $('channelslink2');
 		channelsLink2.innerHTML = 'Refer to your <a class="bgcolor" href="http://'+ rokuAddress +':8060/query/apps" target="_blank">installed channels</a> for channel ids.';
 	
+	$('settingstextarea').onfocus = textModeOff;
+	$('settingstextarea').onblur = textModeOn;
+		
+		
 	rokuName = $('rokuname');
 	rokuName.onfocus = textModeOff;
 	rokuName.onblur = function(){
