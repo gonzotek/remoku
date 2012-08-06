@@ -242,7 +242,7 @@ function wipeConfig(){
 			}
 		}
 	} catch(e) {
-		
+		dbg(e);	
 	}
 }
 
