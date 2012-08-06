@@ -182,28 +182,6 @@ function is_touch_device() {
 //   }  
 }
 
-function wipeConfig(){
-	setConfig("rokuAddress", "");
-	setConfig("scannedRokus", "");
-	setConfig("manualRokus", "");
-	setConfig("rokuCount", "");
-	setConfig("namedRokus", "");
-	setConfig("bgColor", "");	
-	setConfig("fgColor", "");
-	setConfig("macros", "");
-	setConfig("showFavs", "");
-	setConfig("myNetwork","");
-	setConfig("fav1","");
-	setConfig("fav2","");
-	setConfig("fav3","");
-	//setConfig("apps", "");
-	try{
-		if (hasStorage && localStorage.clear) localStorage.clear();
-	} catch(e) {
-		
-	}
-}
-
 function loadConfigFromText(){
 	if(window.confirm("Overwrite your current settings with the content of the import/export field?")){
 		try{	var importedConfigs = {};
@@ -219,16 +197,11 @@ function loadConfigFromText(){
 }
 
 function saveConfigToText(){
-	dbg (document.cookie);
 	var exportedConfigs = {};
 	for (var key in localStorage){
-		//dbg(key);
 		exportedConfigs[key] = localStorage.getItem(key);
   }
-  //dbg(JSON.stringify(exportedConfigs));
-  //window.open('data:text/plain,' + escape(JSON.stringify(exportedConfigs)));
-   $('settingstextarea').value = JSON.stringify(exportedConfigs)
-
+   $('settingstextarea').value = JSON.stringify(exportedConfigs);
 }
 
 function getConfig(name){
@@ -253,7 +226,25 @@ function setConfig(name, value){
 		  dbg(e);
 	  }
 	}
+}
 
+function wipeConfig(){
+	var varNames = "rokuAddress manualRokus namedRokus scannedRokus myNetwork rokuCount macros showFavs fav1 fav2 fav3 bgColor fgColor".split();
+  for(var i = 0; i<varNames.length; i++){
+		setConfig(varNames[i], "");
+	}
+	//setConfig("apps", "");
+	try{
+		if (hasStorage && localStorage.clear) {
+			localStorage.clear();
+		} else {
+		  for(var i = 0; i<varNames.length; i++){
+				eraseCookie(varNames[i]);
+			}
+		}
+	} catch(e) {
+		
+	}
 }
 
 function createCookie(name,value,days) {
@@ -276,6 +267,10 @@ function readCookie(name) {
     if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length,c.length);
   }
   return null;
+}
+
+function eraseCookie(name) {
+	createCookie(name,"",-1);
 }
 
 function dbg(log){
