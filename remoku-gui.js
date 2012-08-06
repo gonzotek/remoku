@@ -211,9 +211,9 @@ try{	var importedConfigs = {};
  	for (var key in importedConfigs){
 		dbg(key);
 		dbg(importedConfigs[key]);
-		localStorage.setItem(key,importedConfigs[key]);
+		setConfig(key,importedConfigs[key]);
   }
-    document.location.reload(true);
+    //document.location.reload(true);
 }catch(e){
 	}
 	}
