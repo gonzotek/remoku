@@ -205,6 +205,7 @@ function wipeConfig(){
 }
 
 function loadConfigFromText(){
+	if(window.confirm("Overwrite your current settings with the content of the import/export field?")){
 try{	var importedConfigs = {};
   var importedConfigs = JSON.parse( $('settingstextarea').innerHTML );
  	for (var key in importedConfigs){
@@ -212,9 +213,10 @@ try{	var importedConfigs = {};
 		//dbg(importedConfigs[key]);
 		localStorage.setItem(key,importedConfigs[key]);
   }
-    if(window.confirm("Settings loaded, reload page to begin using new settings?"))window.reload();
+    if(window.confirm("Settings loaded, reload page to begin using new settings?"))document.location.reload(true);
 
 }catch(e){
+	}
 	}
 }
 
