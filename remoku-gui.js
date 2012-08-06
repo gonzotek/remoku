@@ -233,7 +233,6 @@ function wipeConfig(){
   for(var i = 0; i<varNames.length; i++){
 		setConfig(varNames[i], "");
 	}
-	//setConfig("apps", "");
 	try{
 		if (hasStorage && localStorage.clear) {
 			localStorage.clear();
