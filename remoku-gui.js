@@ -205,13 +205,17 @@ function wipeConfig(){
 }
 
 function loadConfigFromText(){
-	var importedConfigs = {};
+try{	var importedConfigs = {};
   var importedConfigs = JSON.parse( $('settingstextarea').innerHTML );
  	for (var key in importedConfigs){
 		//dbg(key);
 		//dbg(importedConfigs[key]);
 		localStorage.setItem(key,importedConfigs[key]);
   }
+    if(window.confirm("Settings loaded, reload page to begin using new settings?"))window.reload();
+
+}catch(e){
+	}
 }
 
 function saveConfigToText(){
