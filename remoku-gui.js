@@ -202,7 +202,7 @@ function saveConfigToText(){
 	try{
 		var exportedConfigs = {};
 		for(var i = 0; i<remokuVarNames.length; i++){
-			exportedConfigs[remokuVarNames[i]] = getConfig(remokuVarNames[i]);
+			if( getConfig(remokuVarNames[i]) )exportedConfigs[remokuVarNames[i]] = getConfig(remokuVarNames[i]);
 		}
   $('settingstextarea').value = JSON.stringify(exportedConfigs);
  	} catch (e){
