@@ -1679,6 +1679,7 @@ window.onload = function(){
     changeTextColor('.nav', '#' + navTextColor);
     changeTextColor('.active', '#' + activeNavTextColor);
     changeTextColor('.bgcolor', '#' + txtcolor);
+    changeTextColor('#reloadlink', '#' + txtcolor);
     cP = colorPicker;
     cP.exportColor = function () {
 	    bgcolor = bgcolorInput.value;
