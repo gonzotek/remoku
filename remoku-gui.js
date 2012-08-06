@@ -207,7 +207,7 @@ function wipeConfig(){
 function loadConfigFromText(){
 	if(window.confirm("Overwrite your current settings with the content of the import/export field?")){
 try{	var importedConfigs = {};
-  var importedConfigs = JSON.parse( $('settingstextarea').innerHTML );
+  var importedConfigs = JSON.parse( $('settingstextarea').value );
  	for (var key in importedConfigs){
 		dbg(key);
 		dbg(importedConfigs[key]);
@@ -227,7 +227,7 @@ function saveConfigToText(){
   }
   //dbg(JSON.stringify(exportedConfigs));
   //window.open('data:text/plain,' + escape(JSON.stringify(exportedConfigs)));
-   $('settingstextarea').innerHTML = JSON.stringify(exportedConfigs)
+   $('settingstextarea').value = JSON.stringify(exportedConfigs)
 
 }
 
