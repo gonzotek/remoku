@@ -5,6 +5,8 @@
 //
 ////////////////////////
 //BEGIN HELPER FUNCTIONS
+  //list of variable stored to cookies/localStorage
+	var remokuVarNames = "rokuAddress manualRokus namedRokus scannedRokus myNetwork rokuCount macros showFavs fav1 fav2 fav3 bgColor fgColor".split();
 
 //alias $ to document.getElementById for brevity
 function $(o){return document.getElementById(o);}
@@ -197,11 +199,15 @@ function loadConfigFromText(){
 }
 
 function saveConfigToText(){
-	var exportedConfigs = {};
-	for (var key in localStorage){
-		exportedConfigs[key] = localStorage.getItem(key);
-  }
-   $('settingstextarea').value = JSON.stringify(exportedConfigs);
+	try{
+		var exportedConfigs = {};
+		for(var i = 0; i<remokuVarNames.length; i++){
+			exportedConfigs[remokuVarNames[i]] = getConfig(remokuVarNames[i]);
+		}
+  $('settingstextarea').value = JSON.stringify(exportedConfigs);
+ 	} catch (e){
+		dbg(e);
+	}
 }
 
 function getConfig(name){
@@ -229,16 +235,15 @@ function setConfig(name, value){
 }
 
 function wipeConfig(){
-	var varNames = "rokuAddress manualRokus namedRokus scannedRokus myNetwork rokuCount macros showFavs fav1 fav2 fav3 bgColor fgColor".split();
-  for(var i = 0; i<varNames.length; i++){
-		setConfig(varNames[i], "");
+  for(var i = 0; i<remokuVarNames.length; i++){
+		setConfig(remokuVarNames[i], "");
 	}
 	try{
 		if (hasStorage && localStorage.clear) {
 			localStorage.clear();
 		} else {
-		  for(var i = 0; i<varNames.length; i++){
-				eraseCookie(varNames[i]);
+		  for(var i = 0; i<remokuVarNames.length; i++){
+				eraseCookie(remokuVarNames[i]);
 			}
 		}
 	} catch(e) {
