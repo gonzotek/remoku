@@ -205,29 +205,25 @@ function wipeConfig(){
 }
 
 function loadConfigFromText(){
-	var exportedConfigs = {};
-	for (var key in localStorage){
-		dbg(key);
-		exportedConfigs[key] = localStorage.getItem(key);
-  }
- var importedConfigs = {};
- importedConfigs = JSON.parse(JSON.stringify(exportedConfigs));
+	var importedConfigs = {};
+  var importedConfigs = JSON.parse( $('settingstextarea').innerHTML );
  	for (var key in importedConfigs){
-		dbg(key);
-		dbg(importedConfigs[key]);
+		//dbg(key);
+		//dbg(importedConfigs[key]);
 		localStorage.setItem(key,importedConfigs[key]);
   }
- 
 }
 
 function saveConfigToText(){
 	var exportedConfigs = {};
 	for (var key in localStorage){
-		dbg(key);
+		//dbg(key);
 		exportedConfigs[key] = localStorage.getItem(key);
   }
-  dbg(JSON.stringify(exportedConfigs));
-  window.open('data:text/plain,' + escape(JSON.stringify(exportedConfigs)));
+  //dbg(JSON.stringify(exportedConfigs));
+  //window.open('data:text/plain,' + escape(JSON.stringify(exportedConfigs)));
+   $('settingstextarea').innerHTML = JSON.stringify(exportedConfigs)
+
 }
 
 function getConfig(name){
