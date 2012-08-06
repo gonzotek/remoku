@@ -1733,7 +1733,7 @@ window.onload = function(){
 	//input select option button
     fgcolorInput = $("fgcolor");
     fgcolor = getConfig('fgColor') ? getConfig('fgColor') : "101010";    
-    fgElements = ['input','textarea','#macroArea','select','option','button','.selected','#rokus'];
+    fgElements = ['input','textarea','#macroArea','select','option','button','.selected','#rokus','#settingstextarea'];
     txtcolor = Brightness( fgcolor ) < 130 ? 'FFFFFF' : '000000';
     for (var i = 0; i<fgElements.length;i++) {
 	    changeBackgroundColor(fgElements[i], '#' + fgcolor);
