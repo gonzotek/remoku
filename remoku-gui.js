@@ -6,7 +6,7 @@
 ////////////////////////
 //BEGIN HELPER FUNCTIONS
   //list of variable stored to cookies/localStorage
-	var remokuVarNames = "rokuAddress manualRokus namedRokus scannedRokus myNetwork rokuCount macros showFavs fav1 fav2 fav3 bgColor fgColor".split();
+	var remokuVarNames = "rokuAddress manualRokus namedRokus scannedRokus myNetwork rokuCount macros showFavs fav1 fav2 fav3 bgColor fgColor".split(" ");
 
 //alias $ to document.getElementById for brevity
 function $(o){return document.getElementById(o);}
