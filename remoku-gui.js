@@ -206,20 +206,20 @@ function wipeConfig(){
 
 function loadConfigFromText(){
 	if(window.confirm("Overwrite your current settings with the content of the import/export field?")){
-try{	var importedConfigs = {};
-  var importedConfigs = JSON.parse( $('settingstextarea').value );
- 	for (var key in importedConfigs){
-		dbg(key);
-		dbg(importedConfigs[key]);
-		setConfig(key,importedConfigs[key]);
-  }
-    //document.location.reload(true);
-}catch(e){
-	}
+		try{	var importedConfigs = {};
+		  var importedConfigs = JSON.parse( $('settingstextarea').value );
+		 	for (var key in importedConfigs){
+				setConfig(key,importedConfigs[key]);
+		  }
+	    document.location.reload(true);
+		} catch(e) {
+		dbg(e);
+		}
 	}
 }
 
 function saveConfigToText(){
+	dbg (document.cookie);
 	var exportedConfigs = {};
 	for (var key in localStorage){
 		//dbg(key);
