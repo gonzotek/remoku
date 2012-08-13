@@ -1245,11 +1245,14 @@ var fgElements = new Array();
 function onUpdateReady() {
   dbg('found new version!');
 }
-window.applicationCache.addEventListener('updateready', onUpdateReady);
-if(window.applicationCache.status === window.applicationCache.UPDATEREADY) {
-  onUpdateReady();
+try{
+	window.applicationCache.addEventListener('updateready', onUpdateReady);
+	if(window.applicationCache.status === window.applicationCache.UPDATEREADY) {
+  	onUpdateReady();
+	}
+} catch (e) {
+	dbg(e);
 }
-
 // Check if a new cache is available on page load.
 if(window.addEventListener){
 window.addEventListener('load', function(e) {
