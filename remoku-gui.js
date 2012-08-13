@@ -1242,6 +1242,14 @@ var fgcolor;
 var fgElements = new Array();
 
 
+function onUpdateReady() {
+  dbg('found new version!');
+}
+window.applicationCache.addEventListener('updateready', onUpdateReady);
+if(window.applicationCache.status === window.applicationCache.UPDATEREADY) {
+  onUpdateReady();
+}
+
 // Check if a new cache is available on page load.
 if(window.addEventListener){
 window.addEventListener('load', function(e) {
