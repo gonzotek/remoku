@@ -1696,26 +1696,30 @@ window.onload = function(){
     changeTextColor('.active', '#' + activeNavTextColor);
     changeTextColor('.bgcolor', '#' + txtcolor);
     changeTextColor('#reloadlink', '#' + txtcolor);
-    cP = colorPicker;
-    cP.exportColor = function () {
-	    bgcolor = bgcolorInput.value;
-			changeBackgroundColor('.bgcolor', '#' + bgcolor);
-			txtcolor = Brightness( bgcolor ) < 130 ? 'FFFFFF' : '000000';
-			changeTextColor('.bgcolor', '#' + txtcolor);
-	    navTextColor = Brightness( bgcolor ) < 130 ? 'D0D0D0' : '555555';
-	    activeNavTextColor = Brightness( bgcolor ) < 130 ? 'FFFFFF' : '000000';
-	    changeTextColor('.nav', '#' + navTextColor);
-	    changeTextColor('.active', '#' + activeNavTextColor);
-			setConfig('bgColor', bgcolor);
-			
-			fgcolor = fgcolorInput.value;
-	    txtcolor = Brightness( fgcolor ) < 130 ? 'FFFFFF' : '000000';
-	    for (var i = 0; i<fgElements.length;i++) {
-		    changeBackgroundColor(fgElements[i], '#' + fgcolor);
-			changeTextColor(fgElements[i], '#' + txtcolor);
-		    }
-		setConfig('fgColor', fgcolor);
-	  };
+		try {
+			cP = colorPicker;
+	    cP.exportColor = function () {
+		    bgcolor = bgcolorInput.value;
+				changeBackgroundColor('.bgcolor', '#' + bgcolor);
+				txtcolor = Brightness( bgcolor ) < 130 ? 'FFFFFF' : '000000';
+				changeTextColor('.bgcolor', '#' + txtcolor);
+		    navTextColor = Brightness( bgcolor ) < 130 ? 'D0D0D0' : '555555';
+		    activeNavTextColor = Brightness( bgcolor ) < 130 ? 'FFFFFF' : '000000';
+		    changeTextColor('.nav', '#' + navTextColor);
+		    changeTextColor('.active', '#' + activeNavTextColor);
+				setConfig('bgColor', bgcolor);
+				
+				fgcolor = fgcolorInput.value;
+		    txtcolor = Brightness( fgcolor ) < 130 ? 'FFFFFF' : '000000';
+		    for (var i = 0; i<fgElements.length;i++) {
+			    changeBackgroundColor(fgElements[i], '#' + fgcolor);
+				changeTextColor(fgElements[i], '#' + txtcolor);
+			    }
+			setConfig('fgColor', fgcolor);
+		  } catch (e){
+			  dbg(e);
+			  };
+  	}
 	    
     bgcolorInput.onfocus = function(){
 	    textModeOff();

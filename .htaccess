@@ -15,7 +15,7 @@ AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css a
 </IfModule>
 
 <IfModule mod_headers.c>
-	<filesMatch "\\.(ico|pdf|flv|jpg|jpeg|png|gif|swf)$">
+	<filesMatch "\\.(ico|pdf|flv|jpg|jpeg|png|gif|swf|cur)$">
 		Header set Cache-Control "max-age=2592000, public"
 	</filesMatch>
   <filesMatch "\.(css|js|htm|html)$">
