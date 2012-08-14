@@ -1716,11 +1716,11 @@ window.onload = function(){
 				changeTextColor(fgElements[i], '#' + txtcolor);
 			    }
 			setConfig('fgColor', fgcolor);
-		  } catch (e){
+	  	};
+	  } catch (e){
 			  dbg(e);
 			  };
-  	}
-	    
+			    
     bgcolorInput.onfocus = function(){
 	    textModeOff();
 	    bgcolor = bgcolorInput.value;
