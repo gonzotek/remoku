@@ -281,7 +281,10 @@ function dbg(log){
 	if (typeof JSON!=='undefined' && typeof log !=='string') log = JSON.stringify(log);
 	if (typeof console!=='undefined') console.log(log);
 	//else alert (log);
-	dbgOut.innerHTML += log + "<br>";	
+	try {
+		dbgOut.innerHTML += log + "<br>";	
+		} catch (e) {
+			}
 }
 
 function ver(channel, build){
