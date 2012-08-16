@@ -284,6 +284,7 @@ function dbg(log){
 	try {
 		dbgOut.innerHTML += log + "<br>";	
 		} catch (e) {
+			
 			}
 }
 
