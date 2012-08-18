@@ -1043,6 +1043,12 @@ function handleArrowKeyDown(evt) {
                 //dbg("Fwd");
                 rokupost("keydown","Fwd");
                 break;
+            case 65:
+                rokupost("keydown","A");
+            	  break;
+            case 66:
+                rokupost("keydown","B");
+            	  break;
             default:
             break;
          }
@@ -1106,6 +1112,12 @@ function handleArrowKeyUp(evt) {
                 //dbg("Fwd");
                 rokupost("keyup","Fwd");
                 break;
+            case 65:
+                rokupost("keyup","A");
+            	  break;
+            case 66:
+                rokupost("keyup","B");
+            	  break;
             default:
             break;
          }
