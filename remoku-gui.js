@@ -932,20 +932,24 @@ function btnDown(){
 	//dbg("mousedown");
 	lastBtn = this.id;
 	//add graphical feed back here
+	dbg({keydown:this.id});
 	rokupost("keydown",this.id);
 }
 function btnUp(){
 	//dbg("mouseup");
+	dbg({keyup:this.id});
 	rokupost("keyup",lastBtn);
 }
 function btnTouchDown(){
 	//dbg("touchstart");
 	lastBtn = this.id;
 	//add graphical feed back here
+	dbg({keydown:this.id});
 	rokupost("keydown",this.id);
 }
 function btnTouchUp(){
 	//dbg("touchend");
+	dbg({keyup:this.id});
 	rokupost("keyup",lastBtn);
 }
 function rmousedownRemoteBtn(e){
