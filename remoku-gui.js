@@ -642,11 +642,26 @@ function firstSetup(){
 *  input: String, String
 *  output: none
 */
+var actions = [];
+function rokuFrameLoad(){
+	if (actions.length>0){
+		action  = actions.shift();
+		var rokupost = $('rokupost');
+		rokupost.setAttribute("action", "http://" + rokuAddress + ":8060/" + action.cmd + "/" + action.param);
+		rokupost.submit();
+	}
+}
 function rokupost(action, param){
-	var rokupost = $('rokupost');
-	rokupost.setAttribute("action", "http://" + rokuAddress + ":8060/" + action + "/" + param);
-	rokupost.submit();
-	return false;
+	if (actions.length==0){
+		actions.push({cmd:action,param:param});
+		var rokupost = $('rokupost');
+		rokupost.setAttribute("action", "http://" + rokuAddress + ":8060/" + action + "/" + param);
+		rokupost.submit();
+		return false;
+	}else {
+		actions.push({cmd:action,param:param});
+		return false;
+		}
 }
 
 //macros
@@ -1807,8 +1822,9 @@ window.onload = function(){
 	rokupostframe.id="rokuresponse";
 	rokupostframe.style.visibility="hidden";
 	rokupostframe.style.display="none";
+	rokupostframe.onload = rokuFrameLoad;
 	rokupostframe = document.body.appendChild(rokupostframe);
-
+ 
 	rokutextframe.name="rokutextresponse";
 	rokutextframe.id="rokutextresponse";
 	rokutextframe.style.visibility="hidden";
