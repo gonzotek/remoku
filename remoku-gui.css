@@ -97,6 +97,7 @@ button{
 
 #screens{
 	height:450px;
+	width:320px;
 	z-index:-1;
 	}
 
