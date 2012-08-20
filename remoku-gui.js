@@ -955,14 +955,16 @@ function btnUp(){
 	dbg({keyup:this.id});
 	rokupost("keyup",lastBtn);
 }
+//var touchtimer;
 function btnTouchDown(){
 	//dbg("touchstart");
 	lastBtn = this.id;
 	//add graphical feed back here
 	dbg({keydown:this.id});
-	rokupost("keydown",this.id);
+	//touchtimer = setTimeout(function(){rokupost("keydown",this.id)},150);
 }
 function btnTouchUp(){
+	//if(typeof touchtimer
 	//dbg("touchend");
 	dbg({keyup:this.id});
 	rokupost("keyup",lastBtn);
