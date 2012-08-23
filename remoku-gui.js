@@ -1783,7 +1783,7 @@ window.onload = function(){
 	document.onkeydown = handleArrowKeyDown;
 	
   setupFavorites();	
-
+  $('addFav').onclick = addFav;
 	if(apps)_rmAppsCB(apps);
 	
 	//Background
