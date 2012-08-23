@@ -408,5 +408,5 @@ margin:0;
 #reloadlink{
 color:white;
 }
-
+#favsUI{list-style-type:none;}
 #favsUI li input[type="text"]{width:60px;}
