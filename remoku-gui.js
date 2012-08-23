@@ -1278,6 +1278,171 @@ var bgcolor;
 var fgcolor;
 var fgElements = new Array();
 
+function style(obj, thestyle){
+    obj.setAttribute('style',thestyle);
+}
+
+function sibTags (obj, tag){
+    return obj.parentNode.getElementsByTagName(tag);
+}
+
+function insertAfter(newChild, refChild) {
+    refChild.parentNode.insertBefore(newChild, refChild.nextSibling);
+}
+
+function removeCommand() {
+    this.parentNode.parentNode.removeChild(this.parentNode);
+}
+
+function moveUp() {
+    //if this is not the first item in the list
+    if (this.parentNode != this.parentNode.parentNode.firstChild) {
+        this.parentNode.parentNode.insertBefore(this.parentNode, this.parentNode.previousSibling);
+    }
+}
+
+function moveDown() {
+    // if this is not the last item in the list
+    if (this.parentNode != this.parentNode.parentNode.lastChild) {
+        insertAfter(this.parentNode, this.parentNode.nextSibling);
+    }
+}
+
+    function addFav(){
+    //console.log('helloe');
+        var li = document.createElement('li');
+        var appidinput = document.createElement('input');
+        appidinput.type = 'text';
+        li.appendChild(appidinput);
+        
+                var removeButton = document.createElement('button');
+        removeButton.innerHTML = "-";
+        removeButton.onclick = removeCommand;
+        li.appendChild(removeButton);
+
+        var upButton = document.createElement('button');
+        upButton.innerHTML = "&#9651;";
+        upButton.onclick = moveUp;
+        li.appendChild(upButton);
+
+
+        var downButton = document.createElement('button');
+        downButton.innerHTML = "&#9661;";
+        downButton.onclick = moveDown;
+        li.appendChild(downButton);
+
+        
+        $('favsUI').appendChild(li);
+        
+    }
+
+
+function setupFavorites(){
+	showFavoritesChkbx = $("showFaves");
+	showFavs = getConfig('showFavs')=='true' ? 'true' : 'false';
+	setConfig('showFavs',showFavs);
+	if(showFavs=='true'){
+		showFavoritesChkbx.checked=true;
+		$('favtable').setAttribute('class','');
+	} else {
+		showFavoritesChkbx.checked=false;
+		$('favtable').setAttribute('class','hidden');
+	}
+	showFavoritesChkbx.onclick = function(){
+		if(showFavoritesChkbx.checked){
+				setConfig('showFavs','true');
+				$('favtable').setAttribute('class','');
+			} else {
+				setConfig('showFavs','false');
+				$('favtable').setAttribute('class','hidden');
+			}
+		};
+		
+	var fav1Input = $("inputfav1");
+	fav1Value = getConfig('fav1')?getConfig('fav1'):'12';
+	fav1Input.value = fav1Value;
+	fav1Input.onblur = function(){
+		textModeOn();
+		var fav1Value = this.value;
+		fav1Link = $("fav1link");
+		fav1Link.setAttribute('onclick','rokulaunch("'+fav1Value+'")');
+		favImg1 = $("favimg1");
+		favImg1.setAttribute('src','http://' + rokuAddress +':8060/query/icon/'+fav1Value);
+		setConfig('fav1',fav1Value);
+		};
+	fav1Input.onfocus = function(){
+		textModeOff();
+		};
+	var fav1 = $("fav1");
+	    var favlink = document.createElement("a");
+	    favlink.setAttribute('href','#fav1');
+		favlink.setAttribute('onclick','rokulaunch("'+fav1Value+'")');
+	    favlink.setAttribute('id','fav1link');
+	    var favimg = document.createElement("img");
+		favimg.setAttribute('class','favicons');
+		favimg.setAttribute('Id','favimg1');
+		if(getConfig('showFavs')=='true'){favimg.setAttribute('src','http://' + rokuAddress +':8060/query/icon/'+fav1Value);}
+		favlink.appendChild(favimg);
+	fav1.appendChild(favlink);
+	
+	
+	var fav2Input = $("inputfav2");
+	fav2Value = getConfig('fav2')?getConfig('fav2'):'28';
+	fav2Input.value = fav2Value;
+	fav2Input.onblur = function(){
+		textModeOn();
+		var fav2Value = this.value;
+		fav2Link = $("fav2link");
+		fav2Link.setAttribute('onclick','rokulaunch("'+fav2Value+'")');
+		favImg2 = $("favimg2");
+		favImg2.setAttribute('src','http://' + rokuAddress +':8060/query/icon/'+fav2Value);
+		setConfig('fav2',fav2Value);
+		};
+	fav2Input.onfocus = function(){
+		textModeOff();
+		};
+		var fav2 = $("fav2");
+	  favlink = document.createElement("a");
+	  favlink.setAttribute('href','#fav2');
+		favlink.setAttribute('onclick','rokulaunch("'+fav2Value+'")');
+	  favlink.setAttribute('id','fav2link');
+	  favimg = document.createElement("img");
+		favimg.setAttribute('class','favicons');
+		favimg.setAttribute('Id','favimg2');
+		if(getConfig('showFavs')=='true'){favimg.setAttribute('src','http://' + rokuAddress +':8060/query/icon/'+fav2Value);}
+		favlink.appendChild(favimg);
+	fav2.appendChild(favlink);
+	
+	var fav3Input = $("inputfav3");
+	fav3Value = getConfig('fav3')?getConfig('fav3'):'2016';
+	fav3Input.value = fav3Value;
+	fav3Input.onblur = function(){
+		textModeOn();
+		var fav3Value = this.value;
+		fav3Link = $("fav3link");
+		fav3Link.setAttribute('onclick','rokulaunch("'+fav3Value+'")');
+		favImg3 = $("favimg3");
+		favImg3.setAttribute('src','http://' + rokuAddress +':8060/query/icon/'+fav3Value);
+		setConfig('fav3',fav3Value);
+		};
+	fav3Input.onfocus = function(){
+		textModeOff();
+		};
+		var fav3 = $("fav3");
+	  favlink = document.createElement("a");
+	  favlink.setAttribute('href','#fav3');
+		favlink.setAttribute('onclick','rokulaunch("'+fav3Value+'")');
+	  favlink.setAttribute('id','fav3link');
+	  favimg = document.createElement("img");
+		favimg.setAttribute('class','favicons');
+		favimg.setAttribute('Id','favimg3');
+		if(getConfig('showFavs')=='true'){favimg.setAttribute('src','http://' + rokuAddress +':8060/query/icon/'+fav3Value);}
+		favlink.appendChild(favimg);
+	fav3.appendChild(favlink);
+	
+	
+	
+	}
 
 function onUpdateReady() {
   dbg('found new version!');
@@ -1617,108 +1782,8 @@ window.onload = function(){
 	document.onkeyup = handleArrowKeyUp;
 	document.onkeydown = handleArrowKeyDown;
 	
-	
-	showFavoritesChkbx = $("showFaves");
-	showFavs = getConfig('showFavs')=='false'?getConfig('showFavs'):'true';
-	setConfig('showFavs',showFavs);
-	if(showFavs=='true'){
-		showFavoritesChkbx.checked=true;
-		$('favtable').setAttribute('class','');
-	} else {
-		showFavoritesChkbx.checked=false;
-		$('favtable').setAttribute('class','hidden');
-	}
-	showFavoritesChkbx.onclick = function(){
-		if(showFavoritesChkbx.checked){
-				setConfig('showFavs','true');
-				$('favtable').setAttribute('class','');
-			} else {
-				setConfig('showFavs','false');
-				$('favtable').setAttribute('class','hidden');
-			}
-		};
-	var fav1Input = $("inputfav1");
-	fav1Value = getConfig('fav1')?getConfig('fav1'):'12';
-	fav1Input.value = fav1Value;
-	fav1Input.onblur = function(){
-		textModeOff();
-		var fav1Value = this.value;
-		fav1Link = $("fav1link");
-		fav1Link.setAttribute('onclick','rokulaunch("'+fav1Value+'")');
-		favImg1 = $("favimg1");
-		favImg1.setAttribute('src','http://' + rokuAddress +':8060/query/icon/'+fav1Value);
-		setConfig('fav1',fav1Value);
-		};
-	fav1Input.onfocus = function(){
-		textModeOff();
-		};
-	var fav1 = $("fav1");
-	    var favlink = document.createElement("a");
-	    favlink.setAttribute('href','#fav1');
-		favlink.setAttribute('onclick','rokulaunch("'+fav1Value+'")');
-	    favlink.setAttribute('id','fav1link');
-	    var favimg = document.createElement("img");
-		favimg.setAttribute('class','favicons');
-		favimg.setAttribute('Id','favimg1');
-		if(getConfig('showFavs')=='true'){favimg.setAttribute('src','http://' + rokuAddress +':8060/query/icon/'+fav1Value);}
-		favlink.appendChild(favimg);
-	fav1.appendChild(favlink);
-	
-	
-	var fav2Input = $("inputfav2");
-	fav2Value = getConfig('fav2')?getConfig('fav2'):'28';
-	fav2Input.value = fav2Value;
-	fav2Input.onblur = function(){
-		textModeOn();
-		var fav2Value = this.value;
-		fav2Link = $("fav2link");
-		fav2Link.setAttribute('onclick','rokulaunch("'+fav2Value+'")');
-		favImg2 = $("favimg2");
-		favImg2.setAttribute('src','http://' + rokuAddress +':8060/query/icon/'+fav2Value);
-		setConfig('fav2',fav2Value);
-		};
-	fav2Input.onfocus = function(){
-		textModeOff();
-		};
-		var fav2 = $("fav2");
-	  favlink = document.createElement("a");
-	  favlink.setAttribute('href','#fav2');
-		favlink.setAttribute('onclick','rokulaunch("'+fav2Value+'")');
-	  favlink.setAttribute('id','fav2link');
-	  favimg = document.createElement("img");
-		favimg.setAttribute('class','favicons');
-		favimg.setAttribute('Id','favimg2');
-		if(getConfig('showFavs')=='true'){favimg.setAttribute('src','http://' + rokuAddress +':8060/query/icon/'+fav2Value);}
-		favlink.appendChild(favimg);
-	fav2.appendChild(favlink);
-	
-	var fav3Input = $("inputfav3");
-	fav3Value = getConfig('fav3')?getConfig('fav3'):'2016';
-	fav3Input.value = fav3Value;
-	fav3Input.onblur = function(){
-		textModeOn();
-		var fav3Value = this.value;
-		fav3Link = $("fav3link");
-		fav3Link.setAttribute('onclick','rokulaunch("'+fav3Value+'")');
-		favImg3 = $("favimg3");
-		favImg3.setAttribute('src','http://' + rokuAddress +':8060/query/icon/'+fav3Value);
-		setConfig('fav3',fav3Value);
-		};
-	fav3Input.onfocus = function(){
-		textModeOff();
-		};
-		var fav3 = $("fav3");
-	  favlink = document.createElement("a");
-	  favlink.setAttribute('href','#fav3');
-		favlink.setAttribute('onclick','rokulaunch("'+fav3Value+'")');
-	  favlink.setAttribute('id','fav3link');
-	  favimg = document.createElement("img");
-		favimg.setAttribute('class','favicons');
-		favimg.setAttribute('Id','favimg3');
-		if(getConfig('showFavs')=='true'){favimg.setAttribute('src','http://' + rokuAddress +':8060/query/icon/'+fav3Value);}
-		favlink.appendChild(favimg);
-	fav3.appendChild(favlink);
-	
+  setupFavorites();	
+
 	if(apps)_rmAppsCB(apps);
 	
 	//Background
