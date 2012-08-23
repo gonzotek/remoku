@@ -405,6 +405,8 @@ margin:0;
 	
 	}
 	
-	#reloadlink{
-		color:white;
-		}
+#reloadlink{
+color:white;
+}
+
+#favsUI li input[type="text"]{width:60px;}
