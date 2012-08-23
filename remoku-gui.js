@@ -1307,7 +1307,13 @@ function moveDown() {
         insertAfter(this.parentNode, this.parentNode.nextSibling);
     }
 }
-
+  function refreshFavs(){
+	  var favs = $('favsUI').getElementsByTagName('li');
+        for (i = 0; i < favs.length; i++){
+	        fav = favs[i].getElementsByTagName('input')[0].value;
+	        dbg({fav:fav});
+	        }
+	  }
     function addFav(){
     //console.log('helloe');
         var li = document.createElement('li');
@@ -1333,7 +1339,7 @@ function moveDown() {
 
         
         $('favsUI').appendChild(li);
-        
+        refreshFavs();
     }
 
 
