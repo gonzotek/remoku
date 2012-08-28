@@ -1308,11 +1308,14 @@ function moveDown() {
     }
 }
   function refreshFavs(){
+	  var favsArray = [];
 	  var favs = $('favsUI').getElementsByTagName('li');
         for (i = 0; i < favs.length; i++){
 	        fav = favs[i].getElementsByTagName('input')[0].value;
-	        dbg({fav:fav});
+	        //dbg({fav:fav});
+	        favsArray.push(fav);
 	        }
+	        dbg(favsArray);
 	  }
     function addFav(){
     //console.log('helloe');
