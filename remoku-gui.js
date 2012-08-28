@@ -652,16 +652,21 @@ function rokuFrameLoad(){
 	}
 }
 function rokupost(action, param){
-	if (actions.length==0){
-		actions.push({cmd:action,param:param});
-		var rokupost = $('rokupost');
-		rokupost.setAttribute("action", "http://" + rokuAddress + ":8060/" + action + "/" + param);
-		rokupost.submit();
-		return false;
-	}else {
-		actions.push({cmd:action,param:param});
-		return false;
-		}
+	if(!rokuAddress){
+		firstSetup();
+	}
+	else {
+		if (actions.length==0){
+			actions.push({cmd:action,param:param});
+			var rokupost = $('rokupost');
+			rokupost.setAttribute("action", "http://" + rokuAddress + ":8060/" + action + "/" + param);
+			rokupost.submit();
+			return false;
+		}else {
+			actions.push({cmd:action,param:param});
+			return false;
+			}
+	}
 }
 
 //macros
@@ -1684,9 +1689,9 @@ window.onload = function(){
 
 	startAppsButton = $("startremoku");
 	startAppsButton .onclick = launchRemoku;
-	if(!rokuAddress) {
-		 firstSetup();
-	 }
+	//if(!rokuAddress) {
+	//	 firstSetup();
+	// }
 	 
 	launchButton = $("lparamdo");
 	launchValue = $("lvalue");
