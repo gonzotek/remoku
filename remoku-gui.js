@@ -373,8 +373,8 @@ function updateSelect() {
 	while (rokuSelect.length>0){
 		rokuSelect.remove(rokuSelect.length -1);
 	}
-	remotesPopup.innerHTML="";
-	lowerRemotesPopup.innerHTML="";
+	if(remotesPopup!==null)remotesPopup.innerHTML="";
+	if(lowerRemotesPopup!==null)lowerRemotesPopup.innerHTML="";
 	var remoteUl = document.createElement("ul");
 	remoteUl.id = "remotepopupul";
 	var remoteLis = [];
