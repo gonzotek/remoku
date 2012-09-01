@@ -411,7 +411,7 @@ function updateSelect() {
 	} else {
 		controlContainer.setAttribute("class","hidden");
 	}
-	remotesPopup.appendChild(remoteUl);
+	if(remotesPopup!==null)remotesPopup.appendChild(remoteUl);
 	lowerRemotesPopup.appendChild(remoteUl);
 	if(rokuAddress===undefined || rokuAddress==="")rokuAddress=rokus[0];
 	fav1Value = getConfig('fav1') ? getConfig('fav1') : '12' ; 
