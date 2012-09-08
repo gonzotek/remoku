@@ -40,32 +40,32 @@
 	<td>
 	<a class="nav active" id="navremote">
 	<div>Remote</div>
-	<img class="remoteicons" id="navremoteimg" src="images/DPad.png" >
+	<img class="remoteicons" id="navremoteimg" src="images/DPad.png" alt="Remote">
 	</a>
 	</td>
 	<td>
 	<a class="nav" id="navgoodies">
 	<div>Goodies</div>
-	<img class="remoteicons" src="images/goodies.png">
+	<img class="remoteicons" src="images/goodies.png" alt="Goodies">
 	</a>
 	</td>
 	<td class="hidden">
 	<a class="nav" id="navapps"> 
 	<div>Channels</div> 
-	<img class="remoteicons" src="images/application_view_tile.png">
+	<img class="remoteicons" src="images/application_view_tile.png" alt="Channels">
 	</a>
 	</td>
 	<td>
 	<a  class="nav" id="navconfig"> 
 	<div>Settings</div> 
-	<img class="remoteicons" src="images/setting_tools.png">
+	<img class="remoteicons" src="images/setting_tools.png" alt="Settings">
 	</a>
 	</td>
 	<td>
 	<div class="hslice" id="Remoku">
 	<a  class="nav" id="navabout"> 
 	<div>About</div> 
-	<img class="remoteicons" src="images/about.png">
+	<img class="remoteicons" src="images/about.png" alt="About">
 	</a>
 	<span class="entry-title" style="display:none;">Remoku</span>
 	<a rel="entry-content" href="http://remoku.tv" style="display:none;"></a>
@@ -83,35 +83,24 @@
 		</td>
 	</tr>
 	<tr>
-		<td rowspan="6"><img src="images/left_edge.png"></td>
+		<td rowspan="6"><img src="images/left_edge.png" alt="left_edge"></td>
 		<td>
 			<table >
 				<tr>
-					<td><img src="images/back.png" class="link" id="Back"></td>
-					<td><img src="images/home.png" class="link" id="Home"></td>
+					<td><img src="images/back.png" class="link" id="Back" alt="back"></td>
+					<td><img src="images/home.png" class="link" id="Home" alt="home"></td>
 				</tr>
 			</table>
 		</td>
-		<td rowspan="6"><img src="images/right_edge.png"></td>
+		<td rowspan="6"><img src="images/right_edge.png" alt="right_edge"></td>
 	</tr>
 	<tr>
 		<td>
 			<table >
 				<tr>
-					<td><img src="images/top_left_corner.png"></td>
-					<td><img src="images/up.png" class="link" id="Up"></td>
-					<td><img src="images/top_right_corner.png"></td>
-				</tr>
-			</table>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<table >
-				<tr>
-					<td><img src="images/left.png" class="link" id="Left"></td>
-					<td><img src="images/ok.png" class="link" id="Select" tabindex="2"></td>
-					<td><img src="images/right.png" class="link" id="Right"></td>
+					<td><img src="images/top_left_corner.png" alt="top_left_corner"></td>
+					<td><img src="images/up.png" class="link" id="Up" alt="up"></td>
+					<td><img src="images/top_right_corner.png" alt="top_right_corner"></td>
 				</tr>
 			</table>
 		</td>
@@ -120,9 +109,9 @@
 		<td>
 			<table >
 				<tr>
-					<td><img src="images/bottom_left_corner.png"></td>
-					<td><img src="images/down.png" class="link" id="Down"></td>
-					<td><img src="images/bottom_right_corner.png"></td>
+					<td><img src="images/left.png" class="link" id="Left" alt="left"></td>
+					<td><img src="images/ok.png" class="link" id="Select" tabindex="2" alt="ok"></td>
+					<td><img src="images/right.png" class="link" id="Right" alt="right"></td>
 				</tr>
 			</table>
 		</td>
@@ -131,8 +120,9 @@
 		<td>
 			<table >
 				<tr>
-					<td><img src="images/replay.png" class="link" id="InstantReplay"></td>
-					<td><img src="images/info.png" class="link" id="Info"></td>
+					<td><img src="images/bottom_left_corner.png" alt="bottom_left_corner"></td>
+					<td><img src="images/down.png" class="link" id="Down" alt="down"></td>
+					<td><img src="images/bottom_right_corner.png" alt="bottom_right_corner"></td>
 				</tr>
 			</table>
 		</td>
@@ -141,9 +131,19 @@
 		<td>
 			<table >
 				<tr>
-					<td><img src="images/previous.png" class="link" id="Rev"></td>
-					<td><img src="images/play.png" class="link" id="Play"></td>
-					<td><img src="images/next.png" class="link" id="Fwd"></td>
+					<td><img src="images/replay.png" class="link" id="InstantReplay" alt="replay"></td>
+					<td><img src="images/info.png" class="link" id="Info" alt="info"></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table >
+				<tr>
+					<td><img src="images/previous.png" class="link" id="Rev" alt="previous"></td>
+					<td><img src="images/play.png" class="link" id="Play" alt="play"></td>
+					<td><img src="images/next.png" class="link" id="Fwd" alt="next"></td>
 				</tr>
 			</table>
 		</td>
@@ -213,7 +213,7 @@ Remoku has an update available.<br>
 <fieldset id="controlcontainer">
 	<legend>Control This Roku</legend>
 		<select id="rokus"></select><br>
-		<label>Name this roku:</label><input class="nameinput" id="rokuname" value="Living Room" />
+		<label>Name this roku:</label><input class="nameinput" id="rokuname" value="Remoku" />
 </fieldset>
 <fieldset>
 	<legend>Find My Roku</legend>
