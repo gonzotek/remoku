@@ -1927,7 +1927,7 @@ window.onload = function(){
 	rokutextform.target="rokutextresponse";
 	rokutextform = document.body.appendChild(rokutextform);
 
-	if (typeof(chrome) !== undefined) {
+	if (typeof(chrome) !== undefined && typeof(chrome.webstore) !== undefined) {
 		$('chromeInstall').innerHTML = '<button onclick="chrome.webstore.install()" id="install-button">Install Chrome Extension</button>';
 	}
 	
