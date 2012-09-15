@@ -108,7 +108,7 @@ button{
 	left:50%;
 	margin-left:-160px;
 }
-
+#firstsetup{top:170px;}
 #remotespopup{
 	position: fixed;
 	top:55px;
