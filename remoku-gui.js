@@ -618,6 +618,7 @@ function firstSetup(){
 	for(i=0;i<screenArray.length;i++){
 		screenArray[i].setAttribute("class", "hidden");
 		}
+	remoteScreen.setAttribute("class", "visible");
 	firstSetupScreen.setAttribute("class", "visible");
 	configScreen.setAttribute("class", "visible");
 	//var setup = confirm("It looks like you haven't used Remoku before. Would you like to begin by scanning for Rokus?");
