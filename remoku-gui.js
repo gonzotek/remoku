@@ -621,7 +621,7 @@ function firstSetup(){
 	remoteScreen.setAttribute("class", "visible");
 	firstSetupScreen.setAttribute("class", "visible");
 	configScreen.setAttribute("class", "visible");
-	window.scrollTo(400,0);
+	window.scrollTo(1,400);
 	//var setup = confirm("It looks like you haven't used Remoku before. Would you like to begin by scanning for Rokus?");
 	//if(setup){
 	//	rokuCount = prompt ("Ok, how many Rokus do you own?", "1");
