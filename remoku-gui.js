@@ -1930,7 +1930,9 @@ window.onload = function(){
 	if (typeof(chrome) !== "undefined" && chrome.webstore.install) {
 		$('chromeInstall').innerHTML = '<button onclick="chrome.webstore.install()" id="install-button">Install Chrome Extension</button>';
 	}
-	
+	if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
+		$('chromeInstall').innerHTML = '<button onclick="chrome.webstore.install()" id="install-button">Install Firefox Extension</button>';
+	}
 };
 
 //Hide iPhone URL bar
