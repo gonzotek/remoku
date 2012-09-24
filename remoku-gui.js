@@ -841,6 +841,7 @@ function delayNextQuery(){
 function rokuText(){
 	var rokutext =  $('rokutext');
 	var text = $("textentry").value;
+	dbg({rokuText:text});
 	if(text.length>0){
 		dbg(text);
 		var letter = text.slice(0,1);
