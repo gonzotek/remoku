@@ -821,6 +821,7 @@ function rokuDeleteOrBlur(evt){
 	else {
 		rokuText();
 		this.focus();
+	}
 }	
 
 // function rokuDeleteorBlur(evt){
