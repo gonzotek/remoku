@@ -668,7 +668,7 @@ function rokupost(action, param){
 		firstSetup();
 	}
 	else {
-		if (actions.length==0){
+		if (actions.length<1){
 			actions.push({cmd:action,param:param});
 			var rokupost = $('rokupost');
 			rokupost.setAttribute("action", "http://" + rokuAddress + ":8060/" + action + "/" + param);
