@@ -818,6 +818,7 @@ function rokuDeleteOrBlur(evt){
 			this.blur();
 		}
 	}
+	else rokuText();
 }	
 
 // function rokuDeleteorBlur(evt){
@@ -1911,7 +1912,7 @@ window.onload = function(){
 	textEntryInput = $("textentry");
 	textEntryInput.value = "";
 	textEntryInput.onkeyup = rokuDeleteOrBlur;
-	textEntryInput.onkeypress = rokuText;
+	//textEntryInput.onkeypress = rokuText;
 	
 	textEntryInput.onfocus = textModeOff;
 	textEntryInput.onblur = textModeOn;
