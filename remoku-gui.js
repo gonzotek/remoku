@@ -841,8 +841,8 @@ function delayNextQuery(){
 function rokuText(){
 	var rokutext =  $('rokutext');
 	var text = $("textentry").value;
-	dbg(text);
 	if(text.length>0){
+		dbg(text);
 		var letter = text.slice(0,1);
 		text = text.slice(1);
 		//Handle the few characters Roku needs encoded beyond escape();
