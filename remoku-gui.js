@@ -980,6 +980,7 @@ function btnTouchDown(){
 	lastBtn = this.id;
 	//add graphical feed back here
 	dbg({keydown:this.id});
+	rokupost("keydown",this.id);
 	//touchtimer = setTimeout(function(){rokupost("keydown",this.id)},150);
 }
 function btnTouchUp(){
