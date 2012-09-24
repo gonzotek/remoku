@@ -659,6 +659,7 @@ function rokuFrameLoad(){
 		action  = actions.shift();
 		var rokupost = $('rokupost');
 		rokupost.setAttribute("action", "http://" + rokuAddress + ":8060/" + action.cmd + "/" + action.param);
+		dbg({actions:actions,action:action,param:param});
 		rokupost.submit();
 	}
 }
@@ -672,9 +673,11 @@ function rokupost(action, param){
 			var rokupost = $('rokupost');
 			rokupost.setAttribute("action", "http://" + rokuAddress + ":8060/" + action + "/" + param);
 			rokupost.submit();
+			dbg({actions:actions,action:action,param:param});
 			return false;
 		}else {
 			actions.push({cmd:action,param:param});
+			dbg({actions:actions,action:action,param:param});
 			return false;
 			}
 	}
