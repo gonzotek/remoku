@@ -802,6 +802,19 @@ function rokulaunch(id){
 	rokupost("launch",id);
 	}
 
+// function rokuDeleteorBlur(evt){
+// 	if (!evt)evt = window.event;//IE doesn't pass events as parameters like other browsers
+// 	if (evt.keyCode == 8){
+// 		rokupost("keypress","Backspace");
+// 	}
+// 	else if (evt.keyCode == 27){
+// 		this.blur();
+// 	}
+// 	else {
+// 		rokuText();
+// 	}
+// }	
+
 
 function rokuDeleteOrBlur(evt){
 	if (!evt)evt = window.event;//IE doesn't pass events as parameters like other browsers
@@ -823,19 +836,6 @@ function rokuDeleteOrBlur(evt){
 		this.focus();
 	}
 }	
-
-// function rokuDeleteorBlur(evt){
-// 	if (!evt)evt = window.event;//IE doesn't pass events as parameters like other browsers
-// 	if (evt.keyCode == 8){
-// 		rokupost("keypress","Backspace");
-// 	}
-// 	else if (evt.keyCode == 27){
-// 		this.blur();
-// 	}
-// 	else {
-// 		rokuText();
-// 	}
-// }	
 
 
 function delayNextQuery(){
