@@ -824,6 +824,7 @@ function rokuDeleteOrBlur(evt){
 		break;
 		case 27:
 			this.blur();
+			return false;
 		break;
 		case 13:
 			if ($('textentry').value===""){
