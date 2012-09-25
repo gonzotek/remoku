@@ -802,20 +802,6 @@ function rokulaunch(id){
 	rokupost("launch",id);
 	}
 
-// function rokuDeleteorBlur(evt){
-// 	if (!evt)evt = window.event;//IE doesn't pass events as parameters like other browsers
-// 	if (evt.keyCode == 8){
-// 		rokupost("keypress","Backspace");
-// 	}
-// 	else if (evt.keyCode == 27){
-// 		this.blur();
-// 	}
-// 	else {
-// 		rokuText();
-// 	}
-// }	
-
-
 function rokuDeleteOrBlur(evt){
 	if (!evt)evt = window.event;//IE doesn't pass events as parameters like other browsers
 	switch(evt.keyCode){
@@ -839,29 +825,7 @@ function rokuDeleteOrBlur(evt){
 			this.focus();
 		break;
 	}	
-// 	if (evt.keyCode == 8){
-// 		rokupost("keypress","Backspace");
-// 		return;
-// 	}
-// 	else if (evt.keyCode == 27){
-// 		this.blur();
-// 		return;
-// 	}
-// 	else if(evt.keyCode==13){
-// 		if ($('textentry').value===""){
-// 			rokutext.setAttribute("action", "http://" + rokuAddress + ":8060/" + "keypress" + "/" + "Enter");
-// 			rokutext.submit();
-// 			this.blur();
-// 			return;
-// 		}
-// 	}
-// 	else {
-// 		rokuText();
-// 		this.focus();
-// 		return;
-// 	}
 }
-
 
 function delayNextQuery(){
 	setTimeout('rokuText()',200);
@@ -870,7 +834,7 @@ function delayNextQuery(){
 function rokuText(){
 	var rokutext =  $('rokutext');
 	var text = $("textentry").value;
-	dbg({rokuText:text});
+	//dbg({rokuText:text});
 	if(text.length>0){
 		dbg(text);
 		var letter = text.slice(0,1);
