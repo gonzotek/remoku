@@ -820,20 +820,24 @@ function rokuDeleteOrBlur(evt){
 	if (!evt)evt = window.event;//IE doesn't pass events as parameters like other browsers
 	if (evt.keyCode == 8){
 		rokupost("keypress","Backspace");
+		return;
 	}
 	else if (evt.keyCode == 27){
 		this.blur();
+		return;
 	}
 	else if(evt.keyCode==13){
 		if ($('textentry').value===""){
 			rokutext.setAttribute("action", "http://" + rokuAddress + ":8060/" + "keypress" + "/" + "Enter");
 			rokutext.submit();
 			this.blur();
+			return;
 		}
 	}
 	else {
 		rokuText();
 		this.focus();
+		return;
 	}
 }	
 
