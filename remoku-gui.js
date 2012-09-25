@@ -1534,6 +1534,18 @@ window.addEventListener('load', function(e) {
 }, false);
 }
 
+function ffInstall(aEvent){
+	var params = {
+    "Remoku": { URL: "https://addons.mozilla.org/firefox/downloads/latest/362455/addon-362455-latest.xpi",
+             IconURL: "https://addons.cdn.mozilla.net/img/uploads/addon_icons/362/362455-64.png",
+    }
+  };
+  InstallTrigger.install(params);
+//Hash: aEvent.target.getAttribute("hash"),
+//             toString: function () { return this.URL; }
+  return false;
+}
+
 
 window.onload = function(){
 	window.scrollTo(0, 1);
@@ -1950,7 +1962,7 @@ window.onload = function(){
 		$('chromeInstall').innerHTML = '<button onclick="chrome.webstore.install()" id="install-button">Install Chrome Extension</button>';
 	}
 	if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
-		$('chromeInstall').innerHTML = '<button onclick="chrome.webstore.install()" id="install-button">Install Firefox Extension</button>';
+		$('chromeInstall').innerHTML = '<button onclick="ffInstall(event)" id="install-button">Install Firefox Extension</button>';
 	}
 };
 
