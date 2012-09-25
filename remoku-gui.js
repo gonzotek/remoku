@@ -421,19 +421,7 @@ function updateSelect() {
 	if(remotesPopup!==null)remotesPopup.appendChild(remoteUl);
 	lowerRemotesPopup.appendChild(remoteUl);
 	if(rokuAddress===undefined || rokuAddress==="")rokuAddress=rokus[0];
-	fav1Value = getConfig('fav1') ? getConfig('fav1') : '12' ; 
-	favImg1 = $("favimg1");
-	if(favImg1)favImg1.setAttribute('src','http://' + rokuAddress +':8060/query/icon/'+fav1Value);
-		
-	fav2Value = getConfig('fav2');
-	favImg2 = $("favimg2");
-	fav2Value = getConfig('fav2') ? getConfig('fav2') : '28' ; 
-	if(favImg2)favImg2.setAttribute('src','http://' + rokuAddress +':8060/query/icon/'+fav2Value);
-
-	fav3Value = getConfig('fav3');
-	favImg3 = $("favimg3");
-	fav3Value = getConfig('fav3') ? getConfig('fav3') : '2016' ; 
-	if(favImg3)favImg3.setAttribute('src','http://' + rokuAddress +':8060/query/icon/'+fav3Value);
+	loadFavs();
 }
 
 function addRoku(){
@@ -874,6 +862,8 @@ function delayLoadIcons(){
 function loadRokuImages(){
 	if (appidarray.length>0) setTimeout('delayLoadIcons()',50);
 	}
+
+
 
 		
 function _rmAppsCB(apps){
@@ -1331,6 +1321,23 @@ function moveDown() {
         insertAfter(this.parentNode, this.parentNode.nextSibling);
     }
 }
+
+function loadFavs(){
+	fav1Value = getConfig('fav1') ? getConfig('fav1') : '12' ; 
+	favImg1 = $("favimg1");
+	if(favImg1)favImg1.setAttribute('src','http://' + rokuAddress +':8060/query/icon/'+fav1Value);
+		
+	fav2Value = getConfig('fav2');
+	favImg2 = $("favimg2");
+	fav2Value = getConfig('fav2') ? getConfig('fav2') : '28' ; 
+	if(favImg2)favImg2.setAttribute('src','http://' + rokuAddress +':8060/query/icon/'+fav2Value);
+
+	fav3Value = getConfig('fav3');
+	favImg3 = $("favimg3");
+	fav3Value = getConfig('fav3') ? getConfig('fav3') : '2016' ; 
+	if(favImg3)favImg3.setAttribute('src','http://' + rokuAddress +':8060/query/icon/'+fav3Value);
+}
+
   function refreshFavs(){
 	  var favsArray = [];
 	  var favs = $('favsUI').getElementsByTagName('li');
@@ -1340,7 +1347,8 @@ function moveDown() {
 	        favsArray.push(fav);
 	        }
 	        dbg(favsArray);
-	  }
+}
+
     function addFav(){
     //console.log('helloe');
         var li = document.createElement('li');
@@ -1368,7 +1376,6 @@ function moveDown() {
         $('favsUI').appendChild(li);
         refreshFavs();
     }
-
 
 function setupFavorites(){
 	showFavoritesChkbx = $("showFaves");
@@ -1472,9 +1479,6 @@ function setupFavorites(){
 		if(getConfig('showFavs')=='true'){favimg.setAttribute('src','http://' + rokuAddress +':8060/query/icon/'+fav3Value);}
 		favlink.appendChild(favimg);
 	fav3.appendChild(favlink);
-	
-	
-	
 	}
 
 function onUpdateReady() {
@@ -1965,7 +1969,7 @@ window.onload = function(){
 		$('chromeInstall').innerHTML = '<button onclick="ffInstall(event)" id="install-button">Install Firefox Extension</button>';
 	}
 	
-	if (window.screen.height==568) { // iPhone 5"
+	if (window.screen.height==568) { // iPhone with 4 inch screen workaround for letterboxed home screen web app
 		document.querySelector("meta[name=viewport]").content="width=320.1, initial-scale=1.0, maximum-scale=1.0, user-scalable=no";
 	}
 	
