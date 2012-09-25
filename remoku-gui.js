@@ -1084,6 +1084,10 @@ function handleArrowKeyDown(evt) {
             case 66:
                 rokupost("keydown","B");
             	  break;
+            case 9:
+            	$('textentry').focus();
+            	evt.preventDefault();
+            	break;
             default:
             break;
          }
