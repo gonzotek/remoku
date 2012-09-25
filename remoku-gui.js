@@ -824,6 +824,8 @@ function rokuDeleteOrBlur(evt){
 		break;
 		case 27:
 			this.blur();
+			evt.cancelBubble = true;
+			if (evt.stopPropagation) evt.stopPropagation();
 			return false;
 		break;
 		case 13:
