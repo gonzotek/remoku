@@ -1964,6 +1964,11 @@ window.onload = function(){
 	if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
 		$('chromeInstall').innerHTML = '<button onclick="ffInstall(event)" id="install-button">Install Firefox Extension</button>';
 	}
+	
+	if (window.screen.height==568) { // iPhone 5"
+		document.querySelector("meta[name=viewport]").content="width=320.1, initial-scale=1.0, maximum-scale=1.0, user-scalable=no";
+	}
+	
 };
 
 //Hide iPhone URL bar
