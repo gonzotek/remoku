@@ -414,6 +414,7 @@ color:white;
 */
 #favsContainer img{
 width: 90px;
-margin-left:5px;
+margin-left:15px;
+margin-bottom:15px;
 float: left;
 }
