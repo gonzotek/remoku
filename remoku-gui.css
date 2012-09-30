@@ -408,5 +408,11 @@ margin:0;
 #reloadlink{
 color:white;
 }
+/*
 #favsUI{list-style-type:none;}
 #favsUI li input[type="text"]{width:60px;}
+*/
+#favsContainer img{
+width: 90px;
+margin-left:5px;
+}
