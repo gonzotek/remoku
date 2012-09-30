@@ -1331,9 +1331,6 @@ function loadNextFav() {
 }
 
 var favsList = ["12","28","2016", "5127", "11", "13", "15", "45", "199"];
-function loadFavs() {
-    document.getElementById('fav-' + favsList[0]).src = "http://" + rokuAddress + ":8060/query/icon/" + favsList[0];
-}
 
 function launchFav() {
     
@@ -1350,6 +1347,7 @@ function setupFavs(){
 	    favImg.onclick = launchFav;
 	    document.getElementById("favsContainer").appendChild(favImg);
 	}
+	if (favsList.length>0)document.getElementById('fav-' + favsList[0]).src = "http://" + rokuAddress + ":8060/query/icon/" + favsList[0];
 }
 
 function onUpdateReady() {
