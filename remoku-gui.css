@@ -415,4 +415,5 @@ color:white;
 #favsContainer img{
 width: 90px;
 margin-left:5px;
+float: left;
 }
