@@ -403,8 +403,8 @@ color:white;
 #favsUI li input[type="text"]{width:60px;}
 
 #favsContainer{
-	margin-top:12px;
-	margin-bottom:7px;
+	margin-top:10px;
+	margin-bottom:0px;
 }
 
 #favsContainer:after{
