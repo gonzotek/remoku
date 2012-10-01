@@ -1335,9 +1335,6 @@ function loadNextFav() {
 function launchFav() {
     
 }
-function loadFavs(){
-	
-	}
 
 function setupFavs(){
 	var favsList = getConfig('favsList')?JSON.parse(getConfig('favsList')):["12","28","2016"];
@@ -1352,6 +1349,20 @@ function setupFavs(){
 	}
 	if (favsList.length>0)document.getElementById('fav-' + favsList[0]).src = "http://" + rokuAddress + ":8060/query/icon/" + favsList[0];
 }
+
+function loadFavs(){
+	var favsList = getConfig('favsList')?JSON.parse(getConfig('favsList')):["12","28","2016"];
+	var fav1 = getConfig('fav1')?getConfig('fav1'):null;
+	var fav2 = getConfig('fav2')?getConfig('fav2'):null;
+	var fav3 = getConfig('fav3')?getConfig('fav3'):null;
+	if(fav1) favsList[0] = fav1;
+	if(fav2) favsList[1] = fav2;
+	if(fav3) favsList[2] = fav3;
+	for (i=0;i<favsList.length;i++){
+		addFav(favsList[i]);
+	}
+}
+
 
 function saveFavs(){
 	var favsList = [];
@@ -1384,11 +1395,12 @@ function moveFavDown() {
     saveFavs();
 }
 
-function addFav(){
+function addFav(fav){
 //console.log('helloe');
     var li = document.createElement('li');
     var appidinput = document.createElement('input');
     appidinput.type = 'text';
+    if(fav)appidinput.value = fav;
     appidinput.onblur = function(){textModeOn();saveFavs();};
     appidinput.onfocus = textModeOff;
     li.appendChild(appidinput);
