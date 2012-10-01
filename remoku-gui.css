@@ -401,6 +401,9 @@ color:white;
 #favsUI{list-style-type:none;}
 #favsUI li input[type="text"]{width:60px;}
 
+#favsContainer{
+	margin-top:20px;
+}
 #favsContainer img{
 width: 90px;
 margin-left:12px;
