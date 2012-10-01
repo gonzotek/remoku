@@ -1333,7 +1333,8 @@ function loadNextFav() {
 }
 
 function launchFav() {
-    
+    //fav = 
+    dbg(this.id);
 }
 
 function setupFavs(){
@@ -1347,11 +1348,14 @@ function setupFavs(){
 
 	document.getElementById("favsContainer").innerHTML = "";
 	for (var i = 0;i<favsList.length;i++){
+		//var favlink = document.createElement("a");
+		//favlink.setAttribute('onclick','rokulaunch("'+favsList[i]+'")');
 	    var favImg = document.createElement("img");
 	    favImg.setAttribute('id','fav-' + favsList[i]);
 	    favImg.onload = loadNextFav;
 	    favImg.onerror = loadNextFav;
 	    favImg.onclick = launchFav;
+	    //favLink.appendChild(favImg);
 	    document.getElementById("favsContainer").appendChild(favImg);
 	}
 	if (favsList.length>0)document.getElementById('fav-' + favsList[0]).src = "http://" + rokuAddress + ":8060/query/icon/" + favsList[0];
