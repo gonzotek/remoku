@@ -1409,6 +1409,9 @@ function moveFavDown() {
 function addFav(fav){
 //console.log('helloe');
     var li = document.createElement('li');
+    var appidlabel = document.createElement('label');
+    appidlabel.innerHTML = "App ID:";
+    li.appendchild(appidlabel);
     var appidinput = document.createElement('input');
     appidinput.type = 'text';
     if(fav)appidinput.value = fav;
