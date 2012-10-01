@@ -1415,7 +1415,7 @@ function addFav(fav){
 //console.log('helloe');
     var li = document.createElement('li');
     var appidlabel = document.createElement('label');
-    appidlabel.innerHTML = "App ID";
+    appidlabel.innerHTML = "App Id";
     li.appendChild(appidlabel);
     var appidinput = document.createElement('input');
     appidinput.type = 'text';
@@ -1590,9 +1590,9 @@ window.onload = function(){
 	addButton.onclick = addRoku;
 
 	var channelsLink = $('channelslink');
-		channelsLink.innerHTML = 'Refer to your <a class="bgcolor" href="http://'+ rokuAddress +':8060/query/apps" target="_blank">installed channels</a> for app ids.';
+		channelsLink.innerHTML = 'Refer to your <a class="bgcolor" href="http://'+ rokuAddress +':8060/query/apps" target="_blank">installed channels</a> for app Ids.';
 	var channelsLink2 = $('channelslink2');
-		channelsLink2.innerHTML = 'Refer to your <a class="bgcolor" href="http://'+ rokuAddress +':8060/query/apps" target="_blank">installed channels</a> for app ids.';
+		channelsLink2.innerHTML = 'Refer to your <a class="bgcolor" href="http://'+ rokuAddress +':8060/query/apps" target="_blank">installed channels</a> for app Ids.';
 	
 	$('settingstextarea').onfocus = textModeOff;
 	$('settingstextarea').onblur = textModeOn;
