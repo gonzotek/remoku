@@ -1331,13 +1331,12 @@ function loadNextFav() {
     }
 }
 
-var favsList = ["12","28","2016", "5127", "11", "13", "15", "45", "199"];
-
 function launchFav() {
     
 }
 
 function setupFavs(){
+	var favsList = getConfig('favsList')?JSON.parse(getConfig('favsList')):["12","28","2016"];
 	document.getElementById("favsContainer").innerHTML = "";
 	for (var i = 0;i<favsList.length;i++){
 	    var favImg = document.createElement("img");
@@ -1350,10 +1349,36 @@ function setupFavs(){
 	if (favsList.length>0)document.getElementById('fav-' + favsList[0]).src = "http://" + rokuAddress + ":8060/query/icon/" + favsList[0];
 }
 
-function removeFav() {
-    this.parentNode.parentNode.removeChild(this.parentNode);
+function saveFavs(){
+	var favsList = [];
+	var favs = $('macroui').getElementsByTagName('li');
+		for (i = 0; i < favs.length; i++){
+			favsList[i] = favs[i].getElementsByTagName('input')[0].value;
+		}
+	setConfig('favsList', JSON.stringify(favsList) );
+	setupFavs();
 }
 
+function removeFav() {
+    this.parentNode.parentNode.removeChild(this.parentNode);
+    saveFavs();
+}
+
+function moveFavUp() {
+    //if this is not the first item in the list
+    if (this.parentNode != this.parentNode.parentNode.firstChild) {
+        this.parentNode.parentNode.insertBefore(this.parentNode, this.parentNode.previousSibling);
+    }
+    saveFavs();
+}
+
+function moveFavDown() {
+    // if this is not the last item in the list
+    if (this.parentNode != this.parentNode.parentNode.lastChild) {
+        insertAfter(this.parentNode, this.parentNode.nextSibling);
+    }
+    saveFavs();
+}
 
 function addFav(){
 //console.log('helloe');
@@ -1371,18 +1396,18 @@ function addFav(){
 
     var upButton = document.createElement('button');
     upButton.innerHTML = "&#9651;";
-    upButton.onclick = moveUp;
+    upButton.onclick = moveFavUp;
     li.appendChild(upButton);
 
 
     var downButton = document.createElement('button');
     downButton.innerHTML = "&#9661;";
-    downButton.onclick = moveDown;
+    downButton.onclick = moveFavDown;
     li.appendChild(downButton);
 
     
     $('favsUI').appendChild(li);
-    
+    saveFavs();
 }
 
 
