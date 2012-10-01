@@ -1411,7 +1411,7 @@ function addFav(fav){
     var li = document.createElement('li');
     var appidlabel = document.createElement('label');
     appidlabel.innerHTML = "App ID:";
-    li.appendchild(appidlabel);
+    li.appendChild(appidlabel);
     var appidinput = document.createElement('input');
     appidinput.type = 'text';
     if(fav)appidinput.value = fav;
