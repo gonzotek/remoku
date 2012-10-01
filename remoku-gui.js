@@ -1778,7 +1778,7 @@ window.onload = function(){
 	document.onkeydown = handleArrowKeyDown;
 	
   //setupFavorites();	
-  $('addFav').onclick = addFav;
+  $('addFav').onclick = function(){addFav(null);};
 	if(apps)_rmAppsCB(apps);
 	
 	//Background
