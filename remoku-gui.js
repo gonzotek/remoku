@@ -1365,7 +1365,7 @@ function loadFavs(){
 	if(fav1) favsList[0] = fav1;
 	if(fav2) favsList[1] = fav2;
 	if(fav3) favsList[2] = fav3;
-	setConfig('favsList',JSON.stringify(favList));
+	setConfig('favsList',JSON.stringify(favsList));
 	for (i=0;i<favsList.length;i++){
 		addFav(favsList[i]);
 	}
