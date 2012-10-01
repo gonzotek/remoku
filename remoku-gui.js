@@ -1349,6 +1349,35 @@ function setupFavs(){
 	if (favsList.length>0)document.getElementById('fav-' + favsList[0]).src = "http://" + rokuAddress + ":8060/query/icon/" + favsList[0];
 }
 
+function addFav(){
+//console.log('helloe');
+    var li = document.createElement('li');
+    var appidinput = document.createElement('input');
+    appidinput.type = 'text';
+    li.appendChild(appidinput);
+    
+            var removeButton = document.createElement('button');
+    removeButton.innerHTML = "-";
+    removeButton.onclick = removeCommand;
+    li.appendChild(removeButton);
+
+    var upButton = document.createElement('button');
+    upButton.innerHTML = "&#9651;";
+    upButton.onclick = moveUp;
+    li.appendChild(upButton);
+
+
+    var downButton = document.createElement('button');
+    downButton.innerHTML = "&#9661;";
+    downButton.onclick = moveDown;
+    li.appendChild(downButton);
+
+    
+    $('favsUI').appendChild(li);
+    
+}
+
+
 function onUpdateReady() {
   dbg('found new version!');
 }
