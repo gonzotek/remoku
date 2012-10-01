@@ -1410,7 +1410,7 @@ function addFav(fav){
 //console.log('helloe');
     var li = document.createElement('li');
     var appidlabel = document.createElement('label');
-    appidlabel.innerHTML = "App ID:";
+    appidlabel.innerHTML = "Channel ID:";
     li.appendChild(appidlabel);
     var appidinput = document.createElement('input');
     appidinput.type = 'text';
