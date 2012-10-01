@@ -398,7 +398,7 @@ margin:0;
 color:white;
 }
 
-#favsUI{list-style-type:none;}
+#favsUI{list-style-type:none;margin:0;padding:0}
 #favsUI li input[type="text"]{width:60px;}
 
 #favsContainer{
