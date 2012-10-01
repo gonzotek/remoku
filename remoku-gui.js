@@ -1334,7 +1334,8 @@ function loadNextFav() {
 
 function launchFav() {
     //fav = 
-    dbg(this.id);
+    dbg(this.id.substring(3));
+    
 }
 
 function setupFavs(){
