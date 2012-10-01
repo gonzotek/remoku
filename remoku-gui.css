@@ -407,6 +407,14 @@ color:white;
 	margin-bottom:12px;
 	padding-bottom:12px;
 }
+
+#favsContainer:after{
+content:".";
+display:block;
+clear:both;
+visibility:hidden;
+}
+
 #favsContainer img{
 width: 90px;
 margin-left:12px;
