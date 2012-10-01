@@ -1389,7 +1389,7 @@ function addFav(){
     var li = document.createElement('li');
     var appidinput = document.createElement('input');
     appidinput.type = 'text';
-    appidinput.onblur = textModeOn;
+    appidinput.onblur = function(){textModeOn();saveFavs();};
     appidinput.onfocus = textModeOff;
     li.appendChild(appidinput);
     
@@ -1411,7 +1411,7 @@ function addFav(){
 
     
     $('favsUI').appendChild(li);
-    saveFavs();
+    //saveFavs();
 }
 
 
