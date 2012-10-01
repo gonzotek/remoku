@@ -1335,7 +1335,7 @@ function loadNextFav() {
 function launchFav() {
     //fav = 
     dbg(this.id.substring(4));
-    rokuLaunch(this.id.substring(4));
+    rokulaunch(this.id.substring(4));
 }
 
 function setupFavs(){
