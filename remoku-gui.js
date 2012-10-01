@@ -1352,7 +1352,7 @@ function setupFavs(){
 
 function saveFavs(){
 	var favsList = [];
-	var favs = $('macroui').getElementsByTagName('li');
+	var favs = $('favsUI').getElementsByTagName('li');
 		for (i = 0; i < favs.length; i++){
 			favsList[i] = favs[i].getElementsByTagName('input')[0].value;
 		}
