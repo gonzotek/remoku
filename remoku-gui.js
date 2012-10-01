@@ -1308,6 +1308,7 @@ function removeCommand() {
     this.parentNode.parentNode.removeChild(this.parentNode);
 }
 
+
 function moveUp() {
     //if this is not the first item in the list
     if (this.parentNode != this.parentNode.parentNode.firstChild) {
@@ -1349,16 +1350,23 @@ function setupFavs(){
 	if (favsList.length>0)document.getElementById('fav-' + favsList[0]).src = "http://" + rokuAddress + ":8060/query/icon/" + favsList[0];
 }
 
+function removeFav() {
+    this.parentNode.parentNode.removeChild(this.parentNode);
+}
+
+
 function addFav(){
 //console.log('helloe');
     var li = document.createElement('li');
     var appidinput = document.createElement('input');
     appidinput.type = 'text';
+    appidinput.onblur = textModeOn;
+    appidinput.onfocus = textModeOff;
     li.appendChild(appidinput);
     
-            var removeButton = document.createElement('button');
+    var removeButton = document.createElement('button');
     removeButton.innerHTML = "-";
-    removeButton.onclick = removeCommand;
+    removeButton.onclick = removeFav;
     li.appendChild(removeButton);
 
     var upButton = document.createElement('button');
