@@ -1339,6 +1339,28 @@ function launchFav() {
 }
 
 function setupFavs(){
+	showFavoritesChkbx = $("showFaves");
+	showFavs = getConfig('showFavs')=='true' ? 'true' : 'false';
+	setConfig('showFavs',showFavs);
+	if(showFavs=='true'){
+		showFavoritesChkbx.checked=true;
+		$('favsContainer').setAttribute('class','');
+	} else {
+		showFavoritesChkbx.checked=false;
+		$('favsContainer').setAttribute('class','hidden');
+	}
+	showFavoritesChkbx.onclick = function(){
+		if(showFavoritesChkbx.checked){
+				setConfig('showFavs','true');
+				$('favsContainer').setAttribute('class','');
+			} else {
+				setConfig('showFavs','false');
+				$('favsContainer').setAttribute('class','hidden');
+			}
+		};
+
+	
+	
 	var favsList = getConfig('favsList')?JSON.parse(getConfig('favsList')):["12","28","2016"];
 	var fav1 = getConfig('fav1')?getConfig('fav1'):null;
 	var fav2 = getConfig('fav2')?getConfig('fav2'):null;
