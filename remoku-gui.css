@@ -403,7 +403,7 @@ color:white;
 #favsUI li input[type="text"]{width:60px;}
 
 #favsContainer{
-	margin-top:10px;
+	margin-top:5px;
 	margin-bottom:0px;
 }
 
@@ -417,7 +417,7 @@ visibility:hidden;
 #favsContainer img{
 width: 90px;
 margin-left:12px;
-margin-bottom:12px;
+margin-bottom:5px;
 float: left;
 cursor: pointer;
 }
