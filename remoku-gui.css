@@ -257,13 +257,18 @@ button{
 .maddress{
 	width:115px;
 	height:28px;
-	margin-bottom:10px;
 	}
 #manualrokus{
 	width:115px;
 	height:28px;
 }
 	
+#addroku{
+	width:25px;
+}
+#removeroku{
+	width:25px;
+}
 .nav{
 	cursor:pointer;
 		opacity:0.5;
