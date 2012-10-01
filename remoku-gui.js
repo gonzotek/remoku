@@ -1338,6 +1338,13 @@ function launchFav() {
 
 function setupFavs(){
 	var favsList = getConfig('favsList')?JSON.parse(getConfig('favsList')):["12","28","2016"];
+	var fav1 = getConfig('fav1')?getConfig('fav1'):null;
+	var fav2 = getConfig('fav2')?getConfig('fav2'):null;
+	var fav3 = getConfig('fav3')?getConfig('fav3'):null;
+	if(fav1) favsList[0] = fav1;
+	if(fav2) favsList[1] = fav2;
+	if(fav3) favsList[2] = fav3;
+
 	document.getElementById("favsContainer").innerHTML = "";
 	for (var i = 0;i<favsList.length;i++){
 	    var favImg = document.createElement("img");
