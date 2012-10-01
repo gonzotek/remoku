@@ -1324,6 +1324,7 @@ function moveDown() {
 }
 
 function loadNextFav() {
+	var favsList = getConfig('favsList')?JSON.parse(getConfig('favsList')):["12","28","2016"];
     for (var i = 0; i<favsList.length-1;i++){
         if (this.id==='fav-'+favsList[i]) {
             document.getElementById('fav-' + favsList[i+1]).src = "http://" + rokuAddress + ":8060/query/icon/" + favsList[i+1];
