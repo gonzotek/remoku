@@ -1371,6 +1371,9 @@ function saveFavs(){
 			if(favs[i].getElementsByTagName('input')[0].value!=="") favsList.push(favs[i].getElementsByTagName('input')[0].value);
 		}
 	setConfig('favsList', JSON.stringify(favsList) );
+	if (getConfig('fav1'))setConfig('fav1',favsList[0]);
+	if (getConfig('fav2'))setConfig('fav2',favsList[1]);
+	if (getConfig('fav4'))setConfig('fav3',favsList[2]);
 	setupFavs();
 }
 
