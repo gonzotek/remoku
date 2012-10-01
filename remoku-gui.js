@@ -1779,6 +1779,7 @@ window.onload = function(){
 	
   //setupFavorites();	
   $('addFav').onclick = function(){addFav(null);};
+  loadFavs();
 	if(apps)_rmAppsCB(apps);
 	
 	//Background
