@@ -1340,7 +1340,6 @@ function setupFavs(){
 	document.getElementById("favsContainer").innerHTML = "";
 	for (var i = 0;i<favsList.length;i++){
 	    var favImg = document.createElement("img");
-	    //favImg.setAttribute('class','favicons');
 	    favImg.setAttribute('id','fav-' + favsList[i]);
 	    favImg.onload = loadNextFav;
 	    favImg.onerror = loadNextFav;
