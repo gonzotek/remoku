@@ -1335,6 +1335,9 @@ function loadNextFav() {
 function launchFav() {
     
 }
+function loadFavs(){
+	
+	}
 
 function setupFavs(){
 	var favsList = getConfig('favsList')?JSON.parse(getConfig('favsList')):["12","28","2016"];
@@ -1354,7 +1357,7 @@ function saveFavs(){
 	var favsList = [];
 	var favs = $('favsUI').getElementsByTagName('li');
 		for (i = 0; i < favs.length; i++){
-			if(favs[i].getElementsByTagName('input')[0].value!==null) favsList[i] = favs[i].getElementsByTagName('input')[0].value;
+			if(favs[i].getElementsByTagName('input')[0].value!==null) favsList.push([i].getElementsByTagName('input')[0].value);
 		}
 	setConfig('favsList', JSON.stringify(favsList) );
 	setupFavs();
