@@ -254,6 +254,11 @@ button{
 	width:40px;
 	height:28px;
 	}
+#scanforroku{
+	font-weight:bold;
+	padding:10px;
+	height:45px;
+	}
 .maddress{
 	width:115px;
 	height:28px;
