@@ -260,9 +260,10 @@ button{
 	height:45px;
 	}
 .maddress{
-	width:115px;
-	padding:0;
+	width:113px;
+	padding-left:4px;
 	margin:0;
+	border:1px solid;
 	height:28px;
 	}
 #manualrokus{
