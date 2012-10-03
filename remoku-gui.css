@@ -441,7 +441,7 @@ color:white;
 }
 #manualSet{
 	text-align:right;
-	padding-right:20px;
+	padding-right:0px;
 }
 #favsUI{list-style-type:none;margin:0;padding:0}
 #favsUI li{margin:0;padding:0}
