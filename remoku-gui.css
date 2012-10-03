@@ -211,6 +211,7 @@ button{
 	margin:5px;
 	-webkit-appearance:none;
 	-moz-appearance:window;
+	color:transparent;
 	background: url(images/arrow_open.png) no-repeat left;
 	background-color: #2E2E2E;
 	padding-left:15px;
