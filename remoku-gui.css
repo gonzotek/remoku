@@ -450,6 +450,7 @@ color:white;
 #favsUI{text-align:right; list-style-type:none;margin:0;padding-right:20px;}
 #favsUI li{margin:0;padding:0}
 #favsUI li input[type="text"]{width:60px;}
+#favsUI li button{margin-left:1px;}
 
 #favsContainer{
 	margin-top:5px;
