@@ -1,7 +1,7 @@
 CACHE MANIFEST
 #Remoku Web App
 #Dev Channel
-#Build Date: October 2, 2012 9:00:00 PM
+#Build Date: October 2, 2012 9:03:16 PM
 #
 NETWORK:
 *
@@ -25,7 +25,7 @@ cp/_patches.png
 cp/colorPicker.js
 images/about.png
 images/application_view_tile.png
-images/arrow_open.gif
+images/arrow_open.png
 images/back.png
 images/bottom_edge.png
 images/bottom_left_corner.png
