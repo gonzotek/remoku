@@ -1345,17 +1345,22 @@ function setupFavs(){
 	if(showFavs=='true'){
 		showFavoritesChkbx.checked=true;
 		$('favsContainer').setAttribute('class','');
+		$('favsSet').setAttribute('class','');
+		
 	} else {
 		showFavoritesChkbx.checked=false;
 		$('favsContainer').setAttribute('class','hidden');
+		$('favsSet').setAttribute('class','hidden');
 	}
 	showFavoritesChkbx.onclick = function(){
 		if(showFavoritesChkbx.checked){
 				setConfig('showFavs','true');
 				$('favsContainer').setAttribute('class','');
+				$('favsSet').setAttribute('class','');
 			} else {
 				setConfig('showFavs','false');
 				$('favsContainer').setAttribute('class','hidden');
+				$('favsSet').setAttribute('class','hidden');
 			}
 		};
 
