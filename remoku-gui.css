@@ -432,6 +432,9 @@ color:white;
 	text-align:right;
 	padding-right:30px;
 	}
+#colorSet input{
+	margin:5px;
+	}
 
 #favsUI{list-style-type:none;margin:0;padding:0}
 #favsUI li{margin:0;padding:0}
