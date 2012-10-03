@@ -443,7 +443,7 @@ color:white;
 	text-align:right;
 	padding-right:0px;
 }
-#favsUI{text-align:right; list-style-type:none;margin:0;padding:0}
+#favsUI{text-align:right; list-style-type:none;margin:0;padding:20px;}
 #favsUI li{margin:0;padding:0}
 #favsUI li input[type="text"]{width:60px;}
 
