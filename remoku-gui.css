@@ -210,11 +210,11 @@ button{
 	font-size:1.25em;
 	margin:5px;
 	-webkit-appearance:none;
-	-moz-appearance:none;
+	-moz-appearance:window;
 	background: url(images/arrow_open.png) no-repeat left;
 	background-color: #2E2E2E;
-	padding-left:5px;
-	width:180px;
+	padding-left:15px;
+	width:200px;
 	}
 
 #searchline{
