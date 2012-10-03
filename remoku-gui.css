@@ -208,7 +208,7 @@ button{
 #rokus{
 	text-align:center;
 	font-size:1.25em;
-	margin:0px;
+	margin:5px;
 	-webkit-appearance:none;
 	-moz-appearance:none;
 	background: url(images/arrow_open.gif) no-repeat right;
