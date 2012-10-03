@@ -28,7 +28,6 @@ body{
 	margin:0;
 	font-family:arial, sans-serif;
 	/*height:500px;*/
-	border-color:#888888;
 }
 label{
 	/*background-color: #101010;*/
@@ -41,6 +40,7 @@ input{
 	background-color: #101010;
 	color: #E8E8E8;
 	height:20px;
+	border-color:#888888;
 }
 
 select{
