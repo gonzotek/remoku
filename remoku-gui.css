@@ -209,12 +209,13 @@ button{
 	text-align:left;
 	font-size:1.25em;
 	margin-bottom:5px;
+	
 	-webkit-appearance:none;
 	-moz-appearance:window;
 	background: url(images/arrow_open.png) no-repeat left;
 	background-color: #2E2E2E;
 	padding-left:15px;
-	width:200px;
+	width:210px;
 	}
 
 #searchline{
