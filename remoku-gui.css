@@ -208,7 +208,7 @@ button{
 #rokus{
 	text-align:left;
 	font-size:1.25em;
-	margin:5px;
+	margin-bottom:5px;
 	-webkit-appearance:none;
 	-moz-appearance:window;
 	background: url(images/arrow_open.png) no-repeat left;
@@ -385,6 +385,7 @@ margin:0;
 	
 #rokuname{
 	width:90px;
+	margin:0px;
 }
 .bold{font-weight:bold;}
 
