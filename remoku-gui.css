@@ -451,7 +451,7 @@ color:white;
 #favsUI li{margin:0;padding:0}
 #favsUI li input[type="text"]{width:60px;margin-right:10px;}
 #favsUI li button{margin-left:2px;}
-#favsUI li .rmvbtn{margin-right:10px;margin-left:10px;}
+#favsUI li .rmvBtn{margin-right:10px;margin-left:10px;}
 
 
 #favsContainer{
