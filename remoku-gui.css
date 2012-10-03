@@ -41,6 +41,10 @@ input{
 	color: #E8E8E8;
 	height:20px;
 	border: 1px solid #888888;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+
 }
 
 select{
