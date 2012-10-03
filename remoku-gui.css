@@ -211,7 +211,7 @@ button{
 	margin:5px;
 	-webkit-appearance:none;
 	-moz-appearance:none;
-	background: url(images/arrow_open.gif) no-repeat 0 5;
+	background: url(images/arrow_open.gif) no-repeat left;
 	background-color: #2E2E2E;
 	padding-left:25px;
 	width:180px;
