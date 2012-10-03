@@ -1450,11 +1450,6 @@ function addFav(fav){
     appidinput.onblur = function(){textModeOn();saveFavs();};
     appidinput.onfocus = textModeOff;
     li.appendChild(appidinput);
-    
-    var removeButton = document.createElement('button');
-    removeButton.innerHTML = "-";
-    removeButton.onclick = removeFav;
-    li.appendChild(removeButton);
 
     var upButton = document.createElement('button');
     upButton.innerHTML = "&#9651;";
@@ -1466,6 +1461,12 @@ function addFav(fav){
     downButton.innerHTML = "&#9661;";
     downButton.onclick = moveFavDown;
     li.appendChild(downButton);
+    
+    var removeButton = document.createElement('button');
+    removeButton.innerHTML = "-";
+    removeButton.onclick = removeFav;
+    removeButton.class = "rmvBtn";
+    li.appendChild(removeButton);
 
     
     $('favsUI').appendChild(li);
