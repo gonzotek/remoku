@@ -1898,7 +1898,7 @@ window.onload = function(){
 	//input select option button
     fgcolorInput = $("fgcolor");
     fgcolor = getConfig('fgColor') ? getConfig('fgColor') : "101010";    
-    fgElements = ['input','textarea','select','option','button','legend','.selected','#macroArea','#rokus','#settingstextarea'];
+    fgElements = ['input','textarea','select','option','button','.selected','#macroArea','#rokus','#settingstextarea'];
     txtcolor = Brightness( fgcolor ) < 130 ? 'FFFFFF' : '000000';
     for (var i = 0; i<fgElements.length;i++) {
 	    changeBackgroundColor(fgElements[i], '#' + fgcolor);
