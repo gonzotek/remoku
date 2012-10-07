@@ -36,6 +36,8 @@ label{
 fieldset{
 	text-align:left;
 	}
+legend{	color:#E8E8E8;
+}
 input{
 	background-color: #101010;
 	color: #E8E8E8;
