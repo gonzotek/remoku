@@ -200,7 +200,7 @@
 <div id="config" class="hidden">
 <div id="firstsetup" class="hidden">
 	<fieldset>
-		<legend class="bgolor">Remoku: Getting Started</legend>
+		<legend class="bgcolor">Remoku: Getting Started</legend>
 		Remoku is a web app for Roku Remote Control.<br><br>
 			To get started, you can search for Rokus if you enter your network address range* below, 
 			then click the Scan button to look for Roku devices. Or, you can manually add the address of a Roku.<br><br>
@@ -213,12 +213,12 @@
 </div>
 
 <fieldset id="controlcontainer">
-	<legend class="bgolor">Control This Roku</legend>
+	<legend class="bgcolor">Control This Roku</legend>
 		<select id="rokus"></select><br>
 		<label>Edit Roku Name </label><input class="nameinput" id="rokuname" value="Remoku" />
 </fieldset>
 <fieldset>
-	<legend class="bgolor">Find My Roku</legend>
+	<legend class="bgcolor">Find My Roku</legend>
 	<div style="text-align:right; margin-bottom:10px;"><a href="http://help.remoku.tv/#TOC-Search-Help" target="_blank" class="bgcolor" >Search Help</a></div>
 	<div id="networkSet">
 	<label>My Network </label>
@@ -249,7 +249,7 @@
 	</div>
 	<div id="scanresults" class="hidden"></div>
 	<fieldset>
-		<legend class="bgolor">Manual Setup</legend>
+		<legend class="bgcolor">Manual Setup</legend>
 		<div id="manualSet">
 		<label>Add </label><input class="maddress" id="maddress" value="192.168.1.3" /><button id="addroku">+</button><br>
 		<label>Remove </label><select id="manualrokus" disabled></select><button id="removeroku">&minus;</button>
@@ -259,14 +259,14 @@
 </fieldset>
 <div id="advancedsettings">
 <fieldset>
-	<legend class="bgolor">Colors</legend>
+	<legend class="bgcolor">Colors</legend>
 	<div id="colorSet">
 	<label>Background Color #</label><input class="tweakinput" id="bgcolor" value="101010"  onclick="colorPicker(event,'B',1, 1)"/><br>
 	<label>Foreground Color #</label><input class="tweakinput" id="fgcolor" value="101010"  onclick="colorPicker(event,'B',1, 1)"/><br>
 	</div>
 </fieldset>
 <fieldset>
-	<legend class="bgolor">
+	<legend class="bgcolor">
 		<input type="checkbox" name="showFaves" id="showFaves"/>
 		<label for="showFaves">Show Favorites</label>
 	</legend>
@@ -283,7 +283,7 @@
 	
 </fieldset -->
 <fieldset>
-<legend class="bgolor">Profile Management</legend>
+<legend class="bgcolor">Profile Management</legend>
 	<button id="exportsettings">Export Settings</button><button id="importsettings">Import Settings</button><br>
 	<textarea id="settingstextarea"></textarea><br>
 	Use this field to copy and paste settings for export and import.<br><br>
@@ -298,16 +298,16 @@
 </div>
 </div>
 <div id="about" class="hidden">
-	<fieldset><legend class="bgolor">Remoku</legend>
+	<fieldset><legend class="bgcolor">Remoku</legend>
   A web app for Roku remote control.<br>
   <div id="chromeInstall"></div>
 	<div class="smalltext">Get help with using Remoku at <a href="http://help.remoku.tv/" target="_blank" class="bgcolor" id="helplink">help.remoku.tv</a></div>
 	</fieldset>
-	<fieldset><legend class="bgolor">Version</legend>
+	<fieldset><legend class="bgcolor">Version</legend>
 	<div id="ver" class="smalltext"></div>
 	</fieldset>
 	<fieldset>
-		<legend class="bgolor">Debug Output</legend>
+		<legend class="bgcolor">Debug Output</legend>
 		<div id="dbgOut" class="smalltext"></div>
 	</fieldset>
 </div>
