@@ -850,6 +850,7 @@ function rokuText(){
 		}
 		rokutext.submit();
 		$("textentry").value = text;
+		$("textentry").focus();
 		}
 	}	
 	
