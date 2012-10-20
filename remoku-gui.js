@@ -810,10 +810,9 @@ function rokuDeleteOrBlur(evt){
 		break;
 		default:
 			rokuText();
-			
 		break;
 	}
-	this.focus();	
+	//this./();	
 }
 
 function delayNextQuery(){
@@ -852,7 +851,7 @@ function rokuText(){
 		rokutext.submit();
 		$("textentry").value = text;
 		}
-		$("textentry").focus();
+		//$("textentry").focus();
 	}	
 	
 function delayLoadIcons(){
