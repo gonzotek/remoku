@@ -810,9 +810,10 @@ function rokuDeleteOrBlur(evt){
 		break;
 		default:
 			rokuText();
-			this.focus();
+			
 		break;
-	}	
+	}
+	this.focus();	
 }
 
 function delayNextQuery(){
