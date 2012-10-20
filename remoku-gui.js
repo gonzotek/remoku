@@ -854,7 +854,9 @@ function rokuText(){
 		if (!firstLoad){
 			$("textentry").focus();
 			firstLoad = false;
-		}
+		}else{
+			firstLoad = false;
+			}
 	}	
 	
 function delayLoadIcons(){
