@@ -851,7 +851,10 @@ function rokuText(){
 		rokutext.submit();
 		$("textentry").value = text;
 		}
-		$("textentry").focus();
+		if (!firstLoad){
+			$("textentry").focus();
+			firstLoad = false;
+		}
 	}	
 	
 function delayLoadIcons(){
@@ -1292,6 +1295,8 @@ var bgcolorInput;
 var bgcolor;
 var fgcolor;
 var fgElements = new Array();
+
+var firstLoad = true;
 
 function style(obj, thestyle){
     obj.setAttribute('style',thestyle);
