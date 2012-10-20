@@ -1969,13 +1969,14 @@ window.onload = function(){
 		document.querySelector("meta[name=viewport]").content="width=320.1, initial-scale=1.0, maximum-scale=1.0, user-scalable=no";
 	}
 	setupFavs();
-	textEntryInput.blur();
+	
 };
 
 //Hide iPhone URL bar
 if(window.addEventListener) window.addEventListener("load", function(){setTimeout(hideURLbar, 100);}, false);
 function hideURLbar(){
     window.scrollTo(0, 1);
+    $("textentry").blur();
 	}
 
 //END INITIALIZATION
