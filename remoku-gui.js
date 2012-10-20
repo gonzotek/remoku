@@ -1969,6 +1969,7 @@ window.onload = function(){
 		document.querySelector("meta[name=viewport]").content="width=320.1, initial-scale=1.0, maximum-scale=1.0, user-scalable=no";
 	}
 	setupFavs();
+	textEntryInput.blur();
 };
 
 //Hide iPhone URL bar
