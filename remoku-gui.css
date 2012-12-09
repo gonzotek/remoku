@@ -130,8 +130,6 @@ button{
 
     #firstsetup.fade-out
     {
-        visibility:hidden;
-        display:none;
         opacity:0;
     }
     #firstsetup.fade-in
