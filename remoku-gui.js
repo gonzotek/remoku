@@ -396,6 +396,7 @@ function updateSelect() {
 					$('favsContainer').setAttribute('class','visible');
 					$('favsSet').setAttribute('class','visible');
 					notSetupYet = false;
+					setupFavs();
 				}
 			}
 			var rokuSelected = rokuAddress==rokus[i] ? true : false;
