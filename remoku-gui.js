@@ -614,8 +614,8 @@ function firstSetup(){
 		screenArray[i].setAttribute("class", "hidden");
 		}
 	remoteScreen.setAttribute("class", "visible");
-	firstSetupScreen.setAttribute("class", "zeroopacity hidden");
-	firstSetupScreen.setAttribute("class", "fadeintovisible");
+	firstSetupScreen.setAttribute("class", "fade-in");
+	//firstSetupScreen.setAttribute("class", "fadeintovisible");
 	configScreen.setAttribute("class", "zeroopacity hidden");
 	configScreen.setAttribute("class", "fadeintovisible");
 	// configScreen.setAttribute("class", "visible");

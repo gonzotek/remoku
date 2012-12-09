@@ -127,20 +127,16 @@ button{
 	margin-top:400px;
 	 }
 
-    /* Style for image */
-    #myImg
-    {
-        -webkit-transition: opacity 0.5s ease-in;
-        -moz-transition: opacity 0.5s ease-in;
-        -o-transition: opacity 0.5s ease-in;
-    }
     #firstsetup.fade-out
     {
-        opacity:0;            
+        opacity:0;
+        visibility:hidden;
+        display:none;
     }
     #firstsetup.fade-in
     {
-        opacity:1;           
+        opacity:1;
+		display:block;
     }
 
 #remotespopup{
