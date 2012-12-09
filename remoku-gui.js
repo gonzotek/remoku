@@ -1397,7 +1397,7 @@ function setupFavs(){
 	    //favLink.appendChild(favImg);
 	    document.getElementById("favsContainer").appendChild(favImg);
 	}
-	if (favsList.length>0)document.getElementById('fav-' + favsList[0]).src = "http://" + rokuAddress + ":8060/query/icon/" + favsList[0];
+	if (favsList.length>0 && rokuAddress.length>0)document.getElementById('fav-' + favsList[0]).src = "http://" + rokuAddress + ":8060/query/icon/" + favsList[0];
 }
 
 function loadFavs(){
