@@ -322,7 +322,28 @@ button{
 	visibility:visible;
 	display:block;
 	}
-	
+.zeroopacity{opacity:0;}
+.fadeintovisible{
+	opacity: 1;
+	/* Firefox */
+	-moz-transition-property: opacity;
+	-moz-transition-duration: 2s;
+	-moz-transition-delay: 1s;
+	/* WebKit */
+	-webkit-transition-property: opacity;
+	-webkit-transition-duration: 2s;
+	-webkit-transition-delay: 1s;
+	/* Opera */
+	-o-transition-property: opacity;
+	-o-transition-duration: 2s;
+	-o-transition-delay: 1s;
+	/* Standard */
+	transition-property: opacity;
+	transition-duration: 2s;
+	transition-delay: 1s;
+	visibility:visible;
+	display:block;
+	}
 img{
 	padding:0px;
 	margin:0px;
