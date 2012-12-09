@@ -391,7 +391,7 @@ function updateSelect() {
 					firstSetupScreen.setAttribute("class", "hidden");
 					configScreen.setAttribute("class", "hidden");
 					showFavs='true';
-					getConfig('showFavs', showFavs);
+					setConfig('showFavs', showFavs);
 					showFavoritesChkbx.checked=true;
 					$('favsContainer').setAttribute('class','');
 					$('favsSet').setAttribute('class','');
