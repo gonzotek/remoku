@@ -1694,28 +1694,17 @@ window.onload = function(){
 	screenArray = [remoteScreen,goodiesScreen,appsScreen,configScreen,aboutScreen];
 	
 	navRemote = $("navremote");
-	navRemoteImg = $("navremoteimg");
 	navGoodies = $("navgoodies");
 	navApps   = $("navapps");
 	navConfig = $("navconfig");
 	navAbout = $("navabout");
     navArray = [navRemote,navGoodies,navApps,navConfig,navAbout];
     
-// 	if(is_touch_device()){
-// 		dbg("Touch Device Detected");
-// 		navRemoteImg.ontouchstart = touchshowRemotes; 
-// 		navRemoteImg.ontouchend = canceltouchshowRemotes;
-// 	} else {
-// 		navRemote.onclick = activateButton;
-// 		navRemote.onmousedown = rmousedownRemoteBtn;
-// 		navRemote.onmouseup = function(){return false;};
-// 		navRemote.oncontextmenu = function(){return false;};
-// 	}	
-	navRemote.onclick = activateButton;
-	navApps.onclick = activateButton;
-	navConfig.onclick = activateButton;
-	navGoodies.onclick = activateButton;
-	navAbout.onclick = activateButton;
+	navRemote.onclick = fucntion(){activateButton();};
+	navApps.onclick = fucntion(){activateButton();};
+	navConfig.onclick = fucntion(){activateButton();};
+	navGoodies.onclick = fucntion(){activateButton();};
+	navAbout.onclick = fucntion(){activateButton();};
 	
 	sendTextBtn = $("sendtext");
 	sendTextBtn.onclick = rokuText;
