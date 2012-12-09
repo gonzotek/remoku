@@ -1381,8 +1381,6 @@ function setupFavs(){
 			}
 		};
 
-	
-	
 	var favsList = getConfig('favsList')?JSON.parse(getConfig('favsList')):["12","28","2016"];
 	var fav1 = getConfig('fav1')?getConfig('fav1'):null;
 	var fav2 = getConfig('fav2')?getConfig('fav2'):null;
