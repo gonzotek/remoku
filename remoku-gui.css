@@ -322,7 +322,10 @@ button{
 	visibility:visible;
 	display:block;
 	}
-.zeroopacity{opacity:0;}
+.zeroopacity{	visibility:visible;
+	display:block;
+opacity:0;
+}
 .fadeintovisible{
 	opacity: 1;
 	/* Firefox */
