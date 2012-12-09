@@ -387,7 +387,6 @@ function updateSelect() {
 				setConfig('rokuAddress', rokuAddress);
 				//check firstsetup
 				if(notSetupYet){
-					setupFavs();
 					$('advancedsettings').setAttribute("class", "visible");
 					firstSetupScreen.setAttribute("class", "hidden");
 					configScreen.setAttribute("class", "hidden");
@@ -422,7 +421,7 @@ function updateSelect() {
 	if(remotesPopup!==null)remotesPopup.appendChild(remoteUl);
 	lowerRemotesPopup.appendChild(remoteUl);
 	if(rokuAddress===undefined || rokuAddress==="")rokuAddress=rokus[0];
-	//loadFavs();
+	setupFavs();
 }
 
 function addRoku(){
