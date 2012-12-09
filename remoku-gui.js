@@ -390,6 +390,11 @@ function updateSelect() {
 					$('advancedsettings').setAttribute("class", "visible");
 					firstSetupScreen.setAttribute("class", "hidden");
 					configScreen.setAttribute("class", "hidden");
+					showFavs='true';
+					getConfig('showFavs', showFavs);
+					showFavoritesChkbx.checked=true;
+					$('favsContainer').setAttribute('class','');
+					$('favsSet').setAttribute('class','');
 					notSetupYet = false;
 				}
 			}
