@@ -617,7 +617,7 @@ function firstSetup(){
 	//firstSetupScreen.setAttribute("class", "fadeintovisible");
 	//configScreen.setAttribute("class", "zeroopacity hidden");
 	configScreen.setAttribute("class", "visible"); 
-	firstSetupScreen.setAttribute("class", "fade-in");
+	setTimeout(function(){firstSetupScreen.setAttribute("class", "fade-in");},1000,true);
 	// configScreen.setAttribute("class", "visible");
 	$('advancedsettings').setAttribute("class", "hidden");
 	window.scrollTo(1,400);
