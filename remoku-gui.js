@@ -616,8 +616,8 @@ function firstSetup(){
 	remoteScreen.setAttribute("class", "visible");
 	firstSetupScreen.setAttribute("class", "fade-in");
 	//firstSetupScreen.setAttribute("class", "fadeintovisible");
-	configScreen.setAttribute("class", "zeroopacity hidden");
-	configScreen.setAttribute("class", "fadeintovisible");
+	//configScreen.setAttribute("class", "zeroopacity hidden");
+	configScreen.setAttribute("class", "fade-in");
 	// configScreen.setAttribute("class", "visible");
 	$('advancedsettings').setAttribute("class", "hidden");
 	window.scrollTo(1,400);
