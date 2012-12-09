@@ -618,7 +618,7 @@ function firstSetup(){
 	firstSetupScreen.setAttribute("class", "fadeintovisible");
 	configScreen.setAttribute("class", "zeroopacity hidden");
 	configScreen.setAttribute("class", "fadeintovisible");
-	//configScreen.setAttribute("class", "visible");
+	// configScreen.setAttribute("class", "visible");
 	$('advancedsettings').setAttribute("class", "hidden");
 	window.scrollTo(1,400);
 	notSetupYet = true;
