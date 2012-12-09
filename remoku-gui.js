@@ -1700,11 +1700,11 @@ window.onload = function(){
 	navAbout = $("navabout");
     navArray = [navRemote,navGoodies,navApps,navConfig,navAbout];
     
-	navRemote.onclick = function(){activateButton(this.id);};
-	navApps.onclick = function(){activateButton(this.id);};
-	navConfig.onclick = function(){activateButton(this.id);};
-	navGoodies.onclick = function(){activateButton(this.id);};
-	navAbout.onclick = function(){activateButton(this.id);};
+	navRemote.onclick = function(){textModeOn(); activateButton(this.id);};
+	navApps.onclick = function(){textModeOff(); activateButton(this.id);};
+	navConfig.onclick = function(){textModeOff(); activateButton(this.id);};
+	navGoodies.onclick = function(){textModeOff(); activateButton(this.id);};
+	navAbout.onclick = function(){textModeOff(); activateButton(this.id);};
 	
 	sendTextBtn = $("sendtext");
 	sendTextBtn.onclick = rokuText;
