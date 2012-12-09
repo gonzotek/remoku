@@ -993,8 +993,8 @@ function rmousedownRemoteBtn(e){
 	}
 }
 
-function activateButton(e){
-	var activeBtn = this.id;
+function activateButton(btn){
+	var activeBtn = btn;
 	firstSetupScreen.setAttribute("class", "hidden");
 		for(i=0;i<navArray.length;i++){
 			if (activeBtn == navArray[i].id){
