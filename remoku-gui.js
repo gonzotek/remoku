@@ -387,6 +387,7 @@ function updateSelect() {
 				setConfig('rokuAddress', rokuAddress);
 				//check firstsetup
 				if(notSetupYet){
+					setupFavs();
 					$('advancedsettings').setAttribute("class", "visible");
 					firstSetupScreen.setAttribute("class", "hidden");
 					configScreen.setAttribute("class", "hidden");
