@@ -136,6 +136,7 @@ button{
     #firstsetup.fade-in
     {
         opacity:1;
+        visibility:visible;
 		display:block;
     }
 
