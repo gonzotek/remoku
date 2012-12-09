@@ -235,19 +235,22 @@ function setConfig(name, value){
 }
 
 function wipeConfig(){
-  for(var i = 0; i<remokuVarNames.length; i++){
-		setConfig(remokuVarNames[i], "");
-	}
-	try{
-		if (hasStorage && localStorage.clear) {
-			localStorage.clear();
-		} else {
-		  for(var i = 0; i<remokuVarNames.length; i++){
-				eraseCookie(remokuVarNames[i]);
-			}
+	if(window.confirm("Are you sure you want to wipe your settings and reload? You can cancel and export them first.")){
+	  for(var i = 0; i<remokuVarNames.length; i++){
+			setConfig(remokuVarNames[i], "");
 		}
-	} catch(e) {
-		dbg(e);	
+		try{
+			if (hasStorage && localStorage.clear) {
+				localStorage.clear();
+			} else {
+			  for(var i = 0; i<remokuVarNames.length; i++){
+					eraseCookie(remokuVarNames[i]);
+				}
+			}
+		} catch(e) {
+			dbg(e);	
+		}
+	    document.location.reload(true);
 	}
 }
 
