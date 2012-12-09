@@ -393,8 +393,8 @@ function updateSelect() {
 					showFavs='true';
 					setConfig('showFavs', showFavs);  
 					showFavoritesChkbx.checked=true;
-					$('favsContainer').setAttribute('class','');
-					$('favsSet').setAttribute('class','');
+					$('favsContainer').setAttribute('class','visible');
+					$('favsSet').setAttribute('class','visible');
 					notSetupYet = false;
 				}
 			}
