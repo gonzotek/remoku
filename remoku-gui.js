@@ -657,9 +657,9 @@ var actions = [];
 function rokuFrameLoad(){
 	if (actions.length>0){
 		action  = actions.shift();
+		dbg({actions:actions,action:action,param:param});
 		var rokupost = $('rokupost');
 		rokupost.setAttribute("action", "http://" + rokuAddress + ":8060/" + action.cmd + "/" + action.param);
-		dbg({actions:actions,action:action,param:param});
 		rokupost.submit();
 	}
 }
@@ -668,15 +668,16 @@ function rokupost(action, param){
 		firstSetup();
 	}
 	else {
-		if (actions.length<1){
-			actions.push({cmd:action,param:param});
+		actions.push({cmd:action,param:param});
+		if (actions.length<2){
+			action  = actions.shift();
 			var rokupost = $('rokupost');
 			rokupost.setAttribute("action", "http://" + rokuAddress + ":8060/" + action + "/" + param);
 			rokupost.submit();
 			dbg({actions:actions,action:action,param:param});
 			return false;
 		}else {
-			actions.push({cmd:action,param:param});
+			dbg('actions do not equal 1');
 			dbg({actions:actions,action:action,param:param});
 			return false;
 			}
@@ -1027,7 +1028,7 @@ function textModeOn() {keyboardMode=true; }
 
 function handleArrowKeyDown(evt) {
     evt = (evt) ? evt : ((window.event) ? event : null);
-    if (evt && keyboardMode &&  firstDown) {
+    if (evt && keyboardMode && firstDown) {
 	    firstDown = false;
         switch (evt.keyCode) {
             case 37:
@@ -1103,9 +1104,9 @@ function handleArrowKeyDown(evt) {
 }
 
 function handleArrowKeyUp(evt) {
-	firstDown = true;
     evt = (evt) ? evt : ((window.event) ? event : null);
     if (evt && keyboardMode) {
+	    firstDown = true;
         switch (evt.keyCode) {
             case 37:
                 //dbg("left");
