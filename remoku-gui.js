@@ -808,7 +808,7 @@ function rokuDeleteOrBlur(evt){
 	switch(evt.keyCode){
 		case 8:
 			rokupost("keypress","backspace");
-			$('textentry').focus();
+			
 			//rokupost ("keypress","LIT_%08");
 		break;
 		case 27:
@@ -824,7 +824,7 @@ function rokuDeleteOrBlur(evt){
 			}
 		break;
 		default:
-			rokuText();
+			rokuText(evt);
 		break;
 	}
 	//this./();	
@@ -833,8 +833,14 @@ function rokuDeleteOrBlur(evt){
 function delayNextQuery(){
 	setTimeout('rokuText()',200);
 	}
-	
-function rokuText(){
+
+function cancelBubble(e) {
+ var evt = e ? e:window.event;
+ if (evt.stopPropagation)    evt.stopPropagation();
+ if (evt.cancelBubble!=null) evt.cancelBubble = true;
+}
+
+function rokuText(evt){
 	var rokutext =  $('rokutext');
 	var text = $("textentry").value;
 	//dbg({rokuText:text});
@@ -872,6 +878,7 @@ function rokuText(){
 		}else{
 			firstLoad = false;
 			}
+			cancelBubble(evt);
 	}	
 	
 function delayLoadIcons(){
