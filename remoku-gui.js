@@ -808,7 +808,7 @@ function rokuDeleteOrBlur(evt){
 	switch(evt.keyCode){
 		case 8:
 			//rokupost("keypress","Backspace");
-			rokupost ("keypress","LIT_%08")
+			rokupost ("keypress","LIT_%08");
 		break;
 		case 27:
 			this.blur();
