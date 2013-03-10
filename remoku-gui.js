@@ -1938,7 +1938,7 @@ window.onload = function(){
 		
 	textEntryInput = $("textentry");
 	textEntryInput.value = "";
-	textEntryInput.onkeyup = function(){
+	textEntryInput.onkeyup = function(evt){
 		rokuDeleteOrBlur(evt);
 		cancelBubble(evt);
 		}
