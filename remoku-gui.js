@@ -824,7 +824,8 @@ function rokuDeleteOrBlur(evt){
 			}
 		break;
 		default:
-			rokuText(evt);
+			rokuText();
+			cancelBubble(evt);
 		break;
 	}
 	//this./();	
@@ -840,7 +841,7 @@ function cancelBubble(e) {
  if (evt.cancelBubble!=null) evt.cancelBubble = true;
 }
 
-function rokuText(evt){
+function rokuText(){
 	var rokutext =  $('rokutext');
 	var text = $("textentry").value;
 	//dbg({rokuText:text});
@@ -878,7 +879,6 @@ function rokuText(evt){
 		}else{
 			firstLoad = false;
 			}
-			cancelBubble(evt);
 	}	
 	
 function delayLoadIcons(){
