@@ -807,7 +807,8 @@ function rokuDeleteOrBlur(evt){
 	if (!evt)evt = window.event;//IE doesn't pass events as parameters like other browsers
 	switch(evt.keyCode){
 		case 8:
-			rokupost("keypress","Backspace");
+			//rokupost("keypress","Backspace");
+			rokupost ("keypress","LIT_%08")
 		break;
 		case 27:
 			this.blur();
