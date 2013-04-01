@@ -503,7 +503,7 @@ function loadedImage() {
 			timeouts = setTimeout('cancelImage('+ ipPos +');', 500);	
 		}
 		setConfig('scannedRokus', scannedRokus.join(","));
-		scanResults.innerHTML = "506 Scanning " + (254-ipCount) +  " addresses. " + scannedRokus.length + " Rokus found.";
+		scanResults.innerHTML = "Scanning " + (254-ipCount) +  " addresses. " + scannedRokus.length + " Rokus found.";
 		updateSelect();
 	}
 	if (scannedRokus.length>=rokuCount || ipCount>=254 || ipPos>=254) {
@@ -519,7 +519,7 @@ function loadedImage() {
 
 function imageError(){
 	ipCount++;
-	scanResults.innerHTML = "522 Scanning " + (254-ipCount) +  " addresses. " + scannedRokus.length + " Rokus found.";
+	scanResults.innerHTML = "Scanning " + (254-ipCount) +  " addresses. " + scannedRokus.length + " Rokus found.";
 	//dbg("ipCount: " + ipCount);
 	if(ipCount>=254){
 		scanButton.innerHTML="Scan";
@@ -549,9 +549,9 @@ function cancelImage(i) {
 	ipPos++;
 	//dbg('ipPos:'+ipPos);
 	if(scanning){
-		scanResults.innerHTML = "551 Scanning " + (254-ipCount) +  " addresses. " + scannedRokus.length + " Rokus found.";
+		scanResults.innerHTML = "Scanning " + (254-ipCount) +  " addresses. " + scannedRokus.length + " Rokus found.";
 	} else {
-		scanResults.innerHTML = "554 Done.";
+		scanResults.innerHTML = "Done scanning, found " + scannedRokus.length + " Rokus.  If not all of your Rokus have been found scan again, then look to <a href='http://help.remoku.tv/'>help.remoku.tv,</a> for more help.";
 	}
 	if(ipCount>=254){
 		scanButton.innerHTML="Scan";
@@ -577,7 +577,7 @@ function findRokus() {
 		setRokuCount();
 		this.innerHTML="Stop";
 		scanResults.setAttribute("class", "visible");
-		scanResults.innerHTML = "576 Scanning " + (254-ipCount) +  " addresses. " + scannedRokus.length + " Rokus found.";
+		scanResults.innerHTML = "Scanning " + (254-ipCount) +  " addresses. " + scannedRokus.length + " Rokus found.";
 		scanning = true;
 		for (i = 1; i < 255; i++) {
 			images[i-1] = new Image();
