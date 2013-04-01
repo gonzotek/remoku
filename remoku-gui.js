@@ -529,6 +529,7 @@ function imageError(){
 		
 		clearTimeout(timeouts);
 		stopFindRokus();
+		scanResults.innerHTML = "Found: " + scannedRokus.length;
 		if (scannedRokus.length<1)scanResults.innerHTML = "No Rokus Found. Check your network settings.";
 		if (scannedRokus.length<1)dbg("No Rokus Found. Check your network settings.");
 	} else if(ipPos<255) {
