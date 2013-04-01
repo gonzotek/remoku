@@ -116,7 +116,6 @@ function removeSelectOption(selectId, display) {
     }
 }
 
-
 function changeBackgroundColor(theSelector, parameter){
 		[].every.call( document.styleSheets, function ( sheet ) {
 			  rules = sheet.rules || sheet.cssRules || [];
@@ -129,6 +128,7 @@ function changeBackgroundColor(theSelector, parameter){
 		    });
 		});	
 }
+
 function changeTextColor(theSelector, parameter){
 		[].every.call( document.styleSheets, function ( sheet ) {
 			  rules = sheet.rules || sheet.cssRules || [];
@@ -141,7 +141,6 @@ function changeTextColor(theSelector, parameter){
 		    });
 		});	
 }
-
 
 function addresstoVarName(address){
 	var splitaddress = address.split(".");
@@ -286,9 +285,7 @@ function dbg(log){
 	//else alert (log);
 	try {
 		dbgOut.innerHTML += log + "<br>";	
-		} catch (e) {
-			
-			}
+	} catch (e) {}
 }
 
 function ver(channel, build){
@@ -354,6 +351,8 @@ function stopFindRokus() {
 	    images[i].onload=null;
 	    images[i].onerror=null;
 	    images[i].src="";
+	    scanResults.innerHTML = "";
+	    
 	    }
 }
 function getHostFromUrl(url) {
@@ -591,6 +590,7 @@ function findRokus() {
 		scanning = false;
 		this.innerHTML="Scan";
 		scanResults.setAttribute("class", "hidden");
+		scanResults.innerHTML = "";
 		ipPos = 255;
 		ipCount = 0;
 		stopFindRokus();
