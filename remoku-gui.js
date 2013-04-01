@@ -503,7 +503,7 @@ function loadedImage() {
 			timeouts = setTimeout('cancelImage('+ ipPos +');', 500);	
 		}
 		setConfig('scannedRokus', scannedRokus.join(","));
-		scanResults.innerHTML = "Scanning " + (254-ipCount) +  " addresses. " + scannedRokus.length + " Rokus found.";
+		scanResults.innerHTML = "506 Scanning " + (254-ipCount) +  " addresses. " + scannedRokus.length + " Rokus found.";
 		updateSelect();
 	}
 	if (scannedRokus.length>=rokuCount || ipCount>=254 || ipPos>=254) {
@@ -519,7 +519,7 @@ function loadedImage() {
 
 function imageError(){
 	ipCount++;
-	scanResults.innerHTML = "Scanning " + (254-ipCount) +  " addresses. " + scannedRokus.length + " Rokus found.";
+	scanResults.innerHTML = "522 Scanning " + (254-ipCount) +  " addresses. " + scannedRokus.length + " Rokus found.";
 	//dbg("ipCount: " + ipCount);
 	if(ipCount>=254){
 		scanButton.innerHTML="Scan";
@@ -548,7 +548,7 @@ function cancelImage(i) {
 	ipCount++;
 	ipPos++;
 	//dbg('ipPos:'+ipPos);
-	scanResults.innerHTML = "Scanning " + (254-ipCount) +  " addresses. " + scannedRokus.length + " Rokus found.";
+	scanResults.innerHTML = "551 Scanning " + (254-ipCount) +  " addresses. " + scannedRokus.length + " Rokus found.";
 	if(ipCount>=254){
 		scanButton.innerHTML="Scan";
 		scanning = false;
@@ -573,7 +573,7 @@ function findRokus() {
 		setRokuCount();
 		this.innerHTML="Stop";
 		scanResults.setAttribute("class", "visible");
-		scanResults.innerHTML = "Scanning " + (254-ipCount) +  " addresses. " + scannedRokus.length + " Rokus found.";
+		scanResults.innerHTML = "576 Scanning " + (254-ipCount) +  " addresses. " + scannedRokus.length + " Rokus found.";
 		scanning = true;
 		for (i = 1; i < 255; i++) {
 			images[i-1] = new Image();
