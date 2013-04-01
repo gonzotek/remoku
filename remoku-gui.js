@@ -548,7 +548,11 @@ function cancelImage(i) {
 	ipCount++;
 	ipPos++;
 	//dbg('ipPos:'+ipPos);
-	scanResults.innerHTML = "551 Scanning " + (254-ipCount) +  " addresses. " + scannedRokus.length + " Rokus found.";
+	if(scanning){
+		scanResults.innerHTML = "551 Scanning " + (254-ipCount) +  " addresses. " + scannedRokus.length + " Rokus found.";
+	} else {
+		scanResults.innerHTML = "554 Done.";
+	}
 	if(ipCount>=254){
 		scanButton.innerHTML="Scan";
 		scanning = false;
