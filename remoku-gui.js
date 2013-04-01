@@ -551,7 +551,7 @@ function cancelImage(i) {
 	if(scanning){
 		scanResults.innerHTML = "Scanning " + (254-ipCount) +  " addresses. " + scannedRokus.length + " Rokus found.";
 	} else {
-		scanResults.innerHTML = "Done scanning, found " + scannedRokus.length + " Rokus.  If not all of your Rokus have been found scan again, then look to <a href='http://help.remoku.tv/'>help.remoku.tv,</a> for more help.";
+		scanResults.innerHTML = "Done scanning, found " + scannedRokus.length + " Rokus.  If not all of your Rokus have been discovered, please scan again, then look to <a class='bgcolor' href='http://help.remoku.tv/'>help.remoku.tv,</a> if you need more help.";
 	}
 	if(ipCount>=254){
 		scanButton.innerHTML="Scan";
