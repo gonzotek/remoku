@@ -794,7 +794,15 @@ function launchShoutCast(){
 	rokupost.submit();
 	return false;
 	}
-
+	
+function launchNowhereCast(){
+	var rokupost = $('rokupost');
+	//params = launchKey.value + "=" + encodeURIComponent(launchValue.value);
+	params = "feed=" + escape($('nwc_url').value).split("/").join("%2F");
+	rokupost.setAttribute("action", "http://" + rokuAddress + ":8060/launch/22358?" + params );
+	rokupost.submit();
+	return false;
+	}
 
 function launchRemokuWithParams(){
 	var rokupost = $('rokupost');
@@ -1758,7 +1766,13 @@ window.onload = function(){
 
 	shoutCastLaunchButton = $("sc_launch");
 	shoutCastLaunchButton.onclick = launchShoutCast;
+
+	nowhereCastFeed = $("nwc_url");
+	nowhereCastFeed.onfocus = textModeOff;
+	nowhereCastFeed.onblur = textModeOn;
 	
+	nowhereCastLaunchButton = $("nwc_launch");
+	nowhereCastLaunchButton.onclick = launchNowhereCast;
 
 	macroSelect = $("macroSelect");
 	macroSelect.onchange = function(){
