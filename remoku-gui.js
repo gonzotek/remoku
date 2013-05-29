@@ -175,12 +175,6 @@ function is_touch_device() {
 	} else {
 		return false;
 	}		
-//   try {  
-//     document.createEvent("TouchEvent");  
-//     return true;  
-//   } catch (e) {  
-//     return false;  
-//   }  
 }
 
 function loadConfigFromText(){
@@ -636,14 +630,6 @@ function firstSetup(){
 	$('advancedsettings').setAttribute("class", "hidden");
 	window.scrollTo(1,400);
 	notSetupYet = true;
-	//var setup = confirm("It looks like you haven't used Remoku before. Would you like to begin by scanning for Rokus?");
-	//if(setup){
-	//	rokuCount = prompt ("Ok, how many Rokus do you own?", "1");
-	//	myAddress = prompt ("Thanks, last question. What is the network base address. If you're not sure, try the suggested network", "192.168.1");
-	//	alert  ("Great, now press ok and your network will be scanned for Rokus.");
-	//	numField.value = rokuCount;
-	//	findRokus();
- 	//}
 }
 
 //END DISCOVERY FUNCTIONS
