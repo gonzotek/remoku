@@ -175,6 +175,12 @@ function is_touch_device() {
 	} else {
 		return false;
 	}		
+//   try {  
+//     document.createEvent("TouchEvent");  
+//     return true;  
+//   } catch (e) {  
+//     return false;  
+//   }  
 }
 
 function loadConfigFromText(){
@@ -278,7 +284,16 @@ function dbg(log){
 	if (typeof console!=='undefined') console.log(log);
 	//else alert (log);
 	try {
-		dbgOut.innerHTML += log + "<br>";	
+		if (log=="appCache: Progress"){
+			log=".";
+		}else if(log=="appCache: Update Ready"){
+			log ="<br>" + log;
+		}else if(log=="appCache: Downloading Update "){
+			
+		} else {
+			log+="<br>";
+		}
+		dbgOut.innerHTML += log;
 	} catch (e) {}
 }
 
@@ -630,6 +645,14 @@ function firstSetup(){
 	$('advancedsettings').setAttribute("class", "hidden");
 	window.scrollTo(1,400);
 	notSetupYet = true;
+	//var setup = confirm("It looks like you haven't used Remoku before. Would you like to begin by scanning for Rokus?");
+	//if(setup){
+	//	rokuCount = prompt ("Ok, how many Rokus do you own?", "1");
+	//	myAddress = prompt ("Thanks, last question. What is the network base address. If you're not sure, try the suggested network", "192.168.1");
+	//	alert  ("Great, now press ok and your network will be scanned for Rokus.");
+	//	numField.value = rokuCount;
+	//	findRokus();
+ 	//}
 }
 
 //END DISCOVERY FUNCTIONS
@@ -1501,17 +1524,6 @@ function addFav(fav){
 }
 
 
-function onUpdateReady() {
-  dbg('found new version!');
-}
-try{
-	window.applicationCache.addEventListener('updateready', onUpdateReady);
-	if(window.applicationCache.status === window.applicationCache.UPDATEREADY) {
-  	onUpdateReady();
-	}
-} catch (e) {
-	dbg(e);
-}
 // Check if a new cache is available on page load.
 if(window.addEventListener){
 window.addEventListener('load', function(e) {
@@ -1525,14 +1537,14 @@ window.addEventListener('load', function(e) {
 		window.applicationCache.addEventListener('checking', function(){dbg('appCache: Checking');}, false);
 		
 		// An update was found. The browser is fetching resources.
-		window.applicationCache.addEventListener('downloading', function(){dbg('appCache: Downloading');}, false);
+		window.applicationCache.addEventListener('downloading', function(){dbg('appCache: Downloading Update ');}, false);
 		
 		// The manifest returns 404 or 410, the download failed,
 		// or the manifest changed while the download was in progress.
 		window.applicationCache.addEventListener('error', function(){dbg('appCache: Error');}, false);
 		
 		// Fired after the first download of the manifest.
-		window.applicationCache.addEventListener('noupdate', function(){dbg('appCache: NoUpdate');}, false);
+		window.applicationCache.addEventListener('noupdate', function(){dbg('appCache: No Update');}, false);
 		
 		// Fired if the manifest file returns a 404 or 410.
 		// This results in the application cache being deleted.
@@ -1542,7 +1554,7 @@ window.addEventListener('load', function(e) {
 		window.applicationCache.addEventListener('progress', function(){dbg('appCache: Progress');}, false);
 		
 		// Fired when the manifest resources have been newly redownloaded.
-		window.applicationCache.addEventListener('updateready', function(){dbg('appCache: UpdateReady');}, false);
+		window.applicationCache.addEventListener('updateready', function(){dbg('appCache: Update Ready');}, false);
 
 	  
 	window.applicationCache.addEventListener('updateready', function(e) {
