@@ -1,12 +1,13 @@
 CACHE MANIFEST
 #Remoku Web App
 #Dev Channel
-#Build Date: September 8, 2013 2:46:18 PM EDT
+#Build Date: September 8, 2013 3:10:26 PM EDT
 #
 NETWORK:
 *
 CACHE:
 index.html
+macro-builder.html
 remoku-gui.css
 remoku-gui.js
 color-utils.js
