@@ -6,6 +6,7 @@ Remoku is a web app for Roku remote control.  Written in JS/HTML5/CSS3
 Visit http://help.remoku.tv to get started using Remoku.
 
 Copyright (c) 2013, A. Cassidy Napoli
+
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following
