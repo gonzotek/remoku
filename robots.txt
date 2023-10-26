@@ -1,0 +1,6 @@
+# robots.txt of Remoku.tv
+User-agent: *
+Disallow: /dev/
+Disallow: /builds/
+Disallow: /prev/
+Sitemap: http://remoku.tv/sitemap.xml

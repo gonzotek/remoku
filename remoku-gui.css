@@ -1,0 +1,411 @@
+*{
+	font-family: arial, sans-serif;
+ }
+
+.bgcolor{ 	background-color: #101010;
+}
+	
+.fgcolor{ 	background-color: #101010;
+}	
+.smalltext{
+	font-size:small;
+	}
+#macroSelect{
+	width:70%;
+	height:27px;
+	}
+	#custommacroinput{
+		width:130px;
+		}
+		
+#txtentry{
+	color:blue;
+	}	
+body{
+	border-width: 0px;
+	color:#E8E8E8;
+	padding:0;
+	margin:0;
+	font-family:arial, sans-serif;
+	height:450px;
+}
+label{
+	/*background-color: #101010;*/
+	/*color :#E8E8E8;*/
+}
+fieldset{
+	text-align:left;
+	}
+input{
+	background-color: #101010;
+	color: #E8E8E8;
+	height:20px;
+}
+
+select{
+	-webkit-appearance:none;
+	-moz-appearance:none;
+	/*background-color: #101010;*/
+	/*color: #E8E8E8;*/
+}
+
+option{
+	background-color: #101010;
+	color: #E8E8E8;
+}
+
+.scrollable {
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+.selected{
+	background-color: #101010;
+	color:#CC99CC;
+	font-weight:bold;
+	}
+
+button{
+	/*background-color:#101010;
+	color:#E8E8E8;*/
+	height:25px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	margin:5px;
+}
+	
+	
+.box{
+	border: 1px solid #E8E8E8;
+	margin: 1px;
+	margin-bottom:10px;
+	/*background-color: #101010;*/
+	}
+.remoteicons{
+	clear:both;
+	float:none;
+	margin-left:auto;
+	margin-right:auto;
+	text-align:center;
+	margin-top:0;
+	margin-bottom:0;
+	display:block;
+	
+	}
+#rokucontrol{text-align:center;}
+
+#screens{
+	height:450px;
+	z-index:-1;
+	}
+
+#apps, #remote, #config, #goodies, #about{
+	position: absolute;
+	top:50px;
+	text-align:center;
+	left:50%;
+	margin-left:-160px;
+}
+
+#firstsetup{margin-top:400px;}
+
+#remotespopup{
+	position: fixed;
+	top:55px;
+	text-align:left;
+	left:50%;
+	margin-left:-160px;
+	background-color: rgba(23,23,23, 0.75);
+	}
+
+#lowerremotespopup{
+	position: absolute;
+	bottom:5px;
+	text-align:left;
+	left:50%;
+	margin-left:-75px;
+	width:150px;
+	background-color: rgba(23,23,23, 0.75);
+	}
+
+#remotespopup ul, #lowerremotespopup ul{margin:0;padding:0; border:1px solid #E8E8E8; 	background-color: rgba(23,23,23, 1);
+}
+
+#remotespopup li, #lowerremotespopup li{
+	list-style-type: none;
+	font-size:20px;
+	font-style:normal;
+	margin-top:5px;
+	margin-left:5px;
+	margin-right:5px;
+	height:30px;
+	padding-top:10px;
+	padding-left:5px;
+	padding-right:5px;
+	vertical-align:middle;
+}
+#remotespopup li span, #lowerremotespopup li span{font-size:10px;}
+
+
+#config, #apps, #goodies, #about{
+	width:320px;
+	height:400px;
+/*	overflow:auto;
+	-webkit-overflow-scrolling: touch; */
+	}
+	
+#remote{
+	width:320px;
+	height:400px;
+/*	overflow:visible;
+	-webkit-overflow-scrolling: touch;
+	*/
+}
+
+#remotetable{
+	/*margin-bottom:40px;*/
+	}
+	
+
+#text, #rokuNameDiv{
+	margin-left:auto;
+	margin-right:auto;
+	/* visibility:hidden;
+	display:none; */
+	height: 32px;
+	width: 229px; 
+	text-align:center;
+}
+
+#text{
+	background-image: url(images/top_edge.png);
+}
+
+#rokuNameDiv{
+	font-weight:bold;
+	font-size:20px;
+	color:#E8E8E8;
+	background-image: url(images/bottom_edge.png);
+	background-repeat:no-repeat;
+}
+	
+#apps .icons{max-height:75px;}	
+#apps ul{margin:0;padding:0; }
+#apps li{list-style-type: none;  margin-top:5px; margin-left:0; height:100px; padding:0;vertical-align:middle; }
+#apps a{text-decoration:none;color:#E8E8E8; vertical-align:middle;}
+#apps img{vertical-align:middle; line-height: 2em}
+
+#rokus{
+	text-align:center;
+	font-size:1.25em;
+	margin:0px;
+	-webkit-appearance:none;
+	-moz-appearance:none;
+	background: url(images/arrow_open.gif) no-repeat right;
+	background-color: #2E2E2E;
+	padding-right:12px;
+	width:90%;
+	}
+
+#searchline{
+	/* margin-left:20px; */
+	}
+#textentry,#sendtext{
+	margin-top: 7px;
+	height:20px;
+	background-color:transparent;
+	border:1px solid #101010;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	-webkit-box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 1);
+	-moz-box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 1);
+	box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 1);
+	}
+
+#textentry{
+	font-family:arial;
+	font-size:12px;
+	width:115px;
+	font-weight:bold;
+	background: rgba(25, 25, 25, 0.5) url(images/keyboard.png) no-repeat 6px 6px;
+	padding-left:35px;
+	}
+		
+#sendtext{
+	width:50px;
+	margin-left:3px;
+	display:none;
+	visibility:hidden;
+	}	
+	
+#chstoreappid{
+	width:25px;
+}	
+	
+#lkey{
+	width:50px;
+	}	
+.address{
+	width:25px;
+	}
+	
+#num{
+	width:40px;
+	height:28px;
+	}
+.maddress{
+	width:115px;
+	margin-bottom:10px;
+	}
+#manualrokus{
+	width:120px;
+}
+	
+.nav{
+	cursor:pointer;
+		opacity:0.5;
+
+	}	
+.nav img{
+	opacity:0.5;
+}
+.active img{
+	opacity:1 !important;	
+}
+.active {
+	color:white;
+	opacity:1 !important;	
+
+	}
+.link{
+	cursor:pointer;
+	}
+.hidden{
+	visibility:hidden;
+	display:none;
+	}
+	
+.visible{
+	visibility:visible;
+	display:block;
+	}
+	
+img{
+	padding:0px;
+	margin:0px;
+	border-width: 0px;
+	float:left;
+	-webkit-touch-callout:none;
+	-webkit-user-select: none;
+}
+
+td,tr{
+	border-width: 0px;
+	padding: 0px;
+	border-style: none;
+	border-collapse: collapse;
+	/*background-color: #101010;*/
+
+}
+
+	
+table{
+	border-width: 0px;
+	border-spacing:0px ;
+	border-style: none;
+	/*background-color: #101010;*/
+	display:table;
+	margin-left:auto; 
+	margin-right:auto;
+}
+h2{
+	font-size:0.95em;
+	text-align:right;
+	padding:0;
+	border:0;
+	margin-top:3px;
+	margin-left:0;
+	margin-right:3px;
+	margin-bottom:10px;
+	font-family:Georgia, serif;
+	}
+
+
+
+#navtable{
+	text-align:center;
+	left:50%;
+	margin-left:-160px;
+	margin-bottom:3px;
+	position:fixed;
+    border-width: 0px;
+	border-spacing:0px ;
+	border-style: none;
+	font-size:8pt;
+	font-weight:bold;
+	width:320px;
+	z-index:10;
+	}
+
+#navtable div{
+text-align:center;	
+margin:0;
+}
+	
+#rokuname{
+	width:90px;
+}
+.bold{font-weight:bold;}
+
+.tweakinput{
+	width:75px;
+	}
+	
+.link{color:white;}
+
+#favtable{
+	text-align:center;
+	left:50%;
+	margin-left:-160px;
+	margin-bottom:3px;
+	position:absolute;
+    border-width: 0px;
+	border-spacing:0px ;
+	border-style: none;
+	font-size:8pt;
+	font-weight:bold;
+	width:320px;
+	z-index:10;
+}
+
+#favtable td{
+text-align:center;	
+margin:0;
+}
+.favicons{
+	clear:both;
+	float:none;
+	margin-left:auto;
+	margin-right:auto;
+	text-align:center;
+	margin-top:0;
+	margin-bottom:0;
+	display:block;
+	max-height:40px;
+}
+#macroArea{
+	width:272px;
+	height:100px;
+	}
+	
+#settingstextarea{
+	width:98%;
+	height:100px;
+	
+	}
+	
+	#reloadlink{
+		color:white;
+		}
