@@ -1,75 +1,295 @@
 <!DOCTYPE html>
 <html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta property="fb:admins" content="1227408500" />
+<link rel="apple-touch-startup-image" href="remoku-splash.png" />
+<link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png" />
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-ipad-precomposed.png" />
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-iphone4-precomposed.png" />
+<title>Remoku</title>
+<meta name="description" content="Control your Roku from any PC, Mac, Smartphone, Tablet, E-Reader or other web-enabled device." />
+<link rel="icon" type="image/png" href="favicon.png" />
+<link rel="stylesheet" type="text/css" href="remoku-gui.css" media="screen" /> 
+<link rel="help" type="text/html" href="http://help.remoku.tv" />
+<script src="color-utils.js"></script>
+<script src="cp/colorPicker.js"></script>
+<script src="remoku-gui.js"></script>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-28924199-1']);
+  _gaq.push(['_setDomainName', 'remoku.tv']);
+  _gaq.push(['_trackPageview']);
 
-  <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Remoku : Remoku is a web app for Roku remote control.  Written in JS/HTML5/CSS3" />
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- script data-ad-client="ca-pub-4315015870350243" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4315015870350243" crossorigin="anonymous"></script>
+</head>
+<body id="body" class="bgcolor">
+<table id="navtable" class="bgcolor">
+  <tr>
+	<td>
+	<a class="nav active" id="navremote">
+	<div>Remote</div>
+	<img class="remoteicons" id="navremoteimg" src="images/DPad.png" alt="Remote">
+	</a>
+	</td>
+	<td>
+	<a class="nav" id="navgoodies">
+	<div>Goodies</div>
+	<img class="remoteicons" src="images/goodies.png" alt="Goodies">
+	</a>
+	</td>
+	<td class="hidden">
+	<a class="nav" id="navapps"> 
+	<div>Channels</div> 
+	<img class="remoteicons" src="images/application_view_tile.png" alt="Channels">
+	</a>
+	</td>
+	<td>
+	<a  class="nav" id="navconfig"> 
+	<div>Settings</div> 
+	<img class="remoteicons" src="images/setting_tools.png" alt="Settings">
+	</a>
+	</td>
+	<td>
+	<div class="hslice" id="Remoku">
+	<a  class="nav" id="navabout"> 
+	<div>About</div> 
+	<img class="remoteicons" src="images/about.png" alt="About">
+	</a>
+	<span class="entry-title" style="display:none;">Remoku</span>
+	<a rel="entry-content" href="http://remoku.tv" style="display:none;"></a>
+	</div> 
+	</td>
+</table>
+<div id="screens">
+<div id="remote" class="visible">
+<table id="remotetable">
+	<tr>
+		<td colspan="3">
+			<div id="text">
+				<span id="searchline"><input id="textentry" class="bgcolor" type="text" tabindex="1" value="Loading..."><button id="sendtext">Send</button></span>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td rowspan="6"><img src="images/left_edge.png" alt="left_edge"></td>
+		<td>
+			<table >
+				<tr>
+					<td><img src="images/back.png" class="link" id="Back" alt="right_edge"></td>
+					<td><img src="images/home.png" class="link" id="Home" alt="home"></td>
+				</tr>
+			</table>
+		</td>
+		<td rowspan="6"><img src="images/right_edge.png" alt="right_edge"></td>
+	</tr>
+	<tr>
+		<td>
+			<table >
+				<tr>
+					<td><img src="images/top_left_corner.png" alt="top_left_corner"></td>
+					<td><img src="images/up.png" class="link" id="Up" alt="up"></td>
+					<td><img src="images/top_right_corner.png" alt="top_right_corner"></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table >
+				<tr>
+					<td><img src="images/left.png" class="link" id="Left" alt="left"></td>
+					<td><img src="images/ok.png" class="link" id="Select" tabindex="2" alt="ok"></td>
+					<td><img src="images/right.png" class="link" id="Right" alt="right"></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table >
+				<tr>
+					<td><img src="images/bottom_left_corner.png" alt="bottom_left_corner"></td>
+					<td><img src="images/down.png" class="link" id="Down" alt="down"></td>
+					<td><img src="images/bottom_right_corner.png" alt="bottom_right_corner"></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table >
+				<tr>
+					<td><img src="images/replay.png" class="link" id="InstantReplay" alt="replay"></td>
+					<td><img src="images/info.png" class="link" id="Info" alt="info"></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table >
+				<tr>
+					<td><img src="images/previous.png" class="link" id="Rev" alt="previous"></td>
+					<td><img src="images/play.png" class="link" id="Play" alt="play"></td>
+					<td><img src="images/next.png" class="link" id="Fwd" alt="next"></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="3"><div id="rokuNameDiv">
+				<div id="nameline">Remoku</div>
+			</div>
+		</td>
+	</tr>
+</table>
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+<div class="box hidden" id="notifications">
+Remoku has an update available.<br>
+<a href="#" id="reloadlink">Reload</a> to start using it.
+</div>
+<table id="favtable">
+<tr> <td id="fav1"></td> <td id="fav2"></td> <td id="fav3"></td> </tr>
+</table>
+<div id="lowerremotespopup" class="hidden"></div>
+</div>
 
-    <title>Remoku</title>
-  </head>
+<div id="goodies" class="hidden">
+	<fieldset><legend>Macros</legend>
+	<select id="macroSelect"></select><button id="runCustomMacro">Run</button><br>
+	<input id="custommacroinput"><button id="addMacro">Save</button><button id="removeMacro">Remove</button><br>
+	<textarea id="macroArea"></textarea><br><div id="macroerror"></div>
+	See <a href="http://help.remoku.tv" class="bgcolor" target="_blank">help.remoku.tv</a> for macro command reference.
+	</fieldset>
+	<fieldset>
+	<legend>Shoutcast Channel</legend>
+	<label>Station Name:</label><input id="sc_name" value="My Station"><br>
+	<label>Station URL:</label><input id="sc_url" value="http://my.shoutcast.url/station.pls" />
+	<button id="sc_launch">Launch Shoutcast</button>
+	</fieldset>
+	<fieldset><legend>Channel Store</legend> <label>Focus App id:</label><input id="chstoreappid"  value="12" />
+	<button id="chs_macro">Launch Channel Store</button><br>
+	<div id="channelslink" class="bgcolor"></div>
+	</fieldset>
+	<div class="box hidden" id="goodieLaunch">
+		<h2>Launch Remoku Channel</h2>
+		<label>Add launch parameter</label><br>
+		<input id="lkey" value="videoUrl">=<input id="lvalue" value="http://video.ted.com/talks/podcast/CraigVenter_2008_480.mp4" />
+		<button id="lparamdo">Add</button>
+	</div>
+</div>
 
-  <body>
+<div id="apps" class="hidden">
+<ul id="applist">
+</ul>
+</div>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/gonzotek/remoku">View on GitHub</a>
+<div id="config" class="hidden">
+<div id="firstsetup" class="hidden">
+	<fieldset>
+		<legend>Remoku: Getting Started</legend>
+		Remoku is a web app for Roku Remote Control.<br><br>
+			To get started, you can search for Rokus if you enter your network address range* below, 
+			then click the Scan button to look for Roku devices. Or, you can manually add the address of a Roku.<br><br>
+			If the scan doesn't find any Rokus, please look for help at
+			 <a href="http://help.remoku.tv" target="_blank" class="bgcolor">help.remoku.tv</a>.<br><br>
+			<span style="font-size:8pt;">* For example: <b>192.168.1.X</b>.
+			These numbers can be found within the Network Control Panel or Wifi Settings of most devices, and/or in your router manual.
+			</span>
+	</fieldset>
+</div>
+<fieldset id="controlcontainer">
+	<legend>Control This Roku</legend>
+		<select id="rokus"></select><br>
+		<label>Name this roku:</label><input class="nameinput" id="rokuname" value="Living Room" />
+</fieldset>
+<fieldset>
+	<legend>Find My Roku</legend>
+	<label>My Network: </label>
+	<input class="address" id="octet1" value="192" /> .
+	<input class="address" id="octet2" value="168" /> .
+	<input class="address" id="octet3" value="1" /> . X
+	<br>
+	<label>How Many Rokus? </label>
+	<select id="num">
+		<option value="1">1</option>
+		<option value="2">2</option>
+		<option value="3">3</option>
+		<option value="4">4</option>
+		<option value="5">5</option>
+		<option value="6">6</option>
+		<option value="7">7</option>
+		<option value="8">8</option>
+		<option value="9">9</option>
+		<option value="10">10</option>
+		<option value="11">11</option>
+		<option value="12">12</option>
+		<option value="13">13</option>
+		<option value="14">14</option>
+		<option value="15">15</option>
+	</select> 
+	<button id="scanforroku">Scan</button>
+	<div id="scanresults" class="hidden"></div>
+	<br><a href="http://help.remoku.tv/#TOC-Search-Help" target="_blank" class="bgcolor" >Search Help</a><br>
+	<label>Manual Add: </label><input class="maddress" id="maddress" value="192.168.1.3" /><button id="addroku">+</button><br>
+	<form><label>Remove this: </label><select id="manualrokus" disabled></select><button id="removeroku">-</button></form>
+</fieldset>
+<div id="advancedsettings">
+<fieldset>
+	<legend>Colors</legend>
+	<label>Background Color: #</label><input class="tweakinput" id="bgcolor" value="101010"  onclick="colorPicker(event,'B',1, 1)"/><br>
+	<label>Foreground Color: #</label><input class="tweakinput" id="fgcolor" value="101010"  onclick="colorPicker(event,'B',1, 1)"/><br>
+</fieldset>
+<fieldset>
+	<legend>Favorites</legend>
+	<input type="checkbox" name="showFaves" id="showFaves"/><label>Show Favorites</label><br>
+	<label>Favorite 1: </label><input class="tweakinput" id="inputfav1" value="12"/><br>
+	<label>Favorite 2: </label><input class="tweakinput" id="inputfav2" value="28"/><br>
+	<label>Favorite 3: </label><input class="tweakinput" id="inputfav3" value="2016"/><br>
+		<div id="channelslink2" class="bgcolor"></div>
 
-          <h1 id="project_title">Remoku</h1>
-          <h2 id="project_tagline">Remoku is a web app for Roku remote control.  Written in JS/HTML5/CSS3</h2>
+</fieldset>
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/gonzotek/remoku/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/gonzotek/remoku/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
+<fieldset>
+<legend>Profile Management</legend>
+	<button id="exportsettings">Export Settings</button><button id="importsettings">Import Settings</button><br>
+	<textarea id="settingstextarea"></textarea><br>
+	Use this field to copy and paste settings for export and import.<br><br>
+	<button id="wipesettings">Wipe Settings</button>
+</fieldset>
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h1>
-<a name="remoku" class="anchor" href="#remoku"><span class="octicon octicon-link"></span></a>remoku</h1>
-
-<p>Remoku is a web app for Roku remote control.  Written in JS/HTML5/CSS3</p>
-
-<p>Visit <a href="http://help.remoku.tv">http://help.remoku.tv</a> to get started using Remoku.</p>
-
-<p>Copyright (c) 2013, A. Cassidy Napoli</p>
-
-<p>All rights reserved.</p>
-
-<p>Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following
-conditions are met:</p>
-
-<p>Redistributions of source code must retain the above copyright notice, this list of conditions and the following
-disclaimer.</p>
-
-<p>Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following 
-disclaimer in the documentation and/or other materials provided with the distribution.</p>
-
-<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
-INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER 
-IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS 
-SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
-      </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Remoku maintained by <a href="https://github.com/gonzotek">gonzotek</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
-    
-
-  </body>
+	<div class="box hidden">
+		<h2>Apps</h2>First<br>Install Remoku Channel<br>Then<br>
+		<button id="startremoku">Launch Remoku Channel</button><br>Then<br>
+		<button id="loadapps">Load Channel List</button>
+	</div>
+</div>
+</div>
+<div id="about" class="hidden">
+	<fieldset><legend>Remoku</legend>
+  A web app for Roku remote control.<br>
+	<div class="smalltext">Get help with using Remoku at <a href="http://help.remoku.tv/" target="_blank" class="bgcolor" id="helplink">help.remoku.tv</a></div>
+	</fieldset>
+	<fieldset><legend>Version</legend>
+	<div id="ver" class="smalltext">Final: 2021-07-21</div>
+	</fieldset>
+	<fieldset>
+		<legend>Debug Output</legend>
+		<div id="dbgOut" class="smalltext"></div>
+	</fieldset>
+</div>
+<div id="remotespopup" class="hidden"></div>
+</div>
+</body>
 </html>
