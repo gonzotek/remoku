@@ -103,7 +103,7 @@ Remoku interacts with Roku devices over the local network via HTTP REST endpoint
     [x] 1.5 Create scripts/deploy.sh with multi-remote & identity protection (Agent)
     [x] 1.6 Implement js/transport.js (Google LNA fetch + legacy fallback) (Agent)
     [ ] 1.7 Create Cloudflare DNS CNAME for test.remoku.tv (Human)
-    [ ] 1.8 Create remoku-web/remoku-staging repository on GitHub (Human)
+    [x] 1.8 Create remoku-web/remoku-staging repository on GitHub & push initial build (Human + Agent)
 
 [ ] Milestone 2: Remote Themes & Modern Responsive Layout Engine
     [ ] 2.1 Test UI responsiveness across mobile/tablet viewports (Human)
