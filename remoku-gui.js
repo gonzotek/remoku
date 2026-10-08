@@ -653,6 +653,10 @@ function firstSetup(){
 function rokupost(action, param){
 	if(!rokuAddress){
 		firstSetup();
+		return false;
+	} else if(typeof RemokuTransport !== 'undefined' && RemokuTransport.send){
+		RemokuTransport.send(rokuAddress, action, param);
+		return false;
 	} else {
 		var rokupost = $('rokupost');
 		rokupost.setAttribute("action", "http://" + rokuAddress + ":8060/" + action + "/" + param);
@@ -724,38 +728,29 @@ function sendCustomMacro(cmds){
 }
 
 function rokuMacroText(cmdParam){
-	var rokutext =  $('rokutext');
 	var text = cmdParam;
-//	dbg(text);
 	if(text){
 		var letter = text.slice(0,1);
 		text = text.slice(1);
-		//Handle the few characters Roku needs encoded beyond escape();
-		if(letter=="/"){ 
-//			dbg(letter);
-			letter = "%2f";
-//			dbg("  " + letter);
-			rokutext.setAttribute("action", "http://" + rokuAddress + ":8060/" + "keypress" + "/" + "LIT_" + letter);
-		} else if(letter=="@"){ 
-//			dbg(letter);
-			letter = "%40";
-//			dbg("  " + letter);
-			rokutext.setAttribute("action", "http://" + rokuAddress + ":8060/" + "keypress" + "/" + "LIT_" + letter);
-		} else if(letter=="+"){ 
-//			dbg(letter);
-			letter = "%2b";
-//			dbg("  " + letter);
-			rokutext.setAttribute("action", "http://" + rokuAddress + ":8060/" + "keypress" + "/" + "LIT_" + letter);
+		if(typeof RemokuTransport !== 'undefined' && RemokuTransport.sendChar){
+			RemokuTransport.sendChar(rokuAddress, letter);
 		} else {
-//			dbg(letter);
-//			dbg("  " + escape(letter));
-			rokutext.setAttribute("action", "http://" + rokuAddress + ":8060/" + "keypress" + "/" + "LIT_" + encodeURIComponent(letter));
+			var rokutext = $('rokutext');
+			if(letter=="/"){ 
+				letter = "%2f";
+			} else if(letter=="@"){ 
+				letter = "%40";
+			} else if(letter=="+"){ 
+				letter = "%2b";
+			} else {
+				letter = encodeURIComponent(letter);
+			}
+			rokutext.setAttribute("action", "http://" + rokuAddress + ":8060/" + "keypress" + "/" + "LIT_" + letter);
+			rokutext.submit();
 		}
-		rokutext.submit();
-		dbg (rokutext.getAttribute("action"));
 		return text;
-		}
-	}	
+	}
+}	
 
 //ECP APPS
 function launchShoutCast(){
@@ -817,37 +812,29 @@ function delayNextQuery(){
 	}
 	
 function rokuText(){
-	var rokutext =  $('rokutext');
 	var text = $("textentry").value;
-//	dbg(text);
 	if(text){
 		var letter = text.slice(0,1);
 		text = text.slice(1);
-		//Handle the few characters Roku needs encoded beyond escape();
-		if(letter=="/"){ 
-//			dbg(letter);
-			letter = "%2f";
-//			dbg("  " + letter);
-			rokutext.setAttribute("action", "http://" + rokuAddress + ":8060/" + "keypress" + "/" + "LIT_" + letter);
-		} else if(letter=="@"){ 
-//			dbg(letter);
-			letter = "%40";
-//			dbg("  " + letter);
-			rokutext.setAttribute("action", "http://" + rokuAddress + ":8060/" + "keypress" + "/" + "LIT_" + letter);
-		} else if(letter=="+"){ 
-//			dbg(letter);
-			letter = "%2b";
-//			dbg("  " + letter);
-			rokutext.setAttribute("action", "http://" + rokuAddress + ":8060/" + "keypress" + "/" + "LIT_" + letter);
+		if(typeof RemokuTransport !== 'undefined' && RemokuTransport.sendChar){
+			RemokuTransport.sendChar(rokuAddress, letter);
 		} else {
-//			dbg(letter);
-//			dbg("  " + escape(letter));
-			rokutext.setAttribute("action", "http://" + rokuAddress + ":8060/" + "keypress" + "/" + "LIT_" + encodeURIComponent(letter));
+			var rokutext = $('rokutext');
+			if(letter=="/"){ 
+				letter = "%2f";
+			} else if(letter=="@"){ 
+				letter = "%40";
+			} else if(letter=="+"){ 
+				letter = "%2b";
+			} else {
+				letter = encodeURIComponent(letter);
+			}
+			rokutext.setAttribute("action", "http://" + rokuAddress + ":8060/" + "keypress" + "/" + "LIT_" + letter);
+			rokutext.submit();
 		}
-		rokutext.submit();
 		$("textentry").value = text;
-		}
-	}	
+	}
+}	
 	
 function delayLoadIcons(){
 	if(appidarray.length>0) var appid = appidarray.shift();
